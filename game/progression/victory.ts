@@ -1,3 +1,4 @@
+import { applyBattleFriendship } from "@/game/friendship";
 import { syncUnlockedLocations } from "@/game/locations";
 import { updateMissionProgressOnVictory } from "@/game/missions";
 import { applyRewards, resolveVictoryRewards } from "@/game/rewards";
@@ -96,6 +97,7 @@ export function processBattleVictory(
     }
   }
 
+  nextSave = applyBattleFriendship(nextSave, livingAllyInstanceIds, config);
   nextSave.player.battlesWon += 1;
 
   nextSave = updateMissionProgressOnVictory(nextSave, {

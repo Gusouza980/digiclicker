@@ -8,7 +8,7 @@ const NAV_ITEMS: { key: string; screen: AppScreen | null }[] = [
   { key: "nav.map", screen: "map" },
   { key: "nav.inventory", screen: "inventory" },
   { key: "nav.traits", screen: "traits" },
-  { key: "nav.island", screen: null },
+  { key: "nav.island", screen: "island" },
 ];
 
 export function Navigation() {

@@ -12,9 +12,9 @@ import {
 const GROWTH_RATE = 0.1;
 
 const FRIENDSHIP_CUMULATIVE_THRESHOLDS = [
-  { min: 80, percent: 0.1 },
-  { min: 50, percent: 0.08 },
-  { min: 25, percent: 0.05 },
+  { min: 68, percent: 0.1 },
+  { min: 34, percent: 0.08 },
+  { min: 1, percent: 0.05 },
 ] as const;
 
 function getPersonalityModifiers(

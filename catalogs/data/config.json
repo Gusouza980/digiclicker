@@ -64,6 +64,13 @@
           "4": 0.05,
           "5": 0.1
         }
+      },
+      "friendship": {
+        "maxValue": 100,
+        "gainFromBattle": 1,
+        "gainFromClickAssist": 0.02,
+        "dailyClickSoftCap": 5,
+        "globalMultiplier": 1
       }
     }
   }

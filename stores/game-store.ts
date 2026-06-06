@@ -7,7 +7,9 @@ import {
   syncUnlockedLocations,
 } from "@/game/locations";
 import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
+import { moveDigimonToIsland, moveDigimonToTeam } from "@/game/collection";
 import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
+import { normalizeSave } from "@/game/save/normalize";
 import { ensureStarterTeam } from "@/game/save/starter-team";
 import {
   hatchEgg,
@@ -19,6 +21,7 @@ import { translate } from "@/i18n";
 import { useBattleStore } from "@/stores/battle-store";
 import type {
   BattleSpeed,
+  CollectionFeedback,
   GlobalConfig,
   HatchDestination,
   HatchingFeedback,
@@ -45,6 +48,8 @@ type GameStore = {
   performScanEgg: (eggInstanceId: string) => HatchingFeedback | null;
   performInsertEssence: (eggInstanceId: string, useStabilizer?: boolean) => HatchingFeedback | null;
   performHatchEgg: (eggInstanceId: string, destination: HatchDestination) => HatchingFeedback | null;
+  moveToTeam: (islandDigimonId: string, swapWithTeamMemberId?: string) => CollectionFeedback | null;
+  moveToIsland: (teamDigimonId: string) => CollectionFeedback | null;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -60,7 +65,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const existing = loadSave();
     const rawSave = existing ?? createSave(DEFAULT_LOCALE);
     const withTeam = ensureStarterTeam(rawSave);
-    const synced = syncUnlockedLocations(withTeam);
+    const normalized = normalizeSave(withTeam);
+    const synced = syncUnlockedLocations(normalized);
     const clampedSpeed = clampBattleSpeed(synced, synced.settings.battleSpeed ?? 1);
     const save =
       clampedSpeed === synced.settings.battleSpeed
@@ -194,6 +200,38 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const result = insertEssence(save, eggInstanceId, useStabilizer);
     if (result.ok) {
       set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  moveToTeam: (islandDigimonId, swapWithTeamMemberId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = moveDigimonToTeam(save, islandDigimonId, swapWithTeamMemberId, config);
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      const battle = useBattleStore.getState();
+      battle.reset();
+      battle.initBattle(persisted, config);
+    }
+    return result.feedback;
+  },
+
+  moveToIsland: (teamDigimonId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = moveDigimonToIsland(save, teamDigimonId, config);
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      const battle = useBattleStore.getState();
+      battle.reset();
+      battle.initBattle(persisted, config);
     }
     return result.feedback;
   },

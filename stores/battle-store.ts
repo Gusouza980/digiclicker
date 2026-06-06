@@ -1,7 +1,9 @@
 import { create } from "zustand";
 
 import { BattleEngine, type BattleSnapshot } from "@/game/battle";
+import { applyClickFriendship } from "@/game/friendship";
 import { processBattleVictory } from "@/game/progression/victory";
+import { useGameStore } from "@/stores/game-store";
 import type { GlobalConfig, SaveData } from "@/types";
 
 type BattleStore = {
@@ -43,6 +45,16 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const { engine } = get();
     if (!engine) return;
     set({ snapshot: engine.click() });
+
+    const save = useGameStore.getState().save;
+    const config = useGameStore.getState().config;
+    if (!save || !config) return;
+
+    const livingIds = engine.getLivingAllyInstanceIds();
+    const updated = applyClickFriendship(save, livingIds, config);
+    if (updated !== save) {
+      useGameStore.getState().replaceSave(updated);
+    }
   },
 
   useSpecial: (allyInstanceId) => {

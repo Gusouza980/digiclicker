@@ -52,6 +52,8 @@ export type DigimonCatalogEntry = {
   dropTable?: DigimonDropTable;
 };
 
+export type DigimonSource = "starter" | "hatch";
+
 export type PlayerDigimon = {
   instanceId: string;
   catalogId: string;
@@ -61,4 +63,5 @@ export type PlayerDigimon = {
   personalityId: string | null;
   hatchQuality: 3 | 4 | 5 | null;
   typeXp: Record<string, number>;
+  source: DigimonSource;
 };

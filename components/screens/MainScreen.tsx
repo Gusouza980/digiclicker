@@ -3,6 +3,7 @@
 import { BattleScreen } from "@/components/battle/BattleScreen";
 import { DigimonDetailScreen } from "@/components/digimon/DigimonDetailScreen";
 import { InventoryScreen } from "@/components/inventory/InventoryScreen";
+import { IslandScreen } from "@/components/island/IslandScreen";
 import { ScannerScreen } from "@/components/scanner/ScannerScreen";
 import { MapScreen } from "@/components/map/MapScreen";
 import { TraitsScreen } from "@/components/traits/TraitsScreen";
@@ -28,6 +29,8 @@ export function MainScreen() {
       return <InventoryScreen />;
     case "traits":
       return <TraitsScreen />;
+    case "island":
+      return <IslandScreen />;
     case "battle":
     default:
       return <BattleScreen />;

@@ -1,6 +1,12 @@
 "use client";
 
 import { getCatalogEntry } from "@/catalogs/loader";
+import { FriendshipBar } from "@/components/digimon/FriendshipBar";
+import {
+  getDigimonLocation,
+  getEvolutionLine,
+  isDigimonOccupied,
+} from "@/game/collection";
 import { calculateStatBreakdown, calculateTotalStats } from "@/game/stats/calculator";
 import { useGameStore } from "@/stores/game-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -10,11 +16,15 @@ const STAT_KEYS: StatKey[] = ["hp", "mp", "atk", "def", "int", "spi", "spd"];
 
 export function DigimonDetailScreen() {
   const save = useGameStore((state) => state.save);
+  const config = useGameStore((state) => state.config);
   const t = useGameStore((state) => state.t);
+  const moveToTeam = useGameStore((state) => state.moveToTeam);
+  const moveToIsland = useGameStore((state) => state.moveToIsland);
   const selectedDigimonId = useUiStore((state) => state.selectedDigimonId);
   const setSelectedDigimonId = useUiStore((state) => state.setSelectedDigimonId);
+  const setCollectionFeedback = useUiStore((state) => state.setCollectionFeedback);
 
-  if (!save || !selectedDigimonId) return null;
+  if (!save || !config || !selectedDigimonId) return null;
 
   const digimon = save.digimons[selectedDigimonId];
   if (!digimon) return null;
@@ -27,6 +37,20 @@ export function DigimonDetailScreen() {
   const personality = digimon.personalityId
     ? getCatalogEntry("personality", digimon.personalityId)
     : null;
+  const location = getDigimonLocation(save, digimon.instanceId);
+  const occupied = isDigimonOccupied(save, digimon.instanceId);
+  const evolutionLine = getEvolutionLine(digimon.catalogId);
+  const teamCount = save.team.activeDigimonIds.length;
+
+  const handleMoveToTeam = () => {
+    const feedback = moveToTeam(digimon.instanceId);
+    if (feedback) setCollectionFeedback(feedback);
+  };
+
+  const handleMoveToIsland = () => {
+    const feedback = moveToIsland(digimon.instanceId);
+    if (feedback) setCollectionFeedback(feedback);
+  };
 
   return (
     <div className="space-y-6">
@@ -56,6 +80,18 @@ export function DigimonDetailScreen() {
           <span className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-2 py-1">
             {t("digimon.detail.type")}: {t(`digimon_type.${catalog.primaryType}`)}
           </span>
+          <span className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-2 py-1">
+            {t("digimon.detail.location")}: {t(`digimon.detail.location.${location}`)}
+          </span>
+        </div>
+      </section>
+
+      <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4">
+        <h3 className="text-sm font-medium text-[var(--text-muted)]">
+          {t("digimon.detail.friendship")}
+        </h3>
+        <div className="mt-3">
+          <FriendshipBar friendship={digimon.friendship} label={t("digimon.detail.friendship")} />
         </div>
       </section>
 
@@ -121,13 +157,15 @@ export function DigimonDetailScreen() {
 
       <section className="grid gap-3 text-sm md:grid-cols-2">
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3">
-          <span className="text-[var(--text-muted)]">{t("digimon.detail.friendship")}</span>
-          <p className="font-semibold text-[var(--text-primary)]">{digimon.friendship}</p>
-        </div>
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3">
           <span className="text-[var(--text-muted)]">{t("digimon.detail.stage")}</span>
           <p className="font-semibold text-[var(--text-primary)]">
             {t(`digimon.stage.${catalog.stage}`)}
+          </p>
+        </div>
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3">
+          <span className="text-[var(--text-muted)]">{t("digimon.detail.source")}</span>
+          <p className="font-semibold text-[var(--text-primary)]">
+            {t(`digimon.detail.source.${digimon.source}`)}
           </p>
         </div>
         {digimon.hatchQuality && (
@@ -141,6 +179,66 @@ export function DigimonDetailScreen() {
           </div>
         )}
       </section>
+
+      {evolutionLine.length > 0 && (
+        <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4">
+          <h3 className="text-sm font-medium text-[var(--text-muted)]">
+            {t("digimon.detail.evolution_line")}
+          </h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {evolutionLine.map((form) => {
+              const isCurrent = form.id === digimon.catalogId;
+              const isKnown = save.knownForms.knownFormIds.includes(form.id) || isCurrent;
+
+              return (
+                <li
+                  key={form.id}
+                  className={`rounded-lg border px-3 py-1.5 text-xs ${
+                    isCurrent
+                      ? "border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]"
+                      : isKnown
+                        ? "border-[var(--border)] text-[var(--text-primary)]"
+                        : "border-dashed border-[var(--border)] text-[var(--text-muted)]"
+                  }`}
+                >
+                  {isKnown ? t(form.nameKey) : "?"}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
+      {(location === "team" || location === "island") && (
+        <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4 space-y-3">
+          <h3 className="text-sm font-medium text-[var(--text-muted)]">
+            {t("digimon.detail.management")}
+          </h3>
+          {occupied && (
+            <p className="text-sm text-amber-300">{t("collection.error.digimon_occupied")}</p>
+          )}
+          {location === "island" && (
+            <button
+              type="button"
+              disabled={occupied || (teamCount >= config.team.maxActive)}
+              onClick={handleMoveToTeam}
+              className="w-full rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white transition-opacity enabled:hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {t("island.action.to_team")}
+            </button>
+          )}
+          {location === "team" && (
+            <button
+              type="button"
+              disabled={occupied || teamCount <= 1}
+              onClick={handleMoveToIsland}
+              className="w-full rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors enabled:hover:border-[var(--accent)] enabled:hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {t("island.action.to_island")}
+            </button>
+          )}
+        </section>
+      )}
     </div>
   );
 }

@@ -18,33 +18,33 @@ Permitir que o jogador gerencie seu time e Ilha Digital como coleção, movendo 
 
 | Status | ID | Tipo | Task | Saída esperada | Tamanho |
 |---|---|---|---|---|---|
-| [ ] | DG-S06-001 | Gameplay | Implementar storage da Ilha Digital. | Lista de Digimons fora do time. | G |
-| [ ] | DG-S06-002 | Gameplay | Implementar limite de 50 Digimons na Ilha. | Novos Digimons respeitam capacidade. | M |
-| [ ] | DG-S06-003 | UI | Criar tela da Ilha Digital como storage. | Lista/cards de Digimons armazenados. | G |
-| [ ] | DG-S06-004 | Gameplay | Implementar mover Digimon da Ilha para o time. | Respeitar limite de 3 no time. | M |
-| [ ] | DG-S06-005 | Gameplay | Implementar remover Digimon do time para a Ilha. | Respeitar capacidade da Ilha. | M |
-| [ ] | DG-S06-006 | Gameplay | Impedir movimentação de Digimon ocupado. | Digimon em treino/ação não pode ir para o time. | M |
-| [ ] | DG-S06-007 | UI | Melhorar modal/tela de detalhes do Digimon. | Stats, amizade, personality, evolução, source e qualidade hatch. | G |
-| [ ] | DG-S06-008 | Gameplay | Implementar ganho de amizade por participação em batalha. | Ganho lento e parametrizado. | M |
-| [ ] | DG-S06-009 | Gameplay | Implementar ganho de amizade por clique de apoio. | Cliques contribuem lentamente com amizade. | M |
-| [ ] | DG-S06-010 | Gameplay | Implementar soft cap/limite de amizade. | Evitar farm abusivo por clique. | M |
-| [ ] | DG-S06-011 | UI | Exibir barra de amizade no detalhe e/ou card. | Jogador acompanha amizade. | M |
-| [ ] | DG-S06-012 | QA | Validar fluxo de coleção. | Chocar, armazenar, mover para time e batalhar. | M |
+| [x] | DG-S06-001 | Gameplay | Implementar storage da Ilha Digital. | Lista de Digimons fora do time. | G |
+| [x] | DG-S06-002 | Gameplay | Implementar limite de 50 Digimons na Ilha. | Novos Digimons respeitam capacidade. | M |
+| [x] | DG-S06-003 | UI | Criar tela da Ilha Digital como storage. | Lista/cards de Digimons armazenados. | G |
+| [x] | DG-S06-004 | Gameplay | Implementar mover Digimon da Ilha para o time. | Respeitar limite de 3 no time. | M |
+| [x] | DG-S06-005 | Gameplay | Implementar remover Digimon do time para a Ilha. | Respeitar capacidade da Ilha. | M |
+| [x] | DG-S06-006 | Gameplay | Impedir movimentação de Digimon ocupado. | Digimon em treino/ação não pode ir para o time. | M |
+| [x] | DG-S06-007 | UI | Melhorar modal/tela de detalhes do Digimon. | Stats, amizade, personality, evolução, source e qualidade hatch. | G |
+| [x] | DG-S06-008 | Gameplay | Implementar ganho de amizade por participação em batalha. | Ganho lento e parametrizado. | M |
+| [x] | DG-S06-009 | Gameplay | Implementar ganho de amizade por clique de apoio. | Cliques contribuem lentamente com amizade. | M |
+| [x] | DG-S06-010 | Gameplay | Implementar soft cap/limite de amizade. | Evitar farm abusivo por clique. | M |
+| [x] | DG-S06-011 | UI | Exibir barra de amizade no detalhe e/ou card. | Jogador acompanha amizade. | M |
+| [x] | DG-S06-012 | QA | Validar fluxo de coleção. | Chocar, armazenar, mover para time e batalhar. | M |
 
 ## Checklist de tasks
 
-- [ ] **DG-S06-001** (Gameplay, G) — Implementar storage da Ilha Digital.
-- [ ] **DG-S06-002** (Gameplay, M) — Implementar limite de 50 Digimons na Ilha.
-- [ ] **DG-S06-003** (UI, G) — Criar tela da Ilha Digital como storage.
-- [ ] **DG-S06-004** (Gameplay, M) — Implementar mover Digimon da Ilha para o time.
-- [ ] **DG-S06-005** (Gameplay, M) — Implementar remover Digimon do time para a Ilha.
-- [ ] **DG-S06-006** (Gameplay, M) — Impedir movimentação de Digimon ocupado.
-- [ ] **DG-S06-007** (UI, G) — Melhorar modal/tela de detalhes do Digimon.
-- [ ] **DG-S06-008** (Gameplay, M) — Implementar ganho de amizade por participação em batalha.
-- [ ] **DG-S06-009** (Gameplay, M) — Implementar ganho de amizade por clique de apoio.
-- [ ] **DG-S06-010** (Gameplay, M) — Implementar soft cap/limite de amizade.
-- [ ] **DG-S06-011** (UI, M) — Exibir barra de amizade no detalhe e/ou card.
-- [ ] **DG-S06-012** (QA, M) — Validar fluxo de coleção.
+- [x] **DG-S06-001** (Gameplay, G) — Implementar storage da Ilha Digital.
+- [x] **DG-S06-002** (Gameplay, M) — Implementar limite de 50 Digimons na Ilha.
+- [x] **DG-S06-003** (UI, G) — Criar tela da Ilha Digital como storage.
+- [x] **DG-S06-004** (Gameplay, M) — Implementar mover Digimon da Ilha para o time.
+- [x] **DG-S06-005** (Gameplay, M) — Implementar remover Digimon do time para a Ilha.
+- [x] **DG-S06-006** (Gameplay, M) — Impedir movimentação de Digimon ocupado.
+- [x] **DG-S06-007** (UI, G) — Melhorar modal/tela de detalhes do Digimon.
+- [x] **DG-S06-008** (Gameplay, M) — Implementar ganho de amizade por participação em batalha.
+- [x] **DG-S06-009** (Gameplay, M) — Implementar ganho de amizade por clique de apoio.
+- [x] **DG-S06-010** (Gameplay, M) — Implementar soft cap/limite de amizade.
+- [x] **DG-S06-011** (UI, M) — Exibir barra de amizade no detalhe e/ou card.
+- [x] **DG-S06-012** (QA, M) — Validar fluxo de coleção.
 
 ## Critério de saída da sprint
 

@@ -1,5 +1,7 @@
 import type { BattleSpeed } from "./battle";
+import type { IslandActionSlot } from "./collection";
 import type { PlayerDigimon } from "./digimon";
+import type { FriendshipDailyProgress } from "./friendship";
 import type { InventoryState } from "./inventory";
 import type { SupportedLocale } from "./locale";
 import type { MissionProgress } from "./mission";
@@ -20,6 +22,7 @@ export type TeamState = {
 
 export type IslandState = {
   storedDigimonIds: string[];
+  activeActions: IslandActionSlot[];
 };
 
 export type LocationProgress = {
@@ -52,5 +55,6 @@ export type SaveData = {
   missions: MissionProgress[];
   traits: UnlockedTrait[];
   knownForms: KnownFormsState;
+  friendshipDaily: FriendshipDailyProgress;
   settings: GameSettings;
 };

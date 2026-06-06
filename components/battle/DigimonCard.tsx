@@ -1,5 +1,6 @@
 "use client";
 
+import { FriendshipBar } from "@/components/digimon/FriendshipBar";
 import { useBattleStore } from "@/stores/battle-store";
 import { useGameStore } from "@/stores/game-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -17,6 +18,7 @@ type DigimonCardProps = {
 };
 
 export function DigimonCard({ ally }: DigimonCardProps) {
+  const save = useGameStore((state) => state.save);
   const t = useGameStore((state) => state.t);
   const useSpecial = useBattleStore((state) => state.useSpecial);
   const phase = useBattleStore((state) => state.snapshot?.phase);
@@ -26,6 +28,7 @@ export function DigimonCard({ ally }: DigimonCardProps) {
   const color = STAGE_COLORS.rookie;
   const canUseSpecial =
     phase === "fighting" && !ally.isDefeated && ally.specialReady;
+  const friendship = save?.digimons[ally.instanceId]?.friendship ?? 0;
 
   return (
     <article
@@ -87,6 +90,11 @@ export function DigimonCard({ ally }: DigimonCardProps) {
                 />
               </div>
             </div>
+            <FriendshipBar
+              friendship={friendship}
+              compact
+              label={t("digimon.detail.friendship")}
+            />
           </div>
         </div>
       </div>

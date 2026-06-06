@@ -19,6 +19,7 @@ export function createStarterDigimon(
     personalityId,
     hatchQuality: null,
     typeXp: {},
+    source: "starter",
   };
 }
 

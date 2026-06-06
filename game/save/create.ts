@@ -23,6 +23,7 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     team: starter.team,
     island: {
       storedDigimonIds: [],
+      activeActions: [],
     },
     digimons: starter.digimons,
     inventory: {
@@ -39,6 +40,10 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     traits: [],
     knownForms: {
       knownFormIds: [],
+    },
+    friendshipDaily: {
+      dateKey: new Date().toISOString().slice(0, 10),
+      clickGainUsed: 0,
     },
     settings: {
       locale,

@@ -298,6 +298,7 @@ export function hatchEgg(
     personalityId,
     hatchQuality: quality,
     typeXp: {},
+    source: "hatch",
   };
 
   next.digimons[digimon.instanceId] = digimon;
