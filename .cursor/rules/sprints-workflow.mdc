@@ -77,6 +77,22 @@ Gerar `sprints/<pasta-da-sprint>/EXECUCAO.md` com:
 - Dependências ou riscos para a sprint seguinte
 ```
 
+Em seguida, criar **commit semântico** da entrega (ver `.cursor/rules/commit-conventions.mdc`):
+
+1. Incluir no stage: código da sprint + `EXECUCAO.md` + `TASKS.md` atualizado.
+2. Mensagem no padrão Gitflow + Conventional Commits:
+
+```txt
+feat(sprint-NN): <título curto da sprint>
+
+<resumo do que foi entregue>
+
+Tasks: DG-SNN-001, DG-SNN-002, ...
+Sprint: sprint-NN-<slug>
+```
+
+3. Só fazer o commit quando o usuário solicitar explicitamente (regra do projeto).
+
 ### 5. Definition of Done (planning §22)
 
 Só considerar sprint concluída quando:
@@ -92,3 +108,4 @@ Só considerar sprint concluída quando:
 - Planejamento completo: `digiclicker_sprint_planning.md`
 - Índice de sprints: `sprints/README.md`
 - IDs de tasks: `DG-S[NN]-[NNN]`
+- Convenções de commit e Gitflow: `.cursor/rules/commit-conventions.mdc`

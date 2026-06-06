@@ -1,0 +1,127 @@
+---
+description: Convenções de commit semântico e nomenclatura Gitflow do Digiclicker
+alwaysApply: true
+---
+
+# Convenções de Commit — Digiclicker
+
+Commits e branches seguem **Gitflow** + **Conventional Commits**.
+
+## Branches (Gitflow)
+
+| Branch | Uso |
+|--------|-----|
+| `main` | Produção estável; apenas merges de `release/*` ou `hotfix/*` |
+| `develop` | Integração contínua; base para novas features |
+| `feature/<nome>` | Nova funcionalidade; ramifica de `develop`, merge de volta em `develop` |
+| `release/<versão>` | Preparação de release; ramifica de `develop`, merge em `main` e `develop` |
+| `hotfix/<nome>` | Correção urgente em produção; ramifica de `main`, merge em `main` e `develop` |
+
+### Nomenclatura de branches
+
+```txt
+feature/sprint-00-fundacao-tecnica
+feature/battle-engine
+release/0.1.0-mvp-local
+hotfix/save-corruption
+```
+
+- Use **kebab-case** (minúsculas, hífens).
+- Prefira prefixo da sprint quando o escopo for uma sprint inteira: `feature/sprint-NN-<slug>`.
+- Evite nomes genéricos (`fix`, `update`, `wip`).
+
+## Commits semânticos
+
+### Formato
+
+```txt
+<tipo>(<escopo>): <descrição imperativa curta>
+
+[corpo opcional — o que e por quê]
+
+[rodapé opcional — refs, breaking changes]
+```
+
+- **Descrição:** imperativo, sem ponto final, máx. ~72 caracteres no título.
+- **Escopo:** módulo ou sprint (`sprint-00`, `battle`, `save`, `i18n`).
+- Um commit = uma mudança lógica coesa.
+
+### Tipos permitidos
+
+| Tipo | Quando usar |
+|------|-------------|
+| `feat` | Nova funcionalidade ou entrega de sprint |
+| `fix` | Correção de bug |
+| `docs` | Documentação (`EXECUCAO.md`, README, planning) |
+| `style` | Formatação sem mudança de lógica |
+| `refactor` | Refatoração sem alterar comportamento |
+| `perf` | Melhoria de performance |
+| `test` | Testes |
+| `chore` | Build, deps, tooling, configs |
+| `ci` | Pipelines e automação |
+
+### Exemplos
+
+```txt
+feat(sprint-00): adicionar save local com versionamento
+
+Implementa contrato de save, LocalStorage e migrations iniciais.
+Tasks: DG-S00-005, DG-S00-006, DG-S00-007
+```
+
+```txt
+fix(battle): corrigir derrota total quando último Digimon morre
+```
+
+```txt
+docs(sprint-02): registrar execução da sprint de MP e recompensas
+```
+
+```txt
+chore(deps): configurar ESLint e Prettier
+```
+
+## Commit ao final de cada sprint
+
+Ao concluir uma sprint (após `EXECUCAO.md`):
+
+1. Garantir que `TASKS.md` está atualizado com todas as tasks concluídas marcadas `[x]`.
+2. Incluir no stage: código da sprint + `EXECUCAO.md` + `TASKS.md` atualizado.
+3. Criar **um commit semântico** representando a entrega da sprint:
+
+```txt
+feat(sprint-NN): <título curto da sprint>
+
+<resumo em 2-4 linhas do que foi entregue>
+
+Tasks: DG-SNN-001, DG-SNN-002, ...
+Sprint: sprint-NN-<slug>
+```
+
+- Use `feat` para sprint concluída com entrega funcional.
+- Use `docs` se a sprint foi apenas documentação/planejamento.
+- Use `fix` apenas se a sprint foi exclusivamente correções.
+
+### Exemplo — Sprint 0
+
+```txt
+feat(sprint-00): fundação técnica e arquitetura do MVP
+
+Projeto Next.js, save local versionado, catálogos, i18n PT/EN/ES
+e layout base da aplicação.
+
+Tasks: DG-S00-001 a DG-S00-014
+Sprint: sprint-00-fundacao-tecnica
+```
+
+## O que evitar
+
+- Commits vagos: `update`, `fix stuff`, `wip`, `changes`.
+- Misturar entregas de sprints diferentes no mesmo commit.
+- Commitar secrets (`.env`, credenciais).
+- `--no-verify` ou amend em commits já pushados (salvo pedido explícito).
+
+## Referências
+
+- Workflow de sprints: `.cursor/rules/sprints-workflow.mdc`
+- Planejamento: `digiclicker_sprint_planning.md`
