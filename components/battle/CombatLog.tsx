@@ -18,6 +18,12 @@ function formatLogMessage(
   return t(entry.messageKey);
 }
 
+function damageColor(damageType: CombatLogEntry["damageType"]): string {
+  if (damageType === "special") return "text-amber-300";
+  if (damageType === "click") return "text-[var(--accent)]";
+  return "text-sky-300";
+}
+
 export function CombatLog({ entries }: CombatLogProps) {
   const t = useGameStore((state) => state.t);
 
@@ -40,9 +46,11 @@ export function CombatLog({ entries }: CombatLogProps) {
             key={entry.id}
             className="flex items-center justify-between gap-2 text-xs text-[var(--text-primary)]"
           >
-            <span>{formatLogMessage(t, entry)}</span>
+            <span className={entry.damageType === "special" ? "text-amber-200" : undefined}>
+              {formatLogMessage(t, entry)}
+            </span>
             {entry.damage > 0 && (
-              <span className="font-mono font-semibold text-[var(--accent)]">
+              <span className={`font-mono font-semibold ${damageColor(entry.damageType)}`}>
                 -{entry.damage}
               </span>
             )}

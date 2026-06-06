@@ -2,8 +2,10 @@ export { BattleEngine } from "./engine";
 export {
   calculateAttackDamage,
   calculateClickDamage,
+  calculateSpecialDamage,
   getAttackIntervalMs,
 } from "./damage";
+export type { DamageType } from "./types";
 export {
   getEnemyCatalogEntry,
   pickEnemyTeam,

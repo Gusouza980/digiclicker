@@ -7,6 +7,7 @@ import { useBattleStore } from "@/stores/battle-store";
 import { BattleArena } from "./BattleArena";
 import { CombatLog } from "./CombatLog";
 import { DigimonCard } from "./DigimonCard";
+import { RecentRewards } from "./RecentRewards";
 
 export function BattleScreen() {
   const save = useGameStore((state) => state.save);
@@ -35,9 +36,15 @@ export function BattleScreen() {
           </h2>
           <p className="text-sm text-[var(--text-muted)]">{locationName}</p>
         </div>
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
-          {t("battle.team_atk")}:{" "}
-          <strong className="text-[var(--accent)]">{snapshot.teamTotalAtk}</strong>
+        <div className="flex flex-wrap gap-2">
+          <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
+            {t("battle.team_atk")}:{" "}
+            <strong className="text-[var(--accent)]">{snapshot.teamTotalAtk}</strong>
+          </div>
+          <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
+            {t("header.bits")}:{" "}
+            <strong className="text-amber-300">{save.player.bits}</strong>
+          </div>
         </div>
       </section>
 
@@ -45,6 +52,7 @@ export function BattleScreen() {
         enemies={snapshot.enemies}
         phase={snapshot.phase}
         lastDamage={snapshot.lastDamage}
+        lastDamageType={snapshot.lastDamageType}
       />
 
       <section>
@@ -59,6 +67,11 @@ export function BattleScreen() {
       </section>
 
       <CombatLog entries={snapshot.combatLog} />
+
+      <RecentRewards
+        rewards={snapshot.recentRewards}
+        levelUps={snapshot.levelUpEvents}
+      />
     </div>
   );
 }

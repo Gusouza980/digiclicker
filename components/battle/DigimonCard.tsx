@@ -1,5 +1,6 @@
 "use client";
 
+import { useBattleStore } from "@/stores/battle-store";
 import { useGameStore } from "@/stores/game-store";
 import type { BattleAllyState } from "@/game/battle";
 
@@ -16,8 +17,13 @@ type DigimonCardProps = {
 
 export function DigimonCard({ ally }: DigimonCardProps) {
   const t = useGameStore((state) => state.t);
+  const useSpecial = useBattleStore((state) => state.useSpecial);
+  const phase = useBattleStore((state) => state.snapshot?.phase);
   const hpPercent = ally.maxHp > 0 ? (ally.currentHp / ally.maxHp) * 100 : 0;
+  const mpPercent = Math.round(ally.mp * 100);
   const color = STAGE_COLORS.rookie;
+  const canUseSpecial =
+    phase === "fighting" && !ally.isDefeated && ally.specialReady;
 
   return (
     <article
@@ -44,28 +50,48 @@ export function DigimonCard({ ally }: DigimonCardProps) {
               {t("battle.level")} {ally.level}
             </span>
           </div>
-          <div className="mt-2">
-            <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
-              <span>HP</span>
-              <span>
-                {ally.currentHp}/{ally.maxHp}
-              </span>
+          <div className="mt-2 space-y-2">
+            <div>
+              <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
+                <span>HP</span>
+                <span>
+                  {ally.currentHp}/{ally.maxHp}
+                </span>
+              </div>
+              <div className="h-2 overflow-hidden rounded-full bg-[var(--bg-primary)]">
+                <div
+                  className={`h-full rounded-full transition-all ${
+                    ally.isDefeated ? "bg-red-500/60" : "bg-emerald-500"
+                  }`}
+                  style={{ width: `${hpPercent}%` }}
+                />
+              </div>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-[var(--bg-primary)]">
-              <div
-                className={`h-full rounded-full transition-all ${
-                  ally.isDefeated ? "bg-red-500/60" : "bg-emerald-500"
-                }`}
-                style={{ width: `${hpPercent}%` }}
-              />
+            <div>
+              <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
+                <span>MP</span>
+                <span>{mpPercent}%</span>
+              </div>
+              <div className="h-1.5 overflow-hidden rounded-full bg-[var(--bg-primary)]">
+                <div
+                  className={`h-full rounded-full transition-all ${
+                    ally.specialReady ? "bg-amber-400" : "bg-sky-500/70"
+                  }`}
+                  style={{ width: `${mpPercent}%` }}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <dl className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+      <dl className="mt-3 grid grid-cols-4 gap-2 text-center text-xs">
         <div>
           <dt className="text-[var(--text-muted)]">ATK</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{ally.atk}</dd>
+        </div>
+        <div>
+          <dt className="text-[var(--text-muted)]">INT</dt>
+          <dd className="font-semibold text-[var(--text-primary)]">{ally.int}</dd>
         </div>
         <div>
           <dt className="text-[var(--text-muted)]">DEF</dt>
@@ -76,6 +102,18 @@ export function DigimonCard({ ally }: DigimonCardProps) {
           <dd className="font-semibold text-[var(--text-primary)]">{ally.spd}</dd>
         </div>
       </dl>
+      <button
+        type="button"
+        onClick={() => useSpecial(ally.instanceId)}
+        disabled={!canUseSpecial}
+        className={`mt-3 w-full rounded-lg px-3 py-2 text-xs font-semibold transition-colors ${
+          canUseSpecial
+            ? "bg-amber-400/20 text-amber-300 ring-1 ring-amber-400/50 hover:bg-amber-400/30"
+            : "cursor-not-allowed bg-[var(--bg-primary)] text-[var(--text-muted)] opacity-60"
+        }`}
+      >
+        {ally.specialReady ? t("battle.special.ready") : t("battle.special.charging")}
+      </button>
       {ally.isDefeated && (
         <p className="mt-2 text-center text-xs font-medium text-red-400">
           {t("battle.defeated")}

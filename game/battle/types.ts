@@ -1,10 +1,14 @@
 import type { BattlePhase } from "@/types/battle";
+import type { LevelUpEvent, RewardDisplayEntry } from "@/game/rewards";
+
+export type DamageType = "normal" | "special" | "click";
 
 export type CombatLogEntry = {
   id: string;
   messageKey: string;
   actorNameKey?: string;
   damage: number;
+  damageType: DamageType;
   timestamp: number;
 };
 
@@ -17,7 +21,10 @@ export type BattleAllyState = {
   maxHp: number;
   atk: number;
   def: number;
+  int: number;
   spd: number;
+  mp: number;
+  specialReady: boolean;
   attackTimerMs: number;
   isDefeated: boolean;
 };
@@ -43,4 +50,7 @@ export type BattleSnapshot = {
   teamTotalAtk: number;
   combatLog: CombatLogEntry[];
   lastDamage: number | null;
+  lastDamageType: DamageType | null;
+  recentRewards: RewardDisplayEntry[];
+  levelUpEvents: LevelUpEvent[];
 };

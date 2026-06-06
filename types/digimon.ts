@@ -28,6 +28,12 @@ export type DigimonElement =
   | "dark"
   | "neutral";
 
+export type DigimonBattleRewards = {
+  bitsMin: number;
+  bitsMax: number;
+  digimonXp: number;
+};
+
 export type DigimonCatalogEntry = {
   id: string;
   nameKey: string;
@@ -36,6 +42,7 @@ export type DigimonCatalogEntry = {
   element: DigimonElement;
   primaryType: string;
   baseStats: StatBlock;
+  battleRewards?: DigimonBattleRewards;
 };
 
 export type PlayerDigimon = {

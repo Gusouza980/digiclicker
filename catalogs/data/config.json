@@ -13,8 +13,10 @@
         "specialDamageMultiplier": 2
       },
       "xp": {
-        "digimonPerVictory": 10,
-        "trainerPerVictory": 5
+        "digimonPerVictory": 8,
+        "trainerPerVictory": 5,
+        "xpToNextBase": 80,
+        "xpToNextGrowth": 20
       },
       "drops": {
         "baseChance": 0.15

@@ -1,22 +1,32 @@
 import { create } from "zustand";
 
 import { BattleEngine, type BattleSnapshot } from "@/game/battle";
+import { applyRewards, resolveVictoryRewards } from "@/game/rewards";
 import type { GlobalConfig, SaveData } from "@/types";
 
 type BattleStore = {
   snapshot: BattleSnapshot | null;
   engine: BattleEngine | null;
+  isLoadingNextBattle: boolean;
+  setLoadingNextBattle: (loading: boolean) => void;
   initBattle: (save: SaveData, config: GlobalConfig) => void;
   tick: (deltaMs: number) => void;
   click: () => void;
+  useSpecial: (allyInstanceId: string) => void;
   retry: () => void;
-  continueAfterVictory: () => void;
+  continueAfterVictory: (save?: SaveData) => void;
+  applyVictoryRewards: (save: SaveData, config: GlobalConfig) => SaveData | null;
   reset: () => void;
 };
 
 export const useBattleStore = create<BattleStore>((set, get) => ({
   snapshot: null,
   engine: null,
+  isLoadingNextBattle: false,
+
+  setLoadingNextBattle: (loading) => {
+    set({ isLoadingNextBattle: loading });
+  },
 
   initBattle: (save, config) => {
     const engine = new BattleEngine(save, config);
@@ -35,19 +45,46 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     set({ snapshot: engine.click() });
   },
 
+  useSpecial: (allyInstanceId) => {
+    const { engine } = get();
+    if (!engine) return;
+    set({ snapshot: engine.useSpecial(allyInstanceId) });
+  },
+
   retry: () => {
     const { engine } = get();
     if (!engine) return;
     set({ snapshot: engine.retry() });
   },
 
-  continueAfterVictory: () => {
+  continueAfterVictory: (save) => {
     const { engine } = get();
     if (!engine) return;
-    set({ snapshot: engine.continueAfterVictory() });
+    set({
+      snapshot: engine.continueAfterVictory(save),
+      isLoadingNextBattle: false,
+    });
+  },
+
+  applyVictoryRewards: (save, config) => {
+    const { engine } = get();
+    if (!engine || engine.getSnapshot().phase !== "victory") return null;
+
+    const grants = resolveVictoryRewards(
+      save,
+      engine.getLocationId(),
+      engine.getDefeatedEnemyIds(),
+      engine.getLivingAllyInstanceIds(),
+    );
+
+    const result = applyRewards(save, grants, config);
+    engine.setVictoryRewards(result.display, result.levelUps);
+    set({ snapshot: engine.getSnapshot() });
+
+    return result.save;
   },
 
   reset: () => {
-    set({ engine: null, snapshot: null });
+    set({ engine: null, snapshot: null, isLoadingNextBattle: false });
   },
 }));

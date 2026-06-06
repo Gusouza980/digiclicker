@@ -2,26 +2,36 @@
 
 import { useGameStore } from "@/stores/game-store";
 import { useBattleStore } from "@/stores/battle-store";
-import type { BattleEnemyState } from "@/game/battle";
+import type { BattleEnemyState, DamageType } from "@/game/battle";
 
 import { EnemyCard } from "./EnemyCard";
+import { NextBattleLoader } from "./NextBattleLoader";
 
 type BattleArenaProps = {
   enemies: BattleEnemyState[];
   phase: string;
   lastDamage: number | null;
+  lastDamageType: DamageType | null;
 };
 
-export function BattleArena({ enemies, phase, lastDamage }: BattleArenaProps) {
+function damageFlashClass(damageType: DamageType | null): string {
+  if (damageType === "special") return "text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]";
+  if (damageType === "click") return "text-[var(--accent)]";
+  return "text-sky-300";
+}
+
+export function BattleArena({ enemies, phase, lastDamage, lastDamageType }: BattleArenaProps) {
   const t = useGameStore((state) => state.t);
   const click = useBattleStore((state) => state.click);
   const retry = useBattleStore((state) => state.retry);
+  const isLoadingNextBattle = useBattleStore((state) => state.isLoadingNextBattle);
 
   const livingEnemies = enemies.filter((enemy) => !enemy.isDefeated);
   const canClick = phase === "fighting" && livingEnemies.length > 0;
 
   return (
     <section className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-card)]">
+      {isLoadingNextBattle && <NextBattleLoader />}
       <button
         type="button"
         onClick={() => canClick && click()}
@@ -60,8 +70,15 @@ export function BattleArena({ enemies, phase, lastDamage }: BattleArenaProps) {
           )}
 
           {lastDamage !== null && lastDamage > 0 && phase === "fighting" && (
-            <span className="animate-pulse text-2xl font-bold text-[var(--accent)]">
+            <span
+              className={`animate-pulse text-2xl font-bold ${damageFlashClass(lastDamageType)}`}
+            >
               -{lastDamage}
+              {lastDamageType === "special" && (
+                <span className="ml-2 text-sm uppercase tracking-widest text-amber-200/80">
+                  SP
+                </span>
+              )}
             </span>
           )}
 

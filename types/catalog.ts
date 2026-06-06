@@ -36,6 +36,8 @@ export type GlobalConfig = {
   xp: {
     digimonPerVictory: number;
     trainerPerVictory: number;
+    xpToNextBase: number;
+    xpToNextGrowth: number;
   };
   drops: {
     baseChance: number;

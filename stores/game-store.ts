@@ -17,6 +17,7 @@ type GameStore = {
   createNewSave: () => void;
   resetCurrentSave: () => void;
   touchSave: () => void;
+  replaceSave: (save: SaveData) => void;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -71,6 +72,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return;
     const updated = persistSave(save);
     set({ save: updated, statusMessage: "save.persisted" });
+  },
+
+  replaceSave: (save) => {
+    const updated = persistSave(save);
+    set({ save: updated });
   },
 
   t: (key, params) => {

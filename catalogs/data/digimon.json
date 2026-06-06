@@ -1,7 +1,7 @@
 {
   "meta": {
     "kind": "digimon",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "updatedAt": "2026-06-06"
   },
   "entries": {
@@ -71,6 +71,11 @@
         "int": 6,
         "spi": 6,
         "spd": 14
+      },
+      "battleRewards": {
+        "bitsMin": 1,
+        "bitsMax": 3,
+        "digimonXp": 4
       }
     },
     "tsunomon": {
@@ -88,6 +93,11 @@
         "int": 6,
         "spi": 6,
         "spd": 12
+      },
+      "battleRewards": {
+        "bitsMin": 1,
+        "bitsMax": 4,
+        "digimonXp": 5
       }
     },
     "tokomon": {
@@ -105,6 +115,11 @@
         "int": 8,
         "spi": 8,
         "spd": 16
+      },
+      "battleRewards": {
+        "bitsMin": 2,
+        "bitsMax": 4,
+        "digimonXp": 6
       }
     },
     "tanemon": {
@@ -122,6 +137,11 @@
         "int": 10,
         "spi": 10,
         "spd": 15
+      },
+      "battleRewards": {
+        "bitsMin": 2,
+        "bitsMax": 5,
+        "digimonXp": 7
       }
     }
   }
