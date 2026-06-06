@@ -22,6 +22,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [save?.pendingOfflineSummary, setOfflineSummary]);
 
+  useEffect(() => {
+    if (save?.settings.locale) {
+      document.documentElement.lang = save.settings.locale;
+    }
+  }, [save?.settings.locale]);
+
   if (!isHydrated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)]">

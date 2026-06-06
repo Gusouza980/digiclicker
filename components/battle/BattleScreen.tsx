@@ -4,10 +4,9 @@ import { useBattleLoop } from "@/hooks/useBattleLoop";
 import { getLocationName, useGameStore } from "@/stores/game-store";
 import { useBattleStore } from "@/stores/battle-store";
 
-import { ActiveMissionCard } from "@/components/missions/ActiveMissionCard";
-
 import { BattleArena } from "./BattleArena";
 import { BattleSpeedSelector } from "./BattleSpeedSelector";
+import { BattleStatusBar } from "./BattleStatusBar";
 import { CombatLog } from "./CombatLog";
 import { DigimonCard } from "./DigimonCard";
 import { RecentRewards } from "./RecentRewards";
@@ -31,7 +30,7 @@ export function BattleScreen() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <section className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h2 className="text-xl font-semibold text-[var(--text-primary)]">
@@ -39,7 +38,7 @@ export function BattleScreen() {
           </h2>
           <p className="text-sm text-[var(--text-muted)]">{locationName}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
           <BattleSpeedSelector />
           <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
             {t("battle.team_atk")}:{" "}
@@ -52,22 +51,7 @@ export function BattleScreen() {
         </div>
       </section>
 
-      <ActiveMissionCard />
-
-      {save.activeBuffs.length > 0 && (
-        <div className="rounded-lg border border-violet-500/30 bg-violet-500/10 px-3 py-2 text-xs text-violet-200">
-          {save.activeBuffs.map((buff) =>
-            buff.type === "xp_multiplier" ? (
-              <span key={buff.id}>
-                {t("battle.xp_buff_active", {
-                  multiplier: String(buff.multiplier),
-                  battles: String(buff.battlesRemaining),
-                })}
-              </span>
-            ) : null,
-          )}
-        </div>
-      )}
+      <BattleStatusBar />
 
       <BattleArena
         enemies={snapshot.enemies}
@@ -89,12 +73,19 @@ export function BattleScreen() {
         </div>
       </section>
 
-      <CombatLog entries={snapshot.combatLog} />
-
       <RecentRewards
         rewards={snapshot.recentRewards}
         levelUps={snapshot.levelUpEvents}
       />
+
+      <details className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)]">
+        <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-[var(--text-muted)]">
+          {t("battle.combat_log_toggle")}
+        </summary>
+        <div className="border-t border-[var(--border)] p-4">
+          <CombatLog entries={snapshot.combatLog} />
+        </div>
+      </details>
     </div>
   );
 }

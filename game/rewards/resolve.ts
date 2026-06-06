@@ -1,12 +1,9 @@
 import { getCatalogEntry, getGlobalConfig } from "@/catalogs/loader";
 import { resolveBattleDrops } from "@/game/drops/resolve";
+import { randomInt } from "@/game/rng";
 import type { SaveData } from "@/types";
 
 import type { RewardGrant } from "./types";
-
-function randomInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export function resolveVictoryRewards(
   save: SaveData,

@@ -8,9 +8,9 @@
     "global": {
       "battle": {
         "tickMs": 100,
-        "clickDamageMultiplier": 0.1,
-        "mpGainPerAutoAttack": 0.05,
-        "specialDamageMultiplier": 2
+        "clickDamageMultiplier": 0.12,
+        "mpGainPerAutoAttack": 0.06,
+        "specialDamageMultiplier": 2.2
       },
       "combat": {
         "advantageMultiplier": 1.25,
@@ -51,14 +51,14 @@
         ]
       },
       "xp": {
-        "digimonPerVictory": 8,
-        "trainerPerVictory": 5,
-        "xpToNextBase": 80,
-        "xpToNextGrowth": 20
+        "digimonPerVictory": 10,
+        "trainerPerVictory": 6,
+        "xpToNextBase": 75,
+        "xpToNextGrowth": 18
       },
       "drops": {
-        "essenceChance": 0.28,
-        "eggChance": 0.05,
+        "essenceChance": 0.25,
+        "eggChance": 0.045,
         "eggRarityWeights": {
           "common": 70,
           "rare": 20,
@@ -71,9 +71,9 @@
         "maxStorage": 50,
         "slotsPerAction": 3,
         "actions": {
-          "stat_training": { "durationMs": 300000, "statGain": 3 },
-          "friendship_training": { "durationMs": 300000, "friendshipGain": 5 },
-          "type_xp": { "durationMs": 360000, "typeXpGain": 25 },
+          "stat_training": { "durationMs": 240000, "statGain": 3 },
+          "friendship_training": { "durationMs": 270000, "friendshipGain": 4 },
+          "type_xp": { "durationMs": 300000, "typeXpGain": 22 },
           "item_search": { "durationMs": 480000 },
           "auto_mission": { "durationMs": 600000 }
         },
@@ -137,9 +137,9 @@
       },
       "friendship": {
         "maxValue": 100,
-        "gainFromBattle": 1,
-        "gainFromClickAssist": 0.02,
-        "dailyClickSoftCap": 5,
+        "gainFromBattle": 0.75,
+        "gainFromClickAssist": 0.015,
+        "dailyClickSoftCap": 4,
         "globalMultiplier": 1
       },
       "evolution": {

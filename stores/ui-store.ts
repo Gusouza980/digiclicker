@@ -11,7 +11,7 @@ import type {
   ShopFeedback,
 } from "@/types";
 
-export type AppScreen = "battle" | "map" | "inventory" | "traits" | "island";
+export type AppScreen = "battle" | "map" | "missions" | "inventory" | "traits" | "island";
 
 type UiStore = {
   activeScreen: AppScreen;

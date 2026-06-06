@@ -1,6 +1,7 @@
 import { getCatalogEntry } from "@/catalogs/loader";
 import { addStackableItem } from "@/game/inventory";
 import { calculateLevelFromXp } from "@/game/progression/xp";
+import { pickRandom, randomInt, rollChance } from "@/game/rng";
 import { applyTrainerXp } from "@/game/trainer/progression";
 import type { GlobalConfig, OfflineSummary, SaveData } from "@/types";
 
@@ -8,10 +9,6 @@ export type OfflineProgressResult = {
   save: SaveData;
   summary: OfflineSummary | null;
 };
-
-function randomInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export function processOfflineProgress(
   save: SaveData,
@@ -77,10 +74,8 @@ export function processOfflineProgress(
       digimonXpGained += digimonXp;
     }
 
-    if (Math.random() < config.offline.itemDropChance) {
-      const drop = config.offline.itemDrops[
-        Math.floor(Math.random() * config.offline.itemDrops.length)
-      ];
+    if (rollChance(config.offline.itemDropChance)) {
+      const drop = pickRandom(config.offline.itemDrops);
       if (drop) {
         addStackableItem(next.inventory, drop.itemId, drop.quantity);
         const existing = itemsDropped.find((entry) => entry.itemId === drop.itemId);

@@ -6,6 +6,7 @@ import { InventoryScreen } from "@/components/inventory/InventoryScreen";
 import { IslandScreen } from "@/components/island/IslandScreen";
 import { ScannerScreen } from "@/components/scanner/ScannerScreen";
 import { MapScreen } from "@/components/map/MapScreen";
+import { MissionsScreen } from "@/components/missions/MissionsScreen";
 import { BossVictoryModal } from "@/components/boss/BossVictoryModal";
 import { OfflineSummaryModal } from "@/components/offline/OfflineSummaryModal";
 import { TraitsScreen } from "@/components/traits/TraitsScreen";
@@ -28,6 +29,8 @@ export function MainScreen() {
     switch (activeScreen) {
       case "map":
         return <MapScreen />;
+      case "missions":
+        return <MissionsScreen />;
       case "inventory":
         return <InventoryScreen />;
       case "traits":

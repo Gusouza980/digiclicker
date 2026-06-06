@@ -1,9 +1,6 @@
 import { getCatalogEntry } from "@/catalogs/loader";
+import { randomInt, rollChance } from "@/game/rng";
 import type { RewardGrant } from "@/game/rewards/types";
-
-function randomInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export function resolveBossVictoryRewards(bossId: string): RewardGrant[] {
   const boss = getCatalogEntry("boss", bossId);
@@ -17,7 +14,7 @@ export function resolveBossVictoryRewards(bossId: string): RewardGrant[] {
   ];
 
   for (const drop of boss.rewardItems ?? []) {
-    if (Math.random() < drop.chance) {
+    if (rollChance(drop.chance)) {
       grants.push({
         type: "item",
         itemId: drop.itemId,

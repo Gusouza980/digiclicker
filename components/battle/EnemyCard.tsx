@@ -30,7 +30,7 @@ export function EnemyCard({ enemy }: EnemyCardProps) {
             </h3>
             {enemy.isBoss && (
               <span className="shrink-0 rounded-full bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-300">
-                BOSS
+                {t("battle.boss_tag")}
               </span>
             )}
           </div>
@@ -40,7 +40,7 @@ export function EnemyCard({ enemy }: EnemyCardProps) {
           </p>
           <div className="mt-2">
             <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
-              <span>HP</span>
+              <span>{t("stat.hp")}</span>
               <span>
                 {enemy.currentHp}/{enemy.maxHp}
               </span>
@@ -56,15 +56,15 @@ export function EnemyCard({ enemy }: EnemyCardProps) {
       </div>
       <dl className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
         <div>
-          <dt className="text-[var(--text-muted)]">ATK</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.atk")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{enemy.atk}</dd>
         </div>
         <div>
-          <dt className="text-[var(--text-muted)]">DEF</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.def")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{enemy.def}</dd>
         </div>
         <div>
-          <dt className="text-[var(--text-muted)]">SPD</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.spd")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{enemy.spd}</dd>
         </div>
       </dl>

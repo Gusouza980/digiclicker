@@ -1,5 +1,6 @@
 import { getGlobalConfig } from "@/catalogs/loader";
 import { clampFriendship } from "@/game/friendship";
+import { pickWeighted } from "@/game/rng";
 import type { GlobalConfig, IslandAction, SaveData, StatKey } from "@/types";
 
 function getRewardMultiplier(action: IslandAction, config: GlobalConfig): number {
@@ -8,17 +9,11 @@ function getRewardMultiplier(action: IslandAction, config: GlobalConfig): number
 }
 
 export function rollItemSearchReward(config: GlobalConfig): string | null {
-  const drops = config.island.itemSearchDrops;
-  const totalWeight = drops.reduce((sum, drop) => sum + drop.weight, 0);
-  if (totalWeight <= 0) return null;
-
-  let roll = Math.random() * totalWeight;
-  for (const drop of drops) {
-    roll -= drop.weight;
-    if (roll <= 0) return drop.itemId;
-  }
-
-  return drops[drops.length - 1]?.itemId ?? null;
+  const options = config.island.itemSearchDrops.map((drop) => ({
+    value: drop.itemId,
+    weight: drop.weight,
+  }));
+  return pickWeighted(options);
 }
 
 export function applyActionRewards(

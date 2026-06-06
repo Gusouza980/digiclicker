@@ -6,23 +6,16 @@ import {
   selectLocation as selectLocationInSave,
   syncUnlockedLocations,
 } from "@/game/locations";
-import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
+import { updateMissionProgressOnLocationChange } from "@/game/missions";
 import { moveDigimonToIsland, moveDigimonToTeam } from "@/game/collection";
-import { degenerateDigimon, evolveDigimon } from "@/game/evolution";
-import { canChallengeBoss, recordBossDailyAttempt } from "@/game/boss";
+import { executeCommand } from "@/game/commands";
+import type { GameEvent } from "@/game/commands/types";
 import { useMeatOnDigimon, useTraitResetCore, useXpBoost } from "@/game/items/use";
-import { collectIslandAction, startIslandAction } from "@/game/island";
 import { clearOfflineSummary, processOfflineProgress } from "@/game/offline";
 import { setAutoProgressEnabled } from "@/game/progression/auto-progress";
 import { createSave, loadSave, migrateSave, persistSave, resetSave } from "@/game/save";
-import { buyItem, sellItem } from "@/game/shop";
 import { normalizeSave } from "@/game/save/normalize";
 import { ensureStarterTeam } from "@/game/save/starter-team";
-import {
-  hatchEgg,
-  insertEssence,
-  scanEgg,
-} from "@/game/hatching";
 import { unlockTrait } from "@/game/traits/unlock";
 import { translate } from "@/i18n";
 import { useBattleStore } from "@/stores/battle-store";
@@ -83,6 +76,25 @@ type GameStore = {
   dismissOfflineSummary: () => void;
   t: (key: string, params?: Record<string, string>) => string;
 };
+
+function dispatchCommandEvents(
+  events: GameEvent[],
+  persisted: SaveData,
+  config: GlobalConfig | null,
+) {
+  if (!config) return;
+
+  const battle = useBattleStore.getState();
+  for (const event of events) {
+    if (event.type === "boss_battle_requested") {
+      battle.requestBossBattle(event.bossId);
+    }
+    if (event.type === "battle_reset_required") {
+      battle.reset();
+      battle.initBattle(persisted, config);
+    }
+  }
+}
 
 export const useGameStore = create<GameStore>((set, get) => ({
   save: null,
@@ -172,12 +184,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save, config } = get();
     if (!save || !config) return false;
 
-    const result = claimMission(save, missionId, config);
-    if (!result) return false;
+    const result = executeCommand(save, { type: "claim_mission", missionId }, config);
+    if (!result.ok) return false;
 
-    let updated = syncUnlockedLocations(result.save);
-    const persisted = persistSave(updated);
+    const persisted = persistSave(result.save);
     set({ save: persisted });
+    dispatchCommandEvents(result.events, persisted, config);
     return true;
   },
 
@@ -215,25 +227,33 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   performScanEgg: (eggInstanceId) => {
-    const { save } = get();
-    if (!save) return null;
+    const { save, config } = get();
+    if (!save || !config) return null;
 
-    const result = scanEgg(save, eggInstanceId);
+    const result = executeCommand(save, { type: "scan_egg", eggInstanceId }, config);
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as HatchingFeedback | null;
   },
 
   performInsertEssence: (eggInstanceId, useStabilizer = false) => {
-    const { save } = get();
-    if (!save) return null;
+    const { save, config } = get();
+    if (!save || !config) return null;
 
-    const result = insertEssence(save, eggInstanceId, useStabilizer);
+    const result = executeCommand(
+      save,
+      { type: "insert_essence", eggInstanceId, useStabilizer },
+      config,
+    );
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as HatchingFeedback | null;
   },
 
   moveToTeam: (islandDigimonId, swapWithTeamMemberId) => {
@@ -272,76 +292,86 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save, config } = get();
     if (!save || !config) return null;
 
-    const result = evolveDigimon(save, digimonInstanceId, transitionId);
+    const result = executeCommand(
+      save,
+      { type: "evolve", digimonInstanceId, transitionId },
+      config,
+    );
     if (result.ok) {
       const persisted = persistSave(result.save);
       set({ save: persisted });
-
-      const battle = useBattleStore.getState();
-      battle.reset();
-      battle.initBattle(persisted, config);
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as EvolutionFeedback | null;
   },
 
   performDegenerate: (digimonInstanceId, transitionId) => {
     const { save, config } = get();
     if (!save || !config) return null;
 
-    const result = degenerateDigimon(save, digimonInstanceId, transitionId);
+    const result = executeCommand(
+      save,
+      { type: "degenerate", digimonInstanceId, transitionId },
+      config,
+    );
     if (result.ok) {
       const persisted = persistSave(result.save);
       set({ save: persisted });
-
-      const battle = useBattleStore.getState();
-      battle.reset();
-      battle.initBattle(persisted, config);
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as EvolutionFeedback | null;
   },
 
   startIslandAction: (params) => {
     const { save, config } = get();
     if (!save || !config) return null;
 
-    const result = startIslandAction(save, params, config);
+    const result = executeCommand(save, { type: "start_island_action", ...params }, config);
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as IslandActionFeedback | null;
   },
 
   collectIslandAction: (actionId) => {
     const { save, config } = get();
     if (!save || !config) return null;
 
-    const result = collectIslandAction(save, actionId, config);
+    const result = executeCommand(save, { type: "collect_island_action", actionId }, config);
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as IslandActionFeedback | null;
   },
 
   buyShopItem: (itemId, quantity = 1) => {
-    const { save } = get();
-    if (!save) return null;
+    const { save, config } = get();
+    if (!save || !config) return null;
 
-    const result = buyItem(save, itemId, quantity);
+    const result = executeCommand(save, { type: "buy_item", itemId, quantity }, config);
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as ShopFeedback | null;
   },
 
   sellInventoryItem: (itemId, quantity = 1) => {
-    const { save } = get();
-    if (!save) return null;
+    const { save, config } = get();
+    if (!save || !config) return null;
 
-    const result = sellItem(save, itemId, quantity);
+    const result = executeCommand(save, { type: "sell_item", itemId, quantity }, config);
     if (result.ok) {
-      set({ save: persistSave(result.save) });
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as ShopFeedback | null;
   },
 
   useItemOnDigimon: (itemId, digimonInstanceId) => {
@@ -396,13 +426,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   challengeBoss: (bossId) => {
-    const { save } = get();
-    if (!save || !canChallengeBoss(save, bossId)) return false;
+    const { save, config } = get();
+    if (!save || !config) return false;
 
-    const updated = persistSave(recordBossDailyAttempt(save, bossId));
-    set({ save: updated });
+    const result = executeCommand(save, { type: "challenge_boss", bossId }, config);
+    if (!result.ok) return false;
 
-    useBattleStore.getState().requestBossBattle(bossId);
+    const persisted = persistSave(result.save);
+    set({ save: persisted });
+    dispatchCommandEvents(result.events, persisted, config);
     return true;
   },
 
@@ -416,20 +448,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   performHatchEgg: (eggInstanceId, destination) => {
     const { save, config } = get();
-    if (!save) return null;
+    if (!save || !config) return null;
 
-    const result = hatchEgg(save, eggInstanceId, destination);
+    const result = executeCommand(
+      save,
+      { type: "hatch_egg", eggInstanceId, destination },
+      config,
+    );
     if (result.ok) {
       const persisted = persistSave(result.save);
       set({ save: persisted });
-
-      if (config && destination === "team") {
-        const battle = useBattleStore.getState();
-        battle.reset();
-        battle.initBattle(persisted, config);
-      }
+      dispatchCommandEvents(result.events, persisted, config);
     }
-    return result.feedback;
+    return (result.feedback ?? null) as HatchingFeedback | null;
   },
 
   t: (key, params) => {

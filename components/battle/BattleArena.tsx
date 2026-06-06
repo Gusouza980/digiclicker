@@ -90,7 +90,7 @@ export function BattleArena({
               -{lastDamage}
               {lastDamageType === "special" && (
                 <span className="ml-2 text-sm uppercase tracking-widest text-amber-200/80">
-                  SP
+                  {t("battle.special_short")}
                 </span>
               )}
             </span>

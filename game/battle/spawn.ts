@@ -1,18 +1,18 @@
 import { getCatalogEntry } from "@/catalogs/loader";
+import { pickRandom, randomInt } from "@/game/rng";
 import type { DigimonCatalogEntry } from "@/types/digimon";
 
 const DEFAULT_ENEMY_TEAM_SIZE = { min: 1, max: 3 } as const;
 
 export function pickRandomEnemyId(enemyPool: string[]): string | null {
   if (enemyPool.length === 0) return null;
-  const index = Math.floor(Math.random() * enemyPool.length);
-  return enemyPool[index] ?? null;
+  return pickRandom(enemyPool);
 }
 
 export function pickEnemyTeamSize(min: number, max: number): number {
   const safeMin = Math.max(1, min);
   const safeMax = Math.max(safeMin, max);
-  return Math.floor(Math.random() * (safeMax - safeMin + 1)) + safeMin;
+  return randomInt(safeMin, safeMax);
 }
 
 export function pickEnemyTeam(

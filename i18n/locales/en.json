@@ -8,6 +8,7 @@
   "nav.inventory": "Inventory",
   "nav.traits": "Traits",
   "nav.island": "Digital Island",
+  "nav.missions": "Missions",
   "header.trainer": "Trainer",
   "header.level": "Level",
   "header.bits": "Bits",
@@ -499,5 +500,18 @@
   "battle.reward.boss_defeated": "Boss defeated!",
   "battle.xp_buff_active": "XP boost {multiplier}x — {battles} battles left",
   "battle.use_potion": "Potion",
-  "battle.log.heal": "Heal"
+  "battle.log.heal": "Heal",
+  "battle.boss_tag": "Boss",
+  "battle.special_short": "Special",
+  "battle.combat_log_toggle": "Combat log",
+  "battle.mission_link": "Active mission — view details",
+  "missions.title": "Missions",
+  "missions.subtitle": "Track objectives and claim rewards.",
+  "missions.hint": "Complete missions to unlock new areas and advance the story.",
+  "stat.hp": "HP",
+  "stat.mp": "MP",
+  "stat.atk": "ATK",
+  "stat.int": "INT",
+  "stat.def": "DEF",
+  "stat.spd": "SPD"
 }

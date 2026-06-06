@@ -24,6 +24,7 @@ import {
   calculateSpecialDamage,
   getAttackIntervalMs,
 } from "./damage";
+import { pickRandom } from "@/game/rng";
 import { getEnemyCatalogEntry, pickEnemyTeam } from "./spawn";
 import type {
   BattleAllyState,
@@ -441,15 +442,13 @@ export class BattleEngine {
   private pickRandomLivingAlly(): BattleAllyState | null {
     const living = this.allies.filter((ally) => !ally.isDefeated);
     if (living.length === 0) return null;
-    const index = Math.floor(Math.random() * living.length);
-    return living[index] ?? null;
+    return pickRandom(living);
   }
 
   private pickRandomLivingEnemy(): BattleEnemyState | null {
     const living = this.enemies.filter((enemy) => !enemy.isDefeated);
     if (living.length === 0) return null;
-    const index = Math.floor(Math.random() * living.length);
-    return living[index] ?? null;
+    return pickRandom(living);
   }
 
   private spawnBossTeam(boss: BossCatalogEntry): void {

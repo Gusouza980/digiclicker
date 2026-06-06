@@ -83,7 +83,7 @@ export function DigimonCard({ ally }: DigimonCardProps) {
           <div className="mt-2 space-y-2">
             <div>
               <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
-                <span>HP</span>
+                <span>{t("stat.hp")}</span>
                 <span>
                   {ally.currentHp}/{ally.maxHp}
                 </span>
@@ -99,7 +99,7 @@ export function DigimonCard({ ally }: DigimonCardProps) {
             </div>
             <div>
               <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
-                <span>MP</span>
+                <span>{t("stat.mp")}</span>
                 <span>{mpPercent}%</span>
               </div>
               <div className="h-1.5 overflow-hidden rounded-full bg-[var(--bg-primary)]">
@@ -121,19 +121,19 @@ export function DigimonCard({ ally }: DigimonCardProps) {
       </div>
       <dl className="mt-3 grid grid-cols-4 gap-2 text-center text-xs">
         <div>
-          <dt className="text-[var(--text-muted)]">ATK</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.atk")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{ally.atk}</dd>
         </div>
         <div>
-          <dt className="text-[var(--text-muted)]">INT</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.int")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{ally.int}</dd>
         </div>
         <div>
-          <dt className="text-[var(--text-muted)]">DEF</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.def")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{ally.def}</dd>
         </div>
         <div>
-          <dt className="text-[var(--text-muted)]">SPD</dt>
+          <dt className="text-[var(--text-muted)]">{t("stat.spd")}</dt>
           <dd className="font-semibold text-[var(--text-primary)]">{ally.spd}</dd>
         </div>
       </dl>

@@ -1,23 +1,15 @@
 import { getAllCatalogEntries, getCatalogEntry, getGlobalConfig } from "@/catalogs/loader";
 import { getEssenceIdForType } from "@/game/inventory";
+import { pickRandom, pickWeighted, rollChance } from "@/game/rng";
 import type { RewardGrant } from "@/game/rewards/types";
 import type { DigimonCatalogEntry, EggRarity } from "@/types";
 
-function rollChance(chance: number): boolean {
-  return Math.random() < chance;
-}
-
 function pickWeightedRarity(weights: Record<EggRarity, number>): EggRarity {
-  const entries = Object.entries(weights).filter(([, weight]) => weight > 0);
-  const total = entries.reduce((sum, [, weight]) => sum + weight, 0);
-  let roll = Math.random() * total;
+  const options = Object.entries(weights)
+    .filter(([, weight]) => weight > 0)
+    .map(([rarity, weight]) => ({ value: rarity as EggRarity, weight }));
 
-  for (const [rarity, weight] of entries) {
-    roll -= weight;
-    if (roll <= 0) return rarity as EggRarity;
-  }
-
-  return "common";
+  return pickWeighted(options) ?? "common";
 }
 
 function pickRookieForType(primaryType: string): string | null {
@@ -31,8 +23,7 @@ function pickRookieForType(primaryType: string): string | null {
 
   if (candidates.length === 0) return null;
 
-  const index = Math.floor(Math.random() * candidates.length);
-  return candidates[index]?.id ?? null;
+  return pickRandom(candidates)?.id ?? null;
 }
 
 export function resolveBattleDrops(defeatedEnemyIds: string[]): RewardGrant[] {

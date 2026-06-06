@@ -1,3 +1,4 @@
+import { random } from "@/game/rng";
 import type { InsertionChances, InsertionOutcome } from "@/types";
 
 /** Chances da próxima inserção bem-sucedida, com base no progresso atual (falhas não avançam o tier). */
@@ -14,7 +15,7 @@ export function getNextInsertionSlot(successfulInsertions: number): number {
 }
 
 export function rollInsertionOutcome(chances: InsertionChances): InsertionOutcome {
-  const roll = Math.random();
+  const roll = random();
   if (roll < chances.success) return "success";
   if (roll < chances.success + chances.fail) return "fail";
   return "break";
