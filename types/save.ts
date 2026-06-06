@@ -1,5 +1,5 @@
 import type { BattleSpeed } from "./battle";
-import type { IslandActionSlot } from "./collection";
+import type { IslandAction } from "./island";
 import type { PlayerDigimon } from "./digimon";
 import type { FriendshipDailyProgress } from "./friendship";
 import type { InventoryState } from "./inventory";
@@ -22,7 +22,7 @@ export type TeamState = {
 
 export type IslandState = {
   storedDigimonIds: string[];
-  activeActions: IslandActionSlot[];
+  actions: IslandAction[];
 };
 
 export type LocationProgress = {

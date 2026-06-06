@@ -5,6 +5,7 @@ export * from "./digimon";
 export * from "./evolution";
 export * from "./friendship";
 export * from "./hatching";
+export * from "./island";
 export * from "./inventory";
 export * from "./item";
 export * from "./locale";

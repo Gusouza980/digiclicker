@@ -46,6 +46,22 @@ const migrations: Record<number, Migration> = {
     };
   },
   6: (save) => normalizeSave({ ...save, saveVersion: 6 }),
+  7: (save) => {
+    const legacy = save.island as {
+      storedDigimonIds: string[];
+      activeActions?: Array<{ digimonInstanceId: string; actionType: string }>;
+      actions?: typeof save.island.actions;
+    };
+
+    return {
+      ...save,
+      island: {
+        storedDigimonIds: legacy.storedDigimonIds,
+        actions: legacy.actions ?? [],
+      },
+      saveVersion: 7,
+    };
+  },
 };
 
 export function migrateSave(save: SaveData): SaveData {

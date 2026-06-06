@@ -31,7 +31,39 @@
       },
       "island": {
         "maxStorage": 50,
-        "slotsPerAction": 3
+        "slotsPerAction": 3,
+        "actions": {
+          "stat_training": { "durationMs": 300000, "statGain": 3 },
+          "friendship_training": { "durationMs": 300000, "friendshipGain": 5 },
+          "type_xp": { "durationMs": 360000, "typeXpGain": 25 },
+          "item_search": { "durationMs": 480000 },
+          "auto_mission": { "durationMs": 600000 }
+        },
+        "itemSearchDrops": [
+          { "itemId": "meat", "weight": 40, "quantity": 1 },
+          { "itemId": "potion_small", "weight": 35, "quantity": 1 },
+          { "itemId": "scan_disc", "weight": 25, "quantity": 1 }
+        ],
+        "autoMissions": [
+          {
+            "id": "patrol_beginnings",
+            "nameKey": "island.mission.patrol_beginnings",
+            "durationMs": 300000,
+            "minLevel": 1,
+            "rewardBits": 80
+          },
+          {
+            "id": "scout_forest",
+            "nameKey": "island.mission.scout_forest",
+            "durationMs": 600000,
+            "minLevel": 8,
+            "rewardBits": 180
+          }
+        ],
+        "trainingChip": {
+          "durationMultiplier": 0.5,
+          "rewardMultiplier": 1.25
+        }
       },
       "team": {
         "maxActive": 3

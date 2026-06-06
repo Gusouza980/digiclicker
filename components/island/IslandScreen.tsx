@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { getCatalogEntry } from "@/catalogs/loader";
+import { IslandActionsPanel } from "@/components/island/IslandActionsPanel";
 import { FriendshipBar } from "@/components/digimon/FriendshipBar";
 import { isDigimonOccupied } from "@/game/collection";
 import { useGameStore } from "@/stores/game-store";
@@ -166,6 +167,8 @@ export function IslandScreen() {
           {formatFeedback(t, collectionFeedback)}
         </div>
       )}
+
+      <IslandActionsPanel />
 
       <section className="space-y-3">
         <div className="flex items-center justify-between gap-2">

@@ -9,6 +9,7 @@ import {
 import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
 import { moveDigimonToIsland, moveDigimonToTeam } from "@/game/collection";
 import { degenerateDigimon, evolveDigimon } from "@/game/evolution";
+import { collectIslandAction, startIslandAction } from "@/game/island";
 import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
 import { normalizeSave } from "@/game/save/normalize";
 import { ensureStarterTeam } from "@/game/save/starter-team";
@@ -25,6 +26,9 @@ import type {
   CollectionFeedback,
   EvolutionFeedback,
   GlobalConfig,
+  IslandActionFeedback,
+  IslandActionType,
+  StatKey,
   HatchDestination,
   HatchingFeedback,
   SaveData,
@@ -54,6 +58,15 @@ type GameStore = {
   moveToIsland: (teamDigimonId: string) => CollectionFeedback | null;
   performEvolve: (digimonInstanceId: string, transitionId: string) => EvolutionFeedback | null;
   performDegenerate: (digimonInstanceId: string, transitionId: string) => EvolutionFeedback | null;
+  startIslandAction: (params: {
+    digimonInstanceId: string;
+    actionType: IslandActionType;
+    statTarget?: StatKey;
+    typeXpTarget?: string;
+    missionId?: string;
+    useTrainingChip?: boolean;
+  }) => IslandActionFeedback | null;
+  collectIslandAction: (actionId: string) => IslandActionFeedback | null;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -268,6 +281,28 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const battle = useBattleStore.getState();
       battle.reset();
       battle.initBattle(persisted, config);
+    }
+    return result.feedback;
+  },
+
+  startIslandAction: (params) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = startIslandAction(save, params, config);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  collectIslandAction: (actionId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = collectIslandAction(save, actionId, config);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
     }
     return result.feedback;
   },

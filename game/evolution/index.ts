@@ -1,4 +1,5 @@
 import { getAllCatalogEntries, getCatalogEntry } from "@/catalogs/loader";
+import { isDigimonOccupied } from "@/game/collection";
 import { calculateTotalStats } from "@/game/stats/calculator";
 import type {
   EvolutionCatalogEntry,
@@ -149,6 +150,14 @@ export function evolveDigimon(
     };
   }
 
+  if (isDigimonOccupied(save, instanceId)) {
+    return {
+      ok: false,
+      reason: "digimon_occupied",
+      feedback: { messageKey: "evolution.error.digimon_occupied", variant: "fail" },
+    };
+  }
+
   const check = checkDigimonRequirementSets(context, transition.requirementIds);
   if (!check.met) {
     return {
@@ -209,6 +218,14 @@ export function degenerateDigimon(
       ok: false,
       reason: "form_unknown",
       feedback: { messageKey: "evolution.error.form_unknown", variant: "fail" },
+    };
+  }
+
+  if (isDigimonOccupied(save, instanceId)) {
+    return {
+      ok: false,
+      reason: "digimon_occupied",
+      feedback: { messageKey: "evolution.error.digimon_occupied", variant: "fail" },
     };
   }
 

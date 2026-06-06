@@ -4,6 +4,7 @@ import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./i
 import type { LocationCatalogEntry } from "./location";
 import type { MissionCatalogEntry } from "./mission";
 import type { FriendshipConfig } from "./friendship";
+import type { IslandGameplayConfig } from "./island";
 import type { HatchingConfig } from "./hatching";
 import type { PersonalityCatalogEntry } from "./personality";
 import type { RequirementCatalogEntry } from "./requirement";
@@ -55,10 +56,7 @@ export type GlobalConfig = {
       number
     >;
   };
-  island: {
-    maxStorage: number;
-    slotsPerAction: number;
-  };
+  island: IslandGameplayConfig;
   team: {
     maxActive: number;
   };

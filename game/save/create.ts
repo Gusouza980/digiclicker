@@ -24,11 +24,14 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     team: starter.team,
     island: {
       storedDigimonIds: [],
-      activeActions: [],
+      actions: [],
     },
     digimons: starter.digimons,
     inventory: {
-      items: [{ itemId: "hatch_stabilizer", quantity: 1 }],
+      items: [
+        { itemId: "hatch_stabilizer", quantity: 1 },
+        { itemId: "training_chip", quantity: 2 },
+      ],
       essences: [],
       eggs: [],
     },

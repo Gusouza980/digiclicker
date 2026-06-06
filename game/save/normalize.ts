@@ -16,8 +16,8 @@ function getTodayKey(): string {
 export function normalizeSave(save: SaveData): SaveData {
   const next = structuredClone(save);
 
-  if (!next.island.activeActions) {
-    next.island.activeActions = [];
+  if (!next.island.actions) {
+    next.island.actions = (next.island as { activeActions?: typeof next.island.actions }).activeActions ?? [];
   }
 
   if (!next.friendshipDaily) {

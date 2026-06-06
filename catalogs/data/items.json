@@ -54,6 +54,16 @@
       "maxStack": 20,
       "sellPrice": 100,
       "buyPrice": 250
+    },
+    "training_chip": {
+      "id": "training_chip",
+      "nameKey": "item.training_chip.name",
+      "descriptionKey": "item.training_chip.description",
+      "category": "special",
+      "stackable": true,
+      "maxStack": 20,
+      "sellPrice": 80,
+      "buyPrice": 200
     }
   }
 }

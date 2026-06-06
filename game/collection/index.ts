@@ -28,7 +28,7 @@ export function getDigimonLocation(save: SaveData, instanceId: string): DigimonL
 }
 
 export function isDigimonOccupied(save: SaveData, instanceId: string): boolean {
-  return save.island.activeActions.some(
+  return save.island.actions.some(
     (action) => action.digimonInstanceId === instanceId,
   );
 }

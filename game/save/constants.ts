@@ -1,3 +1,3 @@
 export const SAVE_STORAGE_KEY = "digiclicker.save";
 
-export const CURRENT_SAVE_VERSION = 6;
+export const CURRENT_SAVE_VERSION = 7;
