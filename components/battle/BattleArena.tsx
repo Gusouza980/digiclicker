@@ -4,6 +4,7 @@ import { useGameStore } from "@/stores/game-store";
 import { useBattleStore } from "@/stores/battle-store";
 import type { BattleEnemyState, DamageType } from "@/game/battle";
 
+import { CombatAdvantageBadge } from "./CombatAdvantageBadge";
 import { EnemyCard } from "./EnemyCard";
 import { NextBattleLoader } from "./NextBattleLoader";
 
@@ -12,6 +13,8 @@ type BattleArenaProps = {
   phase: string;
   lastDamage: number | null;
   lastDamageType: DamageType | null;
+  lastCombatAdvantage?: import("@/game/combat/attribute-element").CombatAdvantage | null;
+  isBossBattle?: boolean;
 };
 
 function damageFlashClass(damageType: DamageType | null): string {
@@ -20,7 +23,14 @@ function damageFlashClass(damageType: DamageType | null): string {
   return "text-sky-300";
 }
 
-export function BattleArena({ enemies, phase, lastDamage, lastDamageType }: BattleArenaProps) {
+export function BattleArena({
+  enemies,
+  phase,
+  lastDamage,
+  lastDamageType,
+  lastCombatAdvantage = null,
+  isBossBattle = false,
+}: BattleArenaProps) {
   const t = useGameStore((state) => state.t);
   const click = useBattleStore((state) => state.click);
   const retry = useBattleStore((state) => state.retry);
@@ -47,9 +57,13 @@ export function BattleArena({ enemies, phase, lastDamage, lastDamageType }: Batt
           {enemies.length > 0 ? (
             <>
               <div className="w-full">
-                <p className="mb-3 text-center text-xs font-medium uppercase tracking-wide text-[var(--text-muted)]">
-                  {t("battle.enemy_team")} ({livingEnemies.length}/{enemies.length})
-                </p>
+                <div className="mb-3 flex items-center justify-center gap-2">
+                  <p className="text-center text-xs font-medium uppercase tracking-wide text-[var(--text-muted)]">
+                    {isBossBattle ? t("battle.boss_encounter") : t("battle.enemy_team")}{" "}
+                    ({livingEnemies.length}/{enemies.length})
+                  </p>
+                  <CombatAdvantageBadge advantage={lastCombatAdvantage} />
+                </div>
                 <div
                   className={`grid gap-3 ${
                     enemies.length === 1

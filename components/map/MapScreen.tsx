@@ -1,8 +1,17 @@
 "use client";
 
 import { getAllCatalogEntries, getCatalogEntry } from "@/catalogs/loader";
+import {
+  canChallengeBoss,
+  getBossForLocation,
+  hasBossAttemptToday,
+  isBossDefeated,
+  isBossReplay,
+} from "@/game/boss";
 import { checkAllRequirementSets } from "@/game/requirements";
+import { ShopPanel } from "@/components/shop/ShopPanel";
 import { getLocationName, useGameStore } from "@/stores/game-store";
+import { useUiStore } from "@/stores/ui-store";
 import type { RequirementRule } from "@/types";
 
 function getRequirementTargetLabel(
@@ -17,7 +26,12 @@ function getRequirementTargetLabel(
     return mission ? t(mission.nameKey) : rule.targetId;
   }
 
-  if (rule.type === "location_unlocked" || rule.type === "boss_defeated") {
+  if (rule.type === "boss_defeated") {
+    const boss = getCatalogEntry("boss", rule.targetId);
+    return boss ? t(boss.nameKey) : rule.targetId;
+  }
+
+  if (rule.type === "location_unlocked") {
     return getLocationName(rule.targetId, locale);
   }
 
@@ -28,10 +42,19 @@ export function MapScreen() {
   const save = useGameStore((state) => state.save);
   const t = useGameStore((state) => state.t);
   const selectLocation = useGameStore((state) => state.selectLocation);
+  const toggleAutoProgress = useGameStore((state) => state.toggleAutoProgress);
+  const challengeBoss = useGameStore((state) => state.challengeBoss);
+  const setActiveScreen = useUiStore((state) => state.setActiveScreen);
 
   if (!save) return null;
 
   const locations = Object.values(getAllCatalogEntries("location"));
+
+  const handleBossChallenge = (bossId: string) => {
+    if (challengeBoss(bossId)) {
+      setActiveScreen("battle");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -42,6 +65,25 @@ export function MapScreen() {
         <p className="text-sm text-[var(--text-muted)]">{t("map.subtitle")}</p>
       </section>
 
+      <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4">
+        <label className="flex cursor-pointer items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-medium text-[var(--text-primary)]">
+              {t("map.auto_progress")}
+            </p>
+            <p className="text-xs text-[var(--text-muted)]">
+              {t("map.auto_progress_hint")}
+            </p>
+          </div>
+          <input
+            type="checkbox"
+            checked={save.progression.autoProgressEnabled}
+            onChange={(event) => toggleAutoProgress(event.target.checked)}
+            className="h-5 w-5 accent-[var(--accent)]"
+          />
+        </label>
+      </section>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {locations.map((location) => {
           const isUnlocked = save.location.unlockedLocationIds.includes(location.id);
@@ -50,6 +92,12 @@ export function MapScreen() {
             save,
             location.unlockRequirementIds,
           );
+          const boss = getBossForLocation(location.id);
+          const bossDefeated = boss ? isBossDefeated(save, boss.id) : false;
+          const bossCanFight = boss && isUnlocked && canChallengeBoss(save, boss.id);
+          const bossReplay = boss ? isBossReplay(save, boss.id) : false;
+          const bossDailyUsed =
+            boss && isUnlocked && bossDefeated && hasBossAttemptToday(save, boss.id);
 
           return (
             <article
@@ -81,6 +129,47 @@ export function MapScreen() {
               <p className="mt-2 text-sm text-[var(--text-muted)]">
                 {t(location.descriptionKey)}
               </p>
+
+              {boss && isUnlocked && (
+                <div className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/5 p-2">
+                  <p className="text-xs font-medium text-amber-300">
+                    {t("map.boss")}: {t(boss.nameKey)}
+                  </p>
+                  {bossDefeated && (
+                    <p className="mt-1 text-xs text-emerald-400">{t("map.boss_defeated")}</p>
+                  )}
+                  {bossCanFight && !bossDefeated && (
+                    <button
+                      type="button"
+                      onClick={() => handleBossChallenge(boss.id)}
+                      className="mt-2 w-full rounded-lg bg-amber-500/20 px-2 py-1.5 text-xs font-medium text-amber-200 hover:bg-amber-500/30"
+                    >
+                      {t("map.challenge_boss")}
+                    </button>
+                  )}
+                  {bossReplay && (
+                    <button
+                      type="button"
+                      onClick={() => handleBossChallenge(boss.id)}
+                      className="mt-2 w-full rounded-lg bg-violet-500/20 px-2 py-1.5 text-xs font-medium text-violet-200 hover:bg-violet-500/30"
+                    >
+                      {t("map.rematch_boss")}
+                    </button>
+                  )}
+                  {bossDailyUsed && (
+                    <p className="mt-2 text-xs text-[var(--text-muted)]">
+                      {t("map.boss_daily_used")}
+                    </p>
+                  )}
+                  {!bossDefeated && !bossCanFight && isUnlocked && (
+                    <p className="mt-1 text-xs text-[var(--text-muted)]">
+                      {t("map.boss_locked")}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {isUnlocked && location.shopId && <ShopPanel locationId={location.id} />}
 
               {!isUnlocked && location.unlockRequirementIds.length > 0 && (
                 <p className="mt-3 text-xs text-amber-400/80">

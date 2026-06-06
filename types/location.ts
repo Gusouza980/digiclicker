@@ -15,6 +15,7 @@ export type LocationCatalogEntry = {
   enemyPool: string[];
   enemyTeamSize?: EnemyTeamSize;
   bossId: string | null;
+  shopId: string | null;
   unlockRequirementIds: string[];
   victoryRewards?: LocationVictoryRewards;
 };

@@ -1,3 +1,4 @@
+import bossData from "./data/bosses.json";
 import configData from "./data/config.json";
 import digimonData from "./data/digimon.json";
 import evolutionData from "./data/evolutions.json";
@@ -8,9 +9,11 @@ import locationData from "./data/locations.json";
 import missionData from "./data/missions.json";
 import personalityData from "./data/personalities.json";
 import requirementData from "./data/requirements.json";
+import shopData from "./data/shops.json";
 import traitData from "./data/traits.json";
 
 import type {
+  BossCatalogEntry,
   CatalogKind,
   CatalogRegistry,
   DigimonCatalogEntry,
@@ -23,6 +26,7 @@ import type {
   MissionCatalogEntry,
   PersonalityCatalogEntry,
   RequirementCatalogEntry,
+  ShopCatalogEntry,
   TraitCatalogEntry,
   VersionedCatalog,
 } from "@/types";
@@ -39,6 +43,8 @@ const catalogRegistry: CatalogRegistry = {
   personality: personalityData as VersionedCatalog<PersonalityCatalogEntry>,
   requirement: requirementData as VersionedCatalog<RequirementCatalogEntry>,
   trait: traitData as VersionedCatalog<TraitCatalogEntry>,
+  boss: bossData as VersionedCatalog<BossCatalogEntry>,
+  shop: shopData as VersionedCatalog<ShopCatalogEntry>,
 };
 
 export function getCatalogVersions(): Record<CatalogKind, string> {

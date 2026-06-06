@@ -12,6 +12,44 @@
         "mpGainPerAutoAttack": 0.05,
         "specialDamageMultiplier": 2
       },
+      "combat": {
+        "advantageMultiplier": 1.25,
+        "disadvantageMultiplier": 0.75,
+        "attributeAdvantages": {
+          "vaccine": "virus",
+          "virus": "data",
+          "data": "vaccine"
+        },
+        "elementAdvantages": {
+          "fire": "plant",
+          "plant": "water",
+          "water": "fire",
+          "electric": "water",
+          "earth": "electric",
+          "wind": "earth",
+          "ice": "wind",
+          "light": "dark",
+          "dark": "light"
+        }
+      },
+      "items": {
+        "meatFriendshipGain": 3,
+        "potionHealPercent": 0.3,
+        "xpBoostMultiplier": 1.5,
+        "xpBoostBattles": 10
+      },
+      "offline": {
+        "minAwayMs": 60000,
+        "maxHours": 8,
+        "battleIntervalMs": 20000,
+        "bitsPenalty": 0.6,
+        "xpPenalty": 0.6,
+        "itemDropChance": 0.15,
+        "itemDrops": [
+          { "itemId": "meat", "quantity": 1 },
+          { "itemId": "potion_small", "quantity": 1 }
+        ]
+      },
       "xp": {
         "digimonPerVictory": 8,
         "trainerPerVictory": 5,

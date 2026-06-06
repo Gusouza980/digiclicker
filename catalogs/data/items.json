@@ -64,6 +64,26 @@
       "maxStack": 20,
       "sellPrice": 80,
       "buyPrice": 200
+    },
+    "xp_boost": {
+      "id": "xp_boost",
+      "nameKey": "item.xp_boost.name",
+      "descriptionKey": "item.xp_boost.description",
+      "category": "consumable",
+      "stackable": true,
+      "maxStack": 20,
+      "sellPrice": 40,
+      "buyPrice": 100
+    },
+    "trait_reset_core": {
+      "id": "trait_reset_core",
+      "nameKey": "item.trait_reset_core.name",
+      "descriptionKey": "item.trait_reset_core.description",
+      "category": "special",
+      "stackable": true,
+      "maxStack": 5,
+      "sellPrice": 200,
+      "buyPrice": 500
     }
   }
 }

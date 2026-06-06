@@ -62,6 +62,21 @@ const migrations: Record<number, Migration> = {
       saveVersion: 7,
     };
   },
+  8: (save) => ({
+    ...save,
+    progression: save.progression ?? { autoProgressEnabled: false },
+    activeBuffs: save.activeBuffs ?? [],
+    pendingOfflineSummary: save.pendingOfflineSummary ?? null,
+    saveVersion: 8,
+  }),
+  9: (save) => ({
+    ...save,
+    bossDaily: save.bossDaily ?? {
+      dateKey: new Date().toISOString().slice(0, 10),
+      attemptedBossIds: [],
+    },
+    saveVersion: 9,
+  }),
 };
 
 export function migrateSave(save: SaveData): SaveData {

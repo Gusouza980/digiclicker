@@ -1,3 +1,5 @@
+import type { BossCatalogEntry } from "./boss";
+import type { CombatConfig } from "./combat";
 import type { DigimonCatalogEntry } from "./digimon";
 import type { EvolutionCatalogEntry } from "./evolution";
 import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./item";
@@ -6,8 +8,11 @@ import type { MissionCatalogEntry } from "./mission";
 import type { FriendshipConfig } from "./friendship";
 import type { IslandGameplayConfig } from "./island";
 import type { HatchingConfig } from "./hatching";
+import type { OfflineConfig } from "./offline";
+import type { ItemEffectsConfig } from "./item-effects";
 import type { PersonalityCatalogEntry } from "./personality";
 import type { RequirementCatalogEntry } from "./requirement";
+import type { ShopCatalogEntry } from "./shop";
 import type { TraitCatalogEntry } from "./trait";
 
 export type CatalogKind =
@@ -22,6 +27,8 @@ export type CatalogKind =
   | "requirement"
   | "evolution"
   | "trait"
+  | "boss"
+  | "shop"
   | "i18n";
 
 export type VersionedCatalogMeta = {
@@ -42,6 +49,9 @@ export type GlobalConfig = {
     mpGainPerAutoAttack: number;
     specialDamageMultiplier: number;
   };
+  combat: CombatConfig;
+  items: ItemEffectsConfig;
+  offline: OfflineConfig;
   xp: {
     digimonPerVictory: number;
     trainerPerVictory: number;
@@ -79,4 +89,6 @@ export type CatalogRegistry = {
   requirement: VersionedCatalog<RequirementCatalogEntry>;
   evolution: VersionedCatalog<EvolutionCatalogEntry>;
   trait: VersionedCatalog<TraitCatalogEntry>;
+  boss: VersionedCatalog<BossCatalogEntry>;
+  shop: VersionedCatalog<ShopCatalogEntry>;
 };

@@ -24,9 +24,20 @@ export function EnemyCard({ enemy }: EnemyCardProps) {
           {t(enemy.nameKey).charAt(0)}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="truncate font-medium text-[var(--text-primary)]">
-            {t(enemy.nameKey)}
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="truncate font-medium text-[var(--text-primary)]">
+              {t(enemy.nameKey)}
+            </h3>
+            {enemy.isBoss && (
+              <span className="shrink-0 rounded-full bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-300">
+                BOSS
+              </span>
+            )}
+          </div>
+          <p className="mt-0.5 text-[10px] text-[var(--text-muted)]">
+            {t(`digimon.attribute.${enemy.attribute}`)} ·{" "}
+            {t(`digimon.element.${enemy.element}`)}
+          </p>
           <div className="mt-2">
             <div className="mb-1 flex justify-between text-xs text-[var(--text-muted)]">
               <span>HP</span>

@@ -15,6 +15,27 @@
         }
       ]
     },
+    "req_boss_village": {
+      "id": "req_boss_village",
+      "rules": [
+        { "type": "trainer_level_min", "value": 2 },
+        { "type": "battles_won_min", "value": 5 }
+      ]
+    },
+    "req_boss_file_forest": {
+      "id": "req_boss_file_forest",
+      "rules": [
+        { "type": "trainer_level_min", "value": 4 },
+        { "type": "boss_defeated", "targetId": "boss_village", "value": 1 }
+      ]
+    },
+    "req_boss_native_forest": {
+      "id": "req_boss_native_forest",
+      "rules": [
+        { "type": "trainer_level_min", "value": 6 },
+        { "type": "boss_defeated", "targetId": "boss_file_forest", "value": 1 }
+      ]
+    },
     "req_native_forest": {
       "id": "req_native_forest",
       "rules": [

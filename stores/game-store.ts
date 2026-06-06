@@ -9,8 +9,13 @@ import {
 import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
 import { moveDigimonToIsland, moveDigimonToTeam } from "@/game/collection";
 import { degenerateDigimon, evolveDigimon } from "@/game/evolution";
+import { canChallengeBoss, recordBossDailyAttempt } from "@/game/boss";
+import { useMeatOnDigimon, useTraitResetCore, useXpBoost } from "@/game/items/use";
 import { collectIslandAction, startIslandAction } from "@/game/island";
-import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
+import { clearOfflineSummary, processOfflineProgress } from "@/game/offline";
+import { setAutoProgressEnabled } from "@/game/progression/auto-progress";
+import { createSave, loadSave, migrateSave, persistSave, resetSave } from "@/game/save";
+import { buyItem, sellItem } from "@/game/shop";
 import { normalizeSave } from "@/game/save/normalize";
 import { ensureStarterTeam } from "@/game/save/starter-team";
 import {
@@ -28,6 +33,8 @@ import type {
   GlobalConfig,
   IslandActionFeedback,
   IslandActionType,
+  ItemUseFeedback,
+  ShopFeedback,
   StatKey,
   HatchDestination,
   HatchingFeedback,
@@ -67,6 +74,13 @@ type GameStore = {
     useTrainingChip?: boolean;
   }) => IslandActionFeedback | null;
   collectIslandAction: (actionId: string) => IslandActionFeedback | null;
+  buyShopItem: (itemId: string, quantity?: number) => ShopFeedback | null;
+  sellInventoryItem: (itemId: string, quantity?: number) => ShopFeedback | null;
+  useItemOnDigimon: (itemId: string, digimonInstanceId: string) => ItemUseFeedback | null;
+  useInventoryItem: (itemId: string) => ItemUseFeedback | null;
+  toggleAutoProgress: (enabled: boolean) => void;
+  challengeBoss: (bossId: string) => boolean;
+  dismissOfflineSummary: () => void;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -80,16 +94,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
     loadCatalogRegistry();
     const config = getGlobalConfig();
     const existing = loadSave();
-    const rawSave = existing ?? createSave(DEFAULT_LOCALE);
+    const rawSave = migrateSave(existing ?? createSave(DEFAULT_LOCALE));
     const withTeam = ensureStarterTeam(rawSave);
     const normalized = normalizeSave(withTeam);
     const synced = syncUnlockedLocations(normalized);
     const clampedSpeed = clampBattleSpeed(synced, synced.settings.battleSpeed ?? 1);
-    const save =
+    const withSpeed =
       clampedSpeed === synced.settings.battleSpeed
         ? synced
         : { ...synced, settings: { ...synced.settings, battleSpeed: clampedSpeed } };
-    persistSave(save);
+    const offlineResult = processOfflineProgress(withSpeed, config);
+    const save = persistSave(offlineResult.save);
 
     set({
       save,
@@ -305,6 +320,98 @@ export const useGameStore = create<GameStore>((set, get) => ({
       set({ save: persistSave(result.save) });
     }
     return result.feedback;
+  },
+
+  buyShopItem: (itemId, quantity = 1) => {
+    const { save } = get();
+    if (!save) return null;
+
+    const result = buyItem(save, itemId, quantity);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  sellInventoryItem: (itemId, quantity = 1) => {
+    const { save } = get();
+    if (!save) return null;
+
+    const result = sellItem(save, itemId, quantity);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  useItemOnDigimon: (itemId, digimonInstanceId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    if (itemId !== "meat") {
+      return { messageKey: "item.error.unsupported", variant: "fail" };
+    }
+
+    const result = useMeatOnDigimon(save, digimonInstanceId, config);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  useInventoryItem: (itemId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    let result;
+    if (itemId === "xp_boost") {
+      result = useXpBoost(save, config);
+    } else if (itemId === "trait_reset_core") {
+      result = useTraitResetCore(save);
+    } else {
+      return { messageKey: "item.error.unsupported", variant: "fail" };
+    }
+
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      if (itemId === "trait_reset_core") {
+        const battle = useBattleStore.getState();
+        if (config && battle.engine) {
+          battle.reset();
+          battle.initBattle(persisted, config);
+        }
+      }
+    }
+    return result.feedback;
+  },
+
+  toggleAutoProgress: (enabled) => {
+    const { save } = get();
+    if (!save) return;
+
+    const updated = persistSave(setAutoProgressEnabled(save, enabled));
+    set({ save: updated });
+  },
+
+  challengeBoss: (bossId) => {
+    const { save } = get();
+    if (!save || !canChallengeBoss(save, bossId)) return false;
+
+    const updated = persistSave(recordBossDailyAttempt(save, bossId));
+    set({ save: updated });
+
+    useBattleStore.getState().requestBossBattle(bossId);
+    return true;
+  },
+
+  dismissOfflineSummary: () => {
+    const { save } = get();
+    if (!save) return;
+
+    const updated = persistSave(clearOfflineSummary(save));
+    set({ save: updated });
   },
 
   performHatchEgg: (eggInstanceId, destination) => {

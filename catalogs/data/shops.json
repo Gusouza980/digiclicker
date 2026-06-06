@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "kind": "shop",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "shop_village": {
+      "id": "shop_village",
+      "locationId": "village_of_beginnings",
+      "nameKey": "shop.village.name",
+      "itemIds": ["meat", "potion_small", "scan_disc", "training_chip"]
+    },
+    "shop_file_forest": {
+      "id": "shop_file_forest",
+      "locationId": "file_forest",
+      "nameKey": "shop.file_forest.name",
+      "itemIds": ["meat", "potion_small", "revival_patch", "xp_boost", "training_chip"]
+    },
+    "shop_native_forest": {
+      "id": "shop_native_forest",
+      "locationId": "native_forest",
+      "nameKey": "shop.native_forest.name",
+      "itemIds": ["potion_small", "revival_patch", "xp_boost", "trait_reset_core", "hatch_stabilizer"]
+    }
+  }
+}

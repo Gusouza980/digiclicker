@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "kind": "boss",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "boss_village": {
+      "id": "boss_village",
+      "locationId": "village_of_beginnings",
+      "nameKey": "boss.village.name",
+      "digimonId": "greymon",
+      "attribute": "virus",
+      "element": "fire",
+      "baseStats": {
+        "hp": 140,
+        "mp": 20,
+        "atk": 28,
+        "def": 18,
+        "int": 12,
+        "spi": 14,
+        "spd": 22
+      },
+      "challengeRequirementIds": ["req_boss_village"],
+      "rewardBitsMin": 60,
+      "rewardBitsMax": 100,
+      "rewardItems": [
+        { "itemId": "meat", "quantity": 2, "chance": 0.5 },
+        { "itemId": "potion_small", "quantity": 1, "chance": 0.35 }
+      ]
+    },
+    "boss_file_forest": {
+      "id": "boss_file_forest",
+      "locationId": "file_forest",
+      "nameKey": "boss.file_forest.name",
+      "digimonId": "togemon",
+      "attribute": "data",
+      "element": "plant",
+      "baseStats": {
+        "hp": 220,
+        "mp": 30,
+        "atk": 38,
+        "def": 28,
+        "int": 16,
+        "spi": 20,
+        "spd": 30
+      },
+      "challengeRequirementIds": ["req_boss_file_forest"],
+      "rewardBitsMin": 120,
+      "rewardBitsMax": 180,
+      "rewardItems": [
+        { "itemId": "xp_boost", "quantity": 1, "chance": 0.4 },
+        { "itemId": "training_chip", "quantity": 1, "chance": 0.25 }
+      ]
+    },
+    "boss_native_forest": {
+      "id": "boss_native_forest",
+      "locationId": "native_forest",
+      "nameKey": "boss.native_forest.name",
+      "digimonId": "metalgreymon",
+      "attribute": "vaccine",
+      "element": "fire",
+      "baseStats": {
+        "hp": 320,
+        "mp": 45,
+        "atk": 52,
+        "def": 38,
+        "int": 24,
+        "spi": 28,
+        "spd": 40
+      },
+      "challengeRequirementIds": ["req_boss_native_forest"],
+      "rewardBitsMin": 200,
+      "rewardBitsMax": 300,
+      "rewardItems": [
+        { "itemId": "trait_reset_core", "quantity": 1, "chance": 0.3 },
+        { "itemId": "xp_boost", "quantity": 2, "chance": 0.5 }
+      ]
+    }
+  }
+}

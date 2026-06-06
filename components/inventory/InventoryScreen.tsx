@@ -13,10 +13,29 @@ const ITEM_CATEGORIES: ItemCategory[] = [
   "special",
 ];
 
+const USABLE_ITEMS = new Set(["meat", "xp_boost", "trait_reset_core"]);
+const SELLABLE_ITEMS = new Set([
+  "potion_small",
+  "meat",
+  "scan_disc",
+  "revival_patch",
+  "hatch_stabilizer",
+  "training_chip",
+  "xp_boost",
+  "trait_reset_core",
+]);
+
 export function InventoryScreen() {
   const save = useGameStore((state) => state.save);
   const t = useGameStore((state) => state.t);
+  const sellInventoryItem = useGameStore((state) => state.sellInventoryItem);
+  const useInventoryItem = useGameStore((state) => state.useInventoryItem);
+  const useItemOnDigimon = useGameStore((state) => state.useItemOnDigimon);
   const setSelectedEggId = useUiStore((state) => state.setSelectedEggId);
+  const itemUseFeedback = useUiStore((state) => state.itemUseFeedback);
+  const setItemUseFeedback = useUiStore((state) => state.setItemUseFeedback);
+  const shopFeedback = useUiStore((state) => state.shopFeedback);
+  const setShopFeedback = useUiStore((state) => state.setShopFeedback);
 
   if (!save) return null;
 
@@ -37,6 +56,23 @@ export function InventoryScreen() {
       {isEmpty && (
         <p className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 text-center text-sm text-[var(--text-muted)]">
           {t("inventory.empty")}
+        </p>
+      )}
+
+      {(itemUseFeedback || shopFeedback) && (
+        <p
+          className={`rounded-lg border px-3 py-2 text-sm ${
+            (itemUseFeedback ?? shopFeedback)?.variant === "success"
+              ? "border-emerald-500/30 text-emerald-400"
+              : "border-red-500/30 text-red-400"
+          }`}
+        >
+          {t((itemUseFeedback ?? shopFeedback)!.messageKey, {
+            ...(itemUseFeedback ?? shopFeedback)?.params,
+            item: (itemUseFeedback ?? shopFeedback)?.params?.item
+              ? t((itemUseFeedback ?? shopFeedback)!.params!.item!)
+              : "",
+          })}
         </p>
       )}
 
@@ -80,6 +116,47 @@ export function InventoryScreen() {
                           <p className="mt-1 text-xs text-[var(--text-muted)]">
                             {t(item.descriptionKey)}
                           </p>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {USABLE_ITEMS.has(stack.itemId) && stack.itemId !== "meat" && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const feedback = useInventoryItem(stack.itemId);
+                                  if (feedback) setItemUseFeedback(feedback);
+                                }}
+                                className="rounded-lg bg-violet-500/20 px-2 py-1 text-xs font-medium text-violet-300"
+                              >
+                                {t("inventory.use")}
+                              </button>
+                            )}
+                            {stack.itemId === "meat" && save.team.activeDigimonIds[0] && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const feedback = useItemOnDigimon(
+                                    "meat",
+                                    save.team.activeDigimonIds[0]!,
+                                  );
+                                  if (feedback) setItemUseFeedback(feedback);
+                                }}
+                                className="rounded-lg bg-violet-500/20 px-2 py-1 text-xs font-medium text-violet-300"
+                              >
+                                {t("inventory.use_on_team")}
+                              </button>
+                            )}
+                            {SELLABLE_ITEMS.has(stack.itemId) && item.sellPrice > 0 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const feedback = sellInventoryItem(stack.itemId, 1);
+                                  if (feedback) setShopFeedback(feedback);
+                                }}
+                                className="rounded-lg bg-amber-500/20 px-2 py-1 text-xs font-medium text-amber-300"
+                              >
+                                {t("inventory.sell", { price: String(item.sellPrice) })}
+                              </button>
+                            )}
+                          </div>
                         </li>
                       );
                     })}

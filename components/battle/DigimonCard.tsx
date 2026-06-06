@@ -1,6 +1,7 @@
 "use client";
 
 import { FriendshipBar } from "@/components/digimon/FriendshipBar";
+import { usePotionInBattle } from "@/game/items/use";
 import { useBattleStore } from "@/stores/battle-store";
 import { useGameStore } from "@/stores/game-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -20,7 +21,10 @@ type DigimonCardProps = {
 export function DigimonCard({ ally }: DigimonCardProps) {
   const save = useGameStore((state) => state.save);
   const t = useGameStore((state) => state.t);
+  const config = useGameStore((state) => state.config);
   const useSpecial = useBattleStore((state) => state.useSpecial);
+  const usePotion = useBattleStore((state) => state.usePotion);
+  const replaceSave = useGameStore((state) => state.replaceSave);
   const phase = useBattleStore((state) => state.snapshot?.phase);
   const setSelectedDigimonId = useUiStore((state) => state.setSelectedDigimonId);
   const hpPercent = ally.maxHp > 0 ? (ally.currentHp / ally.maxHp) * 100 : 0;
@@ -28,7 +32,24 @@ export function DigimonCard({ ally }: DigimonCardProps) {
   const color = STAGE_COLORS.rookie;
   const canUseSpecial =
     phase === "fighting" && !ally.isDefeated && ally.specialReady;
+  const canUsePotion =
+    phase === "fighting" &&
+    !ally.isDefeated &&
+    ally.currentHp < ally.maxHp &&
+    (save?.inventory.items.find((item) => item.itemId === "potion_small")?.quantity ?? 0) > 0;
   const friendship = save?.digimons[ally.instanceId]?.friendship ?? 0;
+
+  const handlePotion = () => {
+    if (!save || !config) return;
+    const result = usePotionInBattle(
+      save,
+      ally.instanceId,
+      Math.floor(ally.maxHp * config.items.potionHealPercent),
+    );
+    if (!result.ok) return;
+    replaceSave(result.save);
+    usePotion(ally.instanceId, config.items.potionHealPercent);
+  };
 
   return (
     <article
@@ -116,18 +137,32 @@ export function DigimonCard({ ally }: DigimonCardProps) {
           <dd className="font-semibold text-[var(--text-primary)]">{ally.spd}</dd>
         </div>
       </dl>
-      <button
-        type="button"
-        onClick={() => useSpecial(ally.instanceId)}
-        disabled={!canUseSpecial}
-        className={`mt-3 w-full rounded-lg px-3 py-2 text-xs font-semibold transition-colors ${
-          canUseSpecial
-            ? "bg-amber-400/20 text-amber-300 ring-1 ring-amber-400/50 hover:bg-amber-400/30"
-            : "cursor-not-allowed bg-[var(--bg-primary)] text-[var(--text-muted)] opacity-60"
-        }`}
-      >
-        {ally.specialReady ? t("battle.special.ready") : t("battle.special.charging")}
-      </button>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          onClick={() => useSpecial(ally.instanceId)}
+          disabled={!canUseSpecial}
+          className={`rounded-lg px-3 py-2 text-xs font-semibold transition-colors ${
+            canUseSpecial
+              ? "bg-amber-400/20 text-amber-300 ring-1 ring-amber-400/50 hover:bg-amber-400/30"
+              : "cursor-not-allowed bg-[var(--bg-primary)] text-[var(--text-muted)] opacity-60"
+          }`}
+        >
+          {ally.specialReady ? t("battle.special.ready") : t("battle.special.charging")}
+        </button>
+        <button
+          type="button"
+          onClick={handlePotion}
+          disabled={!canUsePotion}
+          className={`rounded-lg px-3 py-2 text-xs font-semibold transition-colors ${
+            canUsePotion
+              ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40 hover:bg-emerald-500/30"
+              : "cursor-not-allowed bg-[var(--bg-primary)] text-[var(--text-muted)] opacity-60"
+          }`}
+        >
+          {t("battle.use_potion")}
+        </button>
+      </div>
       {ally.isDefeated && (
         <p className="mt-2 text-center text-xs font-medium text-red-400">
           {t("battle.defeated")}

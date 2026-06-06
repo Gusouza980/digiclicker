@@ -1,5 +1,7 @@
 import type { BattlePhase } from "@/types/battle";
 import type { LevelUpEvent, RewardDisplayEntry } from "@/game/rewards";
+import type { CombatAdvantage } from "@/game/combat/attribute-element";
+import type { DigimonAttribute, DigimonElement } from "@/types/digimon";
 
 export type DamageType = "normal" | "special" | "click";
 
@@ -27,6 +29,8 @@ export type BattleAllyState = {
   specialReady: boolean;
   attackTimerMs: number;
   isDefeated: boolean;
+  attribute: DigimonAttribute;
+  element: DigimonElement;
 };
 
 export type BattleEnemyState = {
@@ -40,17 +44,23 @@ export type BattleEnemyState = {
   spd: number;
   attackTimerMs: number;
   isDefeated: boolean;
+  attribute: DigimonAttribute;
+  element: DigimonElement;
+  isBoss?: boolean;
 };
 
 export type BattleSnapshot = {
   phase: BattlePhase;
   locationId: string;
+  isBossBattle: boolean;
+  bossChallengeId: string | null;
   enemies: BattleEnemyState[];
   allies: BattleAllyState[];
   teamTotalAtk: number;
   combatLog: CombatLogEntry[];
   lastDamage: number | null;
   lastDamageType: DamageType | null;
+  lastCombatAdvantage: CombatAdvantage | null;
   recentRewards: RewardDisplayEntry[];
   levelUpEvents: LevelUpEvent[];
 };

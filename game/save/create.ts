@@ -40,6 +40,11 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
       unlockedLocationIds: ["village_of_beginnings"],
       defeatedBossIds: [],
     },
+    progression: {
+      autoProgressEnabled: false,
+    },
+    activeBuffs: [],
+    pendingOfflineSummary: null,
     missions: [],
     traits: [],
     knownForms: {
@@ -48,6 +53,10 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     friendshipDaily: {
       dateKey: new Date().toISOString().slice(0, 10),
       clickGainUsed: 0,
+    },
+    bossDaily: {
+      dateKey: new Date().toISOString().slice(0, 10),
+      attemptedBossIds: [],
     },
     settings: {
       locale,

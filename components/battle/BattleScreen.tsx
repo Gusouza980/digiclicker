@@ -54,11 +54,28 @@ export function BattleScreen() {
 
       <ActiveMissionCard />
 
+      {save.activeBuffs.length > 0 && (
+        <div className="rounded-lg border border-violet-500/30 bg-violet-500/10 px-3 py-2 text-xs text-violet-200">
+          {save.activeBuffs.map((buff) =>
+            buff.type === "xp_multiplier" ? (
+              <span key={buff.id}>
+                {t("battle.xp_buff_active", {
+                  multiplier: String(buff.multiplier),
+                  battles: String(buff.battlesRemaining),
+                })}
+              </span>
+            ) : null,
+          )}
+        </div>
+      )}
+
       <BattleArena
         enemies={snapshot.enemies}
         phase={snapshot.phase}
         lastDamage={snapshot.lastDamage}
         lastDamageType={snapshot.lastDamageType}
+        lastCombatAdvantage={snapshot.lastCombatAdvantage}
+        isBossBattle={snapshot.isBossBattle}
       />
 
       <section>

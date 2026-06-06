@@ -1,3 +1,5 @@
+import type { BossDailyProgress } from "./boss";
+import type { ActiveBuff, OfflineSummary, ProgressionState } from "./progression";
 import type { BattleSpeed } from "./battle";
 import type { IslandAction } from "./island";
 import type { PlayerDigimon } from "./digimon";
@@ -52,9 +54,13 @@ export type SaveData = {
   digimons: Record<string, PlayerDigimon>;
   inventory: InventoryState;
   location: LocationProgress;
+  progression: ProgressionState;
+  activeBuffs: ActiveBuff[];
+  pendingOfflineSummary: OfflineSummary | null;
   missions: MissionProgress[];
   traits: UnlockedTrait[];
   knownForms: KnownFormsState;
   friendshipDaily: FriendshipDailyProgress;
+  bossDaily: BossDailyProgress;
   settings: GameSettings;
 };

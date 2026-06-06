@@ -1,8 +1,20 @@
 import { getCatalogEntry } from "@/catalogs/loader";
+import {
+  applyCombatMultiplier,
+  getCombatAdvantage,
+  getCombatMultiplier,
+  type CombatAdvantage,
+} from "@/game/combat/attribute-element";
 import type { LevelUpEvent, RewardDisplayEntry } from "@/game/rewards";
 import { calculateTeamTotalStat, calculateTotalStats } from "@/game/stats/calculator";
 import { getTraitModifiers, type TraitModifiers } from "@/game/traits/effects";
-import type { GlobalConfig, SaveData } from "@/types";
+import type {
+  BossCatalogEntry,
+  DigimonAttribute,
+  DigimonElement,
+  GlobalConfig,
+  SaveData,
+} from "@/types";
 import type { BattlePhase } from "@/types/battle";
 import type { PlayerDigimon } from "@/types/digimon";
 
@@ -42,6 +54,9 @@ export class BattleEngine {
   private combatLog: CombatLogEntry[] = [];
   private lastDamage: number | null = null;
   private lastDamageType: DamageType | null = null;
+  private lastCombatAdvantage: CombatAdvantage | null = null;
+  private bossChallengeId: string | null = null;
+  private isBossBattle = false;
   private defeatedEnemyIds: string[] = [];
   private recentRewards: RewardDisplayEntry[] = [];
   private levelUpEvents: LevelUpEvent[] = [];
@@ -62,15 +77,53 @@ export class BattleEngine {
     return {
       phase: this.phase,
       locationId: this.locationId,
+      isBossBattle: this.isBossBattle,
+      bossChallengeId: this.bossChallengeId,
       enemies: this.enemies,
       allies: this.allies,
       teamTotalAtk: this.getTeamTotalAtk(),
       combatLog: [...this.combatLog],
       lastDamage: this.lastDamage,
       lastDamageType: this.lastDamageType,
+      lastCombatAdvantage: this.lastCombatAdvantage,
       recentRewards: [...this.recentRewards],
       levelUpEvents: [...this.levelUpEvents],
     };
+  }
+
+  getBossChallengeId(): string | null {
+    return this.bossChallengeId;
+  }
+
+  getIsBossBattle(): boolean {
+    return this.isBossBattle;
+  }
+
+  startBossChallenge(bossId: string): BattleSnapshot {
+    const boss = getCatalogEntry("boss", bossId);
+    if (!boss) return this.getSnapshot();
+
+    this.bossChallengeId = bossId;
+    this.isBossBattle = true;
+    this.phase = "fighting";
+    this.combatLog = [];
+    this.lastDamage = null;
+    this.lastDamageType = null;
+    this.lastCombatAdvantage = null;
+    this.defeatedEnemyIds = [];
+    this.clearVictoryFeedback();
+    this.spawnBossTeam(boss);
+    return this.getSnapshot();
+  }
+
+  healAlly(allyInstanceId: string, healPercent: number): BattleSnapshot {
+    const ally = this.allies.find((member) => member.instanceId === allyInstanceId);
+    if (!ally || ally.isDefeated) return this.getSnapshot();
+
+    const healAmount = Math.max(1, Math.floor(ally.maxHp * healPercent));
+    ally.currentHp = Math.min(ally.maxHp, ally.currentHp + healAmount);
+    this.pushLog("battle.log.heal", healAmount, "normal", ally.nameKey);
+    return this.getSnapshot();
   }
 
   getDefeatedEnemyIds(): string[] {
@@ -121,9 +174,17 @@ export class BattleEngine {
       return this.getSnapshot();
     }
 
-    const damage = calculateClickDamage(
+    const attacker = this.getClickAttacker();
+    const baseDamage = calculateClickDamage(
       this.getTeamTotalAtk(),
       this.config.battle.clickDamageMultiplier,
+    );
+    const damage = this.scaleOutgoingDamage(
+      baseDamage,
+      attacker?.attribute ?? "free",
+      attacker?.element ?? "neutral",
+      target.attribute,
+      target.element,
     );
 
     this.applyDamageToEnemy(target, damage, "battle.log.click_damage", undefined, "click");
@@ -145,10 +206,17 @@ export class BattleEngine {
       return this.getSnapshot();
     }
 
-    const damage = calculateSpecialDamage(
+    const baseDamage = calculateSpecialDamage(
       ally.atk,
       ally.int,
       this.config.battle.specialDamageMultiplier,
+    );
+    const damage = this.scaleOutgoingDamage(
+      baseDamage,
+      ally.attribute,
+      ally.element,
+      target.attribute,
+      target.element,
     );
 
     this.applyDamageToEnemy(
@@ -178,6 +246,9 @@ export class BattleEngine {
     this.combatLog = [];
     this.lastDamage = null;
     this.lastDamageType = null;
+    this.lastCombatAdvantage = null;
+    this.bossChallengeId = null;
+    this.isBossBattle = false;
     this.defeatedEnemyIds = [];
     this.clearVictoryFeedback();
     this.spawnEnemyTeam();
@@ -197,6 +268,9 @@ export class BattleEngine {
     this.phase = "fighting";
     this.lastDamage = null;
     this.lastDamageType = null;
+    this.lastCombatAdvantage = null;
+    this.bossChallengeId = null;
+    this.isBossBattle = false;
     this.defeatedEnemyIds = [];
     this.resetAlliesMp();
     this.spawnEnemyTeam();
@@ -232,6 +306,8 @@ export class BattleEngine {
         specialReady: false,
         attackTimerMs: getAttackIntervalMs(stats.spd),
         isDefeated: false,
+        attribute: catalog.attribute,
+        element: catalog.element,
       });
     }
 
@@ -293,6 +369,8 @@ export class BattleEngine {
         spd: catalog.baseStats.spd,
         attackTimerMs: getAttackIntervalMs(catalog.baseStats.spd),
         isDefeated: false,
+        attribute: catalog.attribute,
+        element: catalog.element,
       });
     }
 
@@ -319,7 +397,14 @@ export class BattleEngine {
         const target = this.pickRandomLivingEnemy();
         if (!target) continue;
 
-        const damage = calculateAttackDamage(ally.atk, target.def);
+        const baseDamage = calculateAttackDamage(ally.atk, target.def);
+        const damage = this.scaleOutgoingDamage(
+          baseDamage,
+          ally.attribute,
+          ally.element,
+          target.attribute,
+          target.element,
+        );
         this.applyDamageToEnemy(target, damage, "battle.log.ally_attack", ally.nameKey, "normal");
         this.gainMpFromAutoAttack(ally);
         ally.attackTimerMs = getAttackIntervalMs(ally.spd);
@@ -338,7 +423,14 @@ export class BattleEngine {
       if (enemy.attackTimerMs <= 0) {
         const target = this.pickRandomLivingAlly();
         if (target) {
-          const damage = calculateAttackDamage(enemy.atk, target.def);
+          const baseDamage = calculateAttackDamage(enemy.atk, target.def);
+          const damage = this.scaleIncomingDamage(
+            baseDamage,
+            enemy.attribute,
+            enemy.element,
+            target.attribute,
+            target.element,
+          );
           this.applyDamageToAlly(target, damage, enemy.nameKey);
         }
         enemy.attackTimerMs = getAttackIntervalMs(enemy.spd);
@@ -360,6 +452,74 @@ export class BattleEngine {
     return living[index] ?? null;
   }
 
+  private spawnBossTeam(boss: BossCatalogEntry): void {
+    const maxHp = boss.baseStats.hp;
+
+    this.enemies = [
+      {
+        instanceId: nextEnemyInstanceId(boss.id),
+        catalogId: boss.digimonId,
+        nameKey: boss.nameKey,
+        currentHp: maxHp,
+        maxHp,
+        atk: boss.baseStats.atk,
+        def: boss.baseStats.def,
+        spd: boss.baseStats.spd,
+        attackTimerMs: getAttackIntervalMs(boss.baseStats.spd),
+        isDefeated: false,
+        attribute: boss.attribute,
+        element: boss.element,
+        isBoss: true,
+      },
+    ];
+    this.resetAlliesMp();
+  }
+
+  private getClickAttacker(): BattleAllyState | null {
+    return this.allies.find((ally) => !ally.isDefeated) ?? null;
+  }
+
+  private scaleOutgoingDamage(
+    baseDamage: number,
+    attackerAttribute: DigimonAttribute,
+    attackerElement: DigimonElement,
+    defenderAttribute: DigimonAttribute,
+    defenderElement: DigimonElement,
+  ): number {
+    const multiplier = getCombatMultiplier(
+      attackerAttribute,
+      attackerElement,
+      defenderAttribute,
+      defenderElement,
+      this.config.combat,
+    );
+    this.lastCombatAdvantage = getCombatAdvantage(
+      attackerAttribute,
+      attackerElement,
+      defenderAttribute,
+      defenderElement,
+      this.config.combat,
+    );
+    return applyCombatMultiplier(baseDamage, multiplier);
+  }
+
+  private scaleIncomingDamage(
+    baseDamage: number,
+    attackerAttribute: DigimonAttribute,
+    attackerElement: DigimonElement,
+    defenderAttribute: DigimonAttribute,
+    defenderElement: DigimonElement,
+  ): number {
+    const multiplier = getCombatMultiplier(
+      attackerAttribute,
+      attackerElement,
+      defenderAttribute,
+      defenderElement,
+      this.config.combat,
+    );
+    return applyCombatMultiplier(baseDamage, multiplier);
+  }
+
   private applyDamageToEnemy(
     enemy: BattleEnemyState,
     damage: number,
@@ -374,7 +534,9 @@ export class BattleEngine {
 
     if (enemy.currentHp <= 0 && !enemy.isDefeated) {
       enemy.isDefeated = true;
-      this.defeatedEnemyIds.push(enemy.catalogId);
+      const defeatedId =
+        enemy.isBoss && this.bossChallengeId ? this.bossChallengeId : enemy.catalogId;
+      this.defeatedEnemyIds.push(defeatedId);
       this.pushLog("battle.log.enemy_defeated", 0, "normal", enemy.nameKey);
     }
 

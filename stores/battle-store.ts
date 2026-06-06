@@ -9,14 +9,18 @@ import type { GlobalConfig, SaveData } from "@/types";
 type BattleStore = {
   snapshot: BattleSnapshot | null;
   engine: BattleEngine | null;
+  pendingBossId: string | null;
   isLoadingNextBattle: boolean;
   setLoadingNextBattle: (loading: boolean) => void;
   initBattle: (save: SaveData, config: GlobalConfig) => void;
+  ensureBattleEngine: (save: SaveData, config: GlobalConfig) => void;
+  requestBossBattle: (bossId: string) => void;
   tick: (deltaMs: number) => void;
   click: () => void;
   useSpecial: (allyInstanceId: string) => void;
   retry: () => void;
   continueAfterVictory: (save?: SaveData) => void;
+  usePotion: (allyInstanceId: string, healPercent: number) => boolean;
   applyVictoryRewards: (save: SaveData, config: GlobalConfig) => SaveData | null;
   reset: () => void;
 };
@@ -24,6 +28,7 @@ type BattleStore = {
 export const useBattleStore = create<BattleStore>((set, get) => ({
   snapshot: null,
   engine: null,
+  pendingBossId: null,
   isLoadingNextBattle: false,
 
   setLoadingNextBattle: (loading) => {
@@ -32,7 +37,30 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
 
   initBattle: (save, config) => {
     const engine = new BattleEngine(save, config);
-    set({ engine, snapshot: engine.getSnapshot() });
+    set({ engine, snapshot: engine.getSnapshot(), pendingBossId: null });
+  },
+
+  ensureBattleEngine: (save, config) => {
+    const { engine, pendingBossId } = get();
+
+    if (pendingBossId) {
+      const bossEngine = new BattleEngine(save, config);
+      set({
+        engine: bossEngine,
+        snapshot: bossEngine.startBossChallenge(pendingBossId),
+        pendingBossId: null,
+      });
+      return;
+    }
+
+    if (!engine) {
+      const normalEngine = new BattleEngine(save, config);
+      set({ engine: normalEngine, snapshot: normalEngine.getSnapshot() });
+    }
+  },
+
+  requestBossBattle: (bossId) => {
+    set({ pendingBossId: bossId, engine: null, snapshot: null });
   },
 
   tick: (deltaMs) => {
@@ -69,6 +97,13 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     set({ snapshot: engine.retry() });
   },
 
+  usePotion: (allyInstanceId, healPercent) => {
+    const { engine } = get();
+    if (!engine || engine.getSnapshot().phase !== "fighting") return false;
+    set({ snapshot: engine.healAlly(allyInstanceId, healPercent) });
+    return true;
+  },
+
   continueAfterVictory: (save) => {
     const { engine } = get();
     if (!engine) return;
@@ -88,6 +123,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       engine.getLocationId(),
       engine.getDefeatedEnemyIds(),
       engine.getLivingAllyInstanceIds(),
+      engine.getBossChallengeId(),
     );
 
     engine.setVictoryRewards(result.display, result.levelUps);
@@ -97,6 +133,11 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
   },
 
   reset: () => {
-    set({ engine: null, snapshot: null, isLoadingNextBattle: false });
+    set({
+      engine: null,
+      snapshot: null,
+      pendingBossId: null,
+      isLoadingNextBattle: false,
+    });
   },
 }));

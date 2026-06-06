@@ -1,3 +1,4 @@
+import { normalizeBossDaily } from "@/game/boss";
 import { registerKnownForms } from "@/game/evolution/known-forms";
 import type { PlayerDigimon, SaveData } from "@/types";
 import { createEmptyStatBlock } from "@/types/stats";
@@ -20,11 +21,25 @@ export function normalizeSave(save: SaveData): SaveData {
     next.island.actions = (next.island as { activeActions?: typeof next.island.actions }).activeActions ?? [];
   }
 
+  if (!next.progression) {
+    next.progression = { autoProgressEnabled: false };
+  }
+
+  if (!next.activeBuffs) {
+    next.activeBuffs = [];
+  }
+
+  if (next.pendingOfflineSummary === undefined) {
+    next.pendingOfflineSummary = null;
+  }
+
   if (!next.friendshipDaily) {
     next.friendshipDaily = { dateKey: getTodayKey(), clickGainUsed: 0 };
   } else if (next.friendshipDaily.dateKey !== getTodayKey()) {
     next.friendshipDaily = { dateKey: getTodayKey(), clickGainUsed: 0 };
   }
+
+  normalizeBossDaily(next);
 
   const starterFormIds: string[] = [];
 
