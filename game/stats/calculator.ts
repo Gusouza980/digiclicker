@@ -1,4 +1,4 @@
-import { getCatalogEntry } from "@/catalogs/loader";
+import { getCatalogEntry, getGlobalConfig } from "@/catalogs/loader";
 import type { PlayerDigimon } from "@/types/digimon";
 import type { PersonalityGrowthModifiers } from "@/types/personality";
 import {
@@ -63,11 +63,29 @@ function getCumulativeByFriendship(base: StatBlock, friendship: number): StatBlo
   return cumulative;
 }
 
+function applyHatchQualityBonus(
+  base: StatBlock,
+  hatchQuality: PlayerDigimon["hatchQuality"],
+): StatBlock {
+  if (!hatchQuality) return base;
+
+  const config = getGlobalConfig();
+  const bonus = config.hatching.qualityBaseBonus[String(hatchQuality) as "3" | "4" | "5"];
+  if (!bonus) return base;
+
+  const adjusted = { ...base };
+  for (const key of Object.keys(adjusted) as StatKey[]) {
+    adjusted[key] = Math.floor(adjusted[key] * (1 + bonus));
+  }
+
+  return adjusted;
+}
+
 export function calculateStatBreakdown(digimon: PlayerDigimon): StatBreakdown | null {
   const catalog = getCatalogEntry("digimon", digimon.catalogId);
   if (!catalog) return null;
 
-  const base = { ...catalog.baseStats };
+  const base = applyHatchQualityBonus(catalog.baseStats, digimon.hatchQuality);
   const byLevel = getGrowthByLevel(base, digimon.level, digimon.personalityId);
   const cumulative = getCumulativeByFriendship(base, digimon.friendship);
 

@@ -44,6 +44,16 @@
       "maxStack": 30,
       "sellPrice": 30,
       "buyPrice": 80
+    },
+    "hatch_stabilizer": {
+      "id": "hatch_stabilizer",
+      "nameKey": "item.hatch_stabilizer.name",
+      "descriptionKey": "item.hatch_stabilizer.description",
+      "category": "special",
+      "stackable": true,
+      "maxStack": 20,
+      "sellPrice": 100,
+      "buyPrice": 250
     }
   }
 }

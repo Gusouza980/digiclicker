@@ -1,6 +1,7 @@
 export * from "./battle";
 export * from "./catalog";
 export * from "./digimon";
+export * from "./hatching";
 export * from "./inventory";
 export * from "./item";
 export * from "./locale";

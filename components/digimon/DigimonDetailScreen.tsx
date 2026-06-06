@@ -130,6 +130,16 @@ export function DigimonDetailScreen() {
             {t(`digimon.stage.${catalog.stage}`)}
           </p>
         </div>
+        {digimon.hatchQuality && (
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3 md:col-span-2">
+            <span className="text-[var(--text-muted)]">{t("digimon.detail.hatch_quality")}</span>
+            <p className="font-semibold text-[var(--text-primary)]">
+              {t("digimon.detail.hatch_quality_value", {
+                quality: String(digimon.hatchQuality),
+              })}
+            </p>
+          </div>
+        )}
       </section>
     </div>
   );

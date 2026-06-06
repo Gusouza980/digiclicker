@@ -35,6 +35,35 @@
       },
       "team": {
         "maxActive": 3
+      },
+      "hatching": {
+        "minInsertionsToHatch": 3,
+        "scanCostByRarity": {
+          "common": 50,
+          "rare": 100,
+          "reinforced": 200,
+          "special": 400,
+          "event": 500
+        },
+        "essenceCostByRarity": {
+          "common": 1,
+          "rare": 2,
+          "reinforced": 3,
+          "special": 4,
+          "event": 5
+        },
+        "insertionChances": [
+          { "success": 0.85, "fail": 0.12, "break": 0.03 },
+          { "success": 0.7, "fail": 0.22, "break": 0.08 },
+          { "success": 0.55, "fail": 0.3, "break": 0.15 },
+          { "success": 0.4, "fail": 0.35, "break": 0.25 },
+          { "success": 0.25, "fail": 0.4, "break": 0.35 }
+        ],
+        "qualityBaseBonus": {
+          "3": 0,
+          "4": 0.05,
+          "5": 0.1
+        }
       }
     }
   }

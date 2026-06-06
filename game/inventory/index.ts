@@ -6,8 +6,8 @@ const EGG_MAX_INSERTIONS: Record<EggRarity, number> = {
   common: 3,
   rare: 4,
   reinforced: 5,
-  special: 6,
-  event: 6,
+  special: 5,
+  event: 5,
 };
 
 export function getEssenceIdForType(digimonType: string): string {

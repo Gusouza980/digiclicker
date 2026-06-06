@@ -2,6 +2,7 @@
 
 import { getCatalogEntry } from "@/catalogs/loader";
 import { useGameStore } from "@/stores/game-store";
+import { useUiStore } from "@/stores/ui-store";
 import type { ItemCategory } from "@/types";
 
 const ITEM_CATEGORIES: ItemCategory[] = [
@@ -15,6 +16,7 @@ const ITEM_CATEGORIES: ItemCategory[] = [
 export function InventoryScreen() {
   const save = useGameStore((state) => state.save);
   const t = useGameStore((state) => state.t);
+  const setSelectedEggId = useUiStore((state) => state.setSelectedEggId);
 
   if (!save) return null;
 
@@ -153,6 +155,19 @@ export function InventoryScreen() {
                     })}
                   </p>
                 )}
+                <p className="mt-2 text-xs text-[var(--text-muted)]">
+                  {t("inventory.egg.progress", {
+                    current: String(egg.insertions),
+                    max: String(egg.maxInsertions),
+                  })}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSelectedEggId(egg.instanceId)}
+                  className="mt-3 w-full rounded-lg border border-amber-500/40 px-3 py-1.5 text-xs font-medium text-amber-300 transition-colors hover:bg-amber-500/10"
+                >
+                  {t("inventory.egg.open_scanner")}
+                </button>
               </li>
             ))}
           </ul>

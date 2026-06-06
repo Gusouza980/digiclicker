@@ -26,7 +26,7 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     },
     digimons: starter.digimons,
     inventory: {
-      items: [],
+      items: [{ itemId: "hatch_stabilizer", quantity: 1 }],
       essences: [],
       eggs: [],
     },

@@ -2,6 +2,7 @@ import type { DigimonCatalogEntry } from "./digimon";
 import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./item";
 import type { LocationCatalogEntry } from "./location";
 import type { MissionCatalogEntry } from "./mission";
+import type { HatchingConfig } from "./hatching";
 import type { PersonalityCatalogEntry } from "./personality";
 import type { RequirementCatalogEntry } from "./requirement";
 import type { TraitCatalogEntry } from "./trait";
@@ -58,6 +59,7 @@ export type GlobalConfig = {
   team: {
     maxActive: number;
   };
+  hatching: HatchingConfig;
 };
 
 export type CatalogRegistry = {

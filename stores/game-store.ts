@@ -9,10 +9,22 @@ import {
 import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
 import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
 import { ensureStarterTeam } from "@/game/save/starter-team";
+import {
+  hatchEgg,
+  insertEssence,
+  scanEgg,
+} from "@/game/hatching";
 import { unlockTrait } from "@/game/traits/unlock";
 import { translate } from "@/i18n";
 import { useBattleStore } from "@/stores/battle-store";
-import type { BattleSpeed, GlobalConfig, SaveData, SupportedLocale } from "@/types";
+import type {
+  BattleSpeed,
+  GlobalConfig,
+  HatchDestination,
+  HatchingFeedback,
+  SaveData,
+  SupportedLocale,
+} from "@/types";
 import { DEFAULT_LOCALE } from "@/types/locale";
 
 type GameStore = {
@@ -30,6 +42,9 @@ type GameStore = {
   claimMissionReward: (missionId: string) => boolean;
   unlockTraitById: (traitId: string) => boolean;
   setBattleSpeed: (speed: BattleSpeed) => boolean;
+  performScanEgg: (eggInstanceId: string) => HatchingFeedback | null;
+  performInsertEssence: (eggInstanceId: string, useStabilizer?: boolean) => HatchingFeedback | null;
+  performHatchEgg: (eggInstanceId: string, destination: HatchDestination) => HatchingFeedback | null;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -159,6 +174,46 @@ export const useGameStore = create<GameStore>((set, get) => ({
     });
     set({ save: updated });
     return true;
+  },
+
+  performScanEgg: (eggInstanceId) => {
+    const { save } = get();
+    if (!save) return null;
+
+    const result = scanEgg(save, eggInstanceId);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  performInsertEssence: (eggInstanceId, useStabilizer = false) => {
+    const { save } = get();
+    if (!save) return null;
+
+    const result = insertEssence(save, eggInstanceId, useStabilizer);
+    if (result.ok) {
+      set({ save: persistSave(result.save) });
+    }
+    return result.feedback;
+  },
+
+  performHatchEgg: (eggInstanceId, destination) => {
+    const { save, config } = get();
+    if (!save) return null;
+
+    const result = hatchEgg(save, eggInstanceId, destination);
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      if (config && destination === "team") {
+        const battle = useBattleStore.getState();
+        battle.reset();
+        battle.initBattle(persisted, config);
+      }
+    }
+    return result.feedback;
   },
 
   t: (key, params) => {
