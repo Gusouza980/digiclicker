@@ -12,12 +12,17 @@ export type MissionObjective = {
   current: number;
 };
 
+export type MissionCatalogReward = {
+  type: "bits" | "trainer_xp";
+  amount: number;
+};
+
 export type MissionCatalogEntry = {
   id: string;
   nameKey: string;
   descriptionKey: string;
   objectives: Omit<MissionObjective, "current">[];
-  rewardIds: string[];
+  rewards: MissionCatalogReward[];
   prerequisiteMissionIds: string[];
 };
 

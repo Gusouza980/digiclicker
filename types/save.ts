@@ -1,3 +1,4 @@
+import type { BattleSpeed } from "./battle";
 import type { PlayerDigimon } from "./digimon";
 import type { InventoryState } from "./inventory";
 import type { SupportedLocale } from "./locale";
@@ -10,6 +11,7 @@ export type PlayerProfile = {
   trainerXp: number;
   traitPoints: number;
   bits: number;
+  battlesWon: number;
 };
 
 export type TeamState = {
@@ -34,6 +36,7 @@ export type GameSettings = {
   locale: SupportedLocale;
   musicEnabled: boolean;
   sfxEnabled: boolean;
+  battleSpeed: BattleSpeed;
 };
 
 export type SaveData = {

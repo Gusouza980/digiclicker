@@ -143,6 +143,138 @@
         "bitsMax": 5,
         "digimonXp": 7
       }
+    },
+    "elecmon": {
+      "id": "elecmon",
+      "nameKey": "digimon.elecmon.name",
+      "stage": "rookie",
+      "attribute": "data",
+      "element": "electric",
+      "primaryType": "mammal",
+      "baseStats": {
+        "hp": 70,
+        "mp": 12,
+        "atk": 18,
+        "def": 14,
+        "int": 12,
+        "spi": 10,
+        "spd": 20
+      },
+      "battleRewards": {
+        "bitsMin": 4,
+        "bitsMax": 8,
+        "digimonXp": 10
+      }
+    },
+    "palmon": {
+      "id": "palmon",
+      "nameKey": "digimon.palmon.name",
+      "stage": "rookie",
+      "attribute": "data",
+      "element": "plant",
+      "primaryType": "vegetation",
+      "baseStats": {
+        "hp": 75,
+        "mp": 14,
+        "atk": 16,
+        "def": 16,
+        "int": 14,
+        "spi": 12,
+        "spd": 18
+      },
+      "battleRewards": {
+        "bitsMin": 4,
+        "bitsMax": 9,
+        "digimonXp": 11
+      }
+    },
+    "betamon": {
+      "id": "betamon",
+      "nameKey": "digimon.betamon.name",
+      "stage": "rookie",
+      "attribute": "virus",
+      "element": "water",
+      "primaryType": "amphibian",
+      "baseStats": {
+        "hp": 80,
+        "mp": 10,
+        "atk": 17,
+        "def": 18,
+        "int": 10,
+        "spi": 10,
+        "spd": 16
+      },
+      "battleRewards": {
+        "bitsMin": 5,
+        "bitsMax": 10,
+        "digimonXp": 12
+      }
+    },
+    "kunemon": {
+      "id": "kunemon",
+      "nameKey": "digimon.kunemon.name",
+      "stage": "rookie",
+      "attribute": "virus",
+      "element": "electric",
+      "primaryType": "insect",
+      "baseStats": {
+        "hp": 85,
+        "mp": 12,
+        "atk": 20,
+        "def": 16,
+        "int": 12,
+        "spi": 10,
+        "spd": 22
+      },
+      "battleRewards": {
+        "bitsMin": 6,
+        "bitsMax": 12,
+        "digimonXp": 14
+      }
+    },
+    "veemon": {
+      "id": "veemon",
+      "nameKey": "digimon.veemon.name",
+      "stage": "rookie",
+      "attribute": "free",
+      "element": "neutral",
+      "primaryType": "mini_dragon",
+      "baseStats": {
+        "hp": 90,
+        "mp": 14,
+        "atk": 22,
+        "def": 18,
+        "int": 14,
+        "spi": 12,
+        "spd": 24
+      },
+      "battleRewards": {
+        "bitsMin": 7,
+        "bitsMax": 14,
+        "digimonXp": 15
+      }
+    },
+    "wormmon": {
+      "id": "wormmon",
+      "nameKey": "digimon.wormmon.name",
+      "stage": "rookie",
+      "attribute": "virus",
+      "element": "plant",
+      "primaryType": "larva",
+      "baseStats": {
+        "hp": 88,
+        "mp": 16,
+        "atk": 19,
+        "def": 20,
+        "int": 16,
+        "spi": 14,
+        "spd": 18
+      },
+      "battleRewards": {
+        "bitsMin": 7,
+        "bitsMax": 15,
+        "digimonXp": 16
+      }
     }
   }
 }

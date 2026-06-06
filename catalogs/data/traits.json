@@ -1,8 +1,144 @@
 {
   "meta": {
     "kind": "trait",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "combat_foundation": {
+      "id": "combat_foundation",
+      "nameKey": "trait.combat_foundation.name",
+      "descriptionKey": "trait.combat_foundation.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": [],
+      "cost": 1,
+      "effectKey": "combat_atk_5"
+    },
+    "combat_power": {
+      "id": "combat_power",
+      "nameKey": "trait.combat_power.name",
+      "descriptionKey": "trait.combat_power.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_foundation"],
+      "cost": 2,
+      "effectKey": "combat_atk_10"
+    },
+    "combat_guard": {
+      "id": "combat_guard",
+      "nameKey": "trait.combat_guard.name",
+      "descriptionKey": "trait.combat_guard.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_foundation"],
+      "cost": 2,
+      "effectKey": "combat_def_5"
+    },
+    "combat_pace_2": {
+      "id": "combat_pace_2",
+      "nameKey": "trait.combat_pace_2.name",
+      "descriptionKey": "trait.combat_pace_2.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_foundation"],
+      "cost": 1,
+      "effectKey": "battle_speed_2"
+    },
+    "combat_pace_3": {
+      "id": "combat_pace_3",
+      "nameKey": "trait.combat_pace_3.name",
+      "descriptionKey": "trait.combat_pace_3.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_pace_2"],
+      "cost": 1,
+      "effectKey": "battle_speed_3"
+    },
+    "combat_pace_4": {
+      "id": "combat_pace_4",
+      "nameKey": "trait.combat_pace_4.name",
+      "descriptionKey": "trait.combat_pace_4.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_pace_3"],
+      "cost": 2,
+      "effectKey": "battle_speed_4"
+    },
+    "combat_pace_5": {
+      "id": "combat_pace_5",
+      "nameKey": "trait.combat_pace_5.name",
+      "descriptionKey": "trait.combat_pace_5.description",
+      "branch": "combat",
+      "prerequisiteTraitIds": ["combat_pace_4"],
+      "cost": 2,
+      "effectKey": "battle_speed_5"
+    },
+    "bond_foundation": {
+      "id": "bond_foundation",
+      "nameKey": "trait.bond_foundation.name",
+      "descriptionKey": "trait.bond_foundation.description",
+      "branch": "bond",
+      "prerequisiteTraitIds": [],
+      "cost": 1,
+      "effectKey": "bond_digimon_xp_10"
+    },
+    "bond_synergy": {
+      "id": "bond_synergy",
+      "nameKey": "trait.bond_synergy.name",
+      "descriptionKey": "trait.bond_synergy.description",
+      "branch": "bond",
+      "prerequisiteTraitIds": ["bond_foundation"],
+      "cost": 2,
+      "effectKey": "bond_digimon_xp_15"
+    },
+    "hatching_foundation": {
+      "id": "hatching_foundation",
+      "nameKey": "trait.hatching_foundation.name",
+      "descriptionKey": "trait.hatching_foundation.description",
+      "branch": "hatching",
+      "prerequisiteTraitIds": [],
+      "cost": 1,
+      "effectKey": "hatching_placeholder"
+    },
+    "hatching_warmth": {
+      "id": "hatching_warmth",
+      "nameKey": "trait.hatching_warmth.name",
+      "descriptionKey": "trait.hatching_warmth.description",
+      "branch": "hatching",
+      "prerequisiteTraitIds": ["hatching_foundation"],
+      "cost": 2,
+      "effectKey": "hatching_placeholder_2"
+    },
+    "explorer_foundation": {
+      "id": "explorer_foundation",
+      "nameKey": "trait.explorer_foundation.name",
+      "descriptionKey": "trait.explorer_foundation.description",
+      "branch": "explorer",
+      "prerequisiteTraitIds": [],
+      "cost": 1,
+      "effectKey": "explorer_bits_10"
+    },
+    "explorer_lucky": {
+      "id": "explorer_lucky",
+      "nameKey": "trait.explorer_lucky.name",
+      "descriptionKey": "trait.explorer_lucky.description",
+      "branch": "explorer",
+      "prerequisiteTraitIds": ["explorer_foundation"],
+      "cost": 2,
+      "effectKey": "explorer_bits_15"
+    },
+    "island_foundation": {
+      "id": "island_foundation",
+      "nameKey": "trait.island_foundation.name",
+      "descriptionKey": "trait.island_foundation.description",
+      "branch": "island",
+      "prerequisiteTraitIds": [],
+      "cost": 1,
+      "effectKey": "island_placeholder"
+    },
+    "island_expansion": {
+      "id": "island_expansion",
+      "nameKey": "trait.island_expansion.name",
+      "descriptionKey": "trait.island_expansion.description",
+      "branch": "island",
+      "prerequisiteTraitIds": ["island_foundation"],
+      "cost": 2,
+      "effectKey": "island_placeholder_2"
+    }
+  }
 }

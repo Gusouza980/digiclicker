@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "kind": "requirement",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "req_file_forest": {
+      "id": "req_file_forest",
+      "rules": [
+        { "type": "mission_claimed", "targetId": "mission_awakening", "value": 1 }
+      ]
+    },
+    "req_native_forest": {
+      "id": "req_native_forest",
+      "rules": [
+        { "type": "mission_claimed", "targetId": "mission_file_forest", "value": 1 },
+        { "type": "trainer_level_min", "value": 3 }
+      ]
+    }
+  }
+}

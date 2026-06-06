@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import { BattleEngine, type BattleSnapshot } from "@/game/battle";
-import { applyRewards, resolveVictoryRewards } from "@/game/rewards";
+import { processBattleVictory } from "@/game/progression/victory";
 import type { GlobalConfig, SaveData } from "@/types";
 
 type BattleStore = {
@@ -70,14 +70,14 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const { engine } = get();
     if (!engine || engine.getSnapshot().phase !== "victory") return null;
 
-    const grants = resolveVictoryRewards(
+    const result = processBattleVictory(
       save,
+      config,
       engine.getLocationId(),
       engine.getDefeatedEnemyIds(),
       engine.getLivingAllyInstanceIds(),
     );
 
-    const result = applyRewards(save, grants, config);
     engine.setVictoryRewards(result.display, result.levelUps);
     set({ snapshot: engine.getSnapshot() });
 

@@ -1,3 +1,4 @@
+import { ensureStarterMission } from "@/game/missions";
 import { DEFAULT_LOCALE, type SaveData } from "@/types";
 
 import { CURRENT_SAVE_VERSION } from "./constants";
@@ -7,7 +8,7 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
   const now = new Date().toISOString();
   const starter = buildStarterTeam();
 
-  return {
+  const baseSave: SaveData = {
     saveVersion: CURRENT_SAVE_VERSION,
     createdAt: now,
     updatedAt: now,
@@ -17,6 +18,7 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
       trainerXp: 0,
       traitPoints: 0,
       bits: 0,
+      battlesWon: 0,
     },
     team: starter.team,
     island: {
@@ -42,6 +44,9 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
       locale,
       musicEnabled: true,
       sfxEnabled: true,
+      battleSpeed: 1,
     },
   };
+
+  return ensureStarterMission(baseSave);
 }

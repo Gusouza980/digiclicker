@@ -30,6 +30,9 @@ export function Header() {
             <span>
               {t("header.bits")}: <strong>{save.player.bits}</strong>
             </span>
+            <span>
+              {t("header.trait_points")}: <strong>{save.player.traitPoints}</strong>
+            </span>
           </div>
           <LanguageSelector />
         </div>

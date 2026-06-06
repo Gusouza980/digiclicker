@@ -4,7 +4,10 @@ import { useBattleLoop } from "@/hooks/useBattleLoop";
 import { getLocationName, useGameStore } from "@/stores/game-store";
 import { useBattleStore } from "@/stores/battle-store";
 
+import { ActiveMissionCard } from "@/components/missions/ActiveMissionCard";
+
 import { BattleArena } from "./BattleArena";
+import { BattleSpeedSelector } from "./BattleSpeedSelector";
 import { CombatLog } from "./CombatLog";
 import { DigimonCard } from "./DigimonCard";
 import { RecentRewards } from "./RecentRewards";
@@ -36,7 +39,8 @@ export function BattleScreen() {
           </h2>
           <p className="text-sm text-[var(--text-muted)]">{locationName}</p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-3">
+          <BattleSpeedSelector />
           <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
             {t("battle.team_atk")}:{" "}
             <strong className="text-[var(--accent)]">{snapshot.teamTotalAtk}</strong>
@@ -47,6 +51,8 @@ export function BattleScreen() {
           </div>
         </div>
       </section>
+
+      <ActiveMissionCard />
 
       <BattleArena
         enemies={snapshot.enemies}

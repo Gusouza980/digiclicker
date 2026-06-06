@@ -2,6 +2,7 @@ import type { DigimonCatalogEntry } from "./digimon";
 import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./item";
 import type { LocationCatalogEntry } from "./location";
 import type { MissionCatalogEntry } from "./mission";
+import type { RequirementCatalogEntry } from "./requirement";
 import type { TraitCatalogEntry } from "./trait";
 
 export type CatalogKind =
@@ -12,6 +13,7 @@ export type CatalogKind =
   | "egg"
   | "location"
   | "mission"
+  | "requirement"
   | "trait"
   | "i18n";
 
@@ -59,5 +61,6 @@ export type CatalogRegistry = {
   egg: VersionedCatalog<EggCatalogEntry>;
   location: VersionedCatalog<LocationCatalogEntry>;
   mission: VersionedCatalog<MissionCatalogEntry>;
+  requirement: VersionedCatalog<RequirementCatalogEntry>;
   trait: VersionedCatalog<TraitCatalogEntry>;
 };

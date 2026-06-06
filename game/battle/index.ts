@@ -1,5 +1,14 @@
 export { BattleEngine } from "./engine";
 export {
+  clampBattleSpeed,
+  getBattleTickIntervalMs,
+  getHighestUnlockedBattleSpeed,
+  getSpeedTraitId,
+  getUnlockedBattleSpeeds,
+  getVictoryDelayMs,
+  isBattleSpeedUnlocked,
+} from "./speed";
+export {
   calculateAttackDamage,
   calculateClickDamage,
   calculateSpecialDamage,

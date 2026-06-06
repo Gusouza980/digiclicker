@@ -22,6 +22,10 @@ function formatEntry(
     params.level = String(entry.amount);
   }
 
+  if (entry.amount !== undefined && entry.messageKey === "battle.reward.trainer_level_up") {
+    params.level = String(entry.amount);
+  }
+
   return Object.keys(params).length > 0
     ? t(entry.messageKey, params)
     : entry.amount !== undefined

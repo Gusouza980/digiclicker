@@ -1,4 +1,6 @@
-import type { SaveData } from "@/types";
+import { clampBattleSpeed } from "@/game/battle/speed";
+import { ensureStarterMission } from "@/game/missions";
+import type { BattleSpeed, SaveData } from "@/types";
 
 import { CURRENT_SAVE_VERSION } from "./constants";
 import { ensureStarterTeam } from "./starter-team";
@@ -10,6 +12,37 @@ const migrations: Record<number, Migration> = {
   2: (save) => {
     const withTeam = ensureStarterTeam(save);
     return { ...withTeam, saveVersion: 2 };
+  },
+  3: (save) => {
+    const withMission = ensureStarterMission({
+      ...save,
+      player: {
+        ...save.player,
+        battlesWon: save.player.battlesWon ?? 0,
+      },
+      saveVersion: 3,
+    });
+    return withMission;
+  },
+  4: (save) => ({
+    ...save,
+    settings: {
+      ...save.settings,
+      battleSpeed: save.settings.battleSpeed ?? 5,
+    },
+    saveVersion: 4,
+  }),
+  5: (save) => {
+    const requested = (save.settings.battleSpeed ?? 1) as BattleSpeed;
+    const clamped = clampBattleSpeed(save, requested);
+    return {
+      ...save,
+      settings: {
+        ...save.settings,
+        battleSpeed: clamped,
+      },
+      saveVersion: 5,
+    };
   },
 };
 

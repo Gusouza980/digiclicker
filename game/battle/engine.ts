@@ -1,6 +1,7 @@
 import { getCatalogEntry } from "@/catalogs/loader";
 import type { LevelUpEvent, RewardDisplayEntry } from "@/game/rewards";
 import { calculateTeamTotalStat, calculateTotalStats } from "@/game/stats/calculator";
+import { getTraitModifiers, type TraitModifiers } from "@/game/traits/effects";
 import type { GlobalConfig, SaveData } from "@/types";
 import type { BattlePhase } from "@/types/battle";
 import type { PlayerDigimon } from "@/types/digimon";
@@ -46,11 +47,13 @@ export class BattleEngine {
   private levelUpEvents: LevelUpEvent[] = [];
   private readonly config: GlobalConfig;
   private readonly getDigimon: (id: string) => PlayerDigimon | undefined;
+  private traitModifiers: TraitModifiers;
 
   constructor(save: SaveData, config: GlobalConfig) {
     this.config = config;
     this.locationId = save.location.currentLocationId;
     this.getDigimon = (id) => save.digimons[id];
+    this.traitModifiers = getTraitModifiers(save);
     this.allies = this.buildAllies(save);
     this.spawnEnemyTeam();
   }
@@ -187,6 +190,7 @@ export class BattleEngine {
     }
 
     if (save) {
+      this.traitModifiers = getTraitModifiers(save);
       this.refreshAlliesFromSave(save);
     }
 
@@ -210,6 +214,9 @@ export class BattleEngine {
       const stats = calculateTotalStats(digimon);
       if (!catalog || !stats) continue;
 
+      const atk = Math.floor(stats.atk * (1 + this.traitModifiers.atkPercent));
+      const def = Math.floor(stats.def * (1 + this.traitModifiers.defPercent));
+
       allies.push({
         instanceId,
         catalogId: digimon.catalogId,
@@ -217,8 +224,8 @@ export class BattleEngine {
         level: digimon.level,
         currentHp: stats.hp,
         maxHp: stats.hp,
-        atk: stats.atk,
-        def: stats.def,
+        atk,
+        def,
         int: stats.int,
         spd: stats.spd,
         mp: 0,
@@ -244,8 +251,8 @@ export class BattleEngine {
       ally.nameKey = catalog.nameKey;
       ally.maxHp = stats.hp;
       ally.currentHp = Math.min(ally.currentHp, stats.hp);
-      ally.atk = stats.atk;
-      ally.def = stats.def;
+      ally.atk = Math.floor(stats.atk * (1 + this.traitModifiers.atkPercent));
+      ally.def = Math.floor(stats.def * (1 + this.traitModifiers.defPercent));
       ally.int = stats.int;
       ally.spd = stats.spd;
     }
@@ -404,7 +411,8 @@ export class BattleEngine {
       .map((ally) => this.getDigimon(ally.instanceId))
       .filter((digimon): digimon is PlayerDigimon => digimon !== undefined);
 
-    return calculateTeamTotalStat(digimons, "atk");
+    const baseAtk = calculateTeamTotalStat(digimons, "atk");
+    return Math.floor(baseAtk * (1 + this.traitModifiers.atkPercent));
   }
 
   private pushLog(

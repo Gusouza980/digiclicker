@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+import {
+  getBattleTickIntervalMs,
+  getVictoryDelayMs,
+} from "@/game/battle/speed";
 import { useBattleStore } from "@/stores/battle-store";
 import { useGameStore } from "@/stores/game-store";
 
@@ -18,6 +22,7 @@ export function useBattleLoop() {
   const reset = useBattleStore((state) => state.reset);
   const phase = useBattleStore((state) => state.snapshot?.phase);
   const save = useGameStore((state) => state.save);
+  const battleSpeed = save?.settings.battleSpeed ?? 1;
   const victoryHandledRef = useRef(false);
 
   useEffect(() => {
@@ -37,12 +42,14 @@ export function useBattleLoop() {
   useEffect(() => {
     if (!config || phase !== "fighting") return;
 
+    const intervalMs = getBattleTickIntervalMs(battleSpeed, config.battle.tickMs);
+
     const intervalId = window.setInterval(() => {
       tick(config.battle.tickMs);
-    }, config.battle.tickMs);
+    }, intervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [config, phase, tick]);
+  }, [config, phase, tick, battleSpeed]);
 
   useEffect(() => {
     if (phase !== "victory" || !config) {
@@ -67,9 +74,11 @@ export function useBattleLoop() {
 
     setLoadingNextBattle(true);
 
+    const victoryDelayMs = getVictoryDelayMs(battleSpeed, BATTLE_INTERVAL_DELAY_MS);
+
     const timeoutId = window.setTimeout(() => {
       continueAfterVictory(saveToContinue);
-    }, BATTLE_INTERVAL_DELAY_MS);
+    }, victoryDelayMs);
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -82,5 +91,6 @@ export function useBattleLoop() {
     replaceSave,
     continueAfterVictory,
     setLoadingNextBattle,
+    battleSpeed,
   ]);
 }

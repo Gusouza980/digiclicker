@@ -1,7 +1,7 @@
 {
   "meta": {
     "kind": "location",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "updatedAt": "2026-06-06"
   },
   "entries": {
@@ -16,6 +16,32 @@
       "victoryRewards": {
         "bitsMin": 3,
         "bitsMax": 8
+      }
+    },
+    "file_forest": {
+      "id": "file_forest",
+      "nameKey": "location.file_forest.name",
+      "descriptionKey": "location.file_forest.description",
+      "enemyPool": ["elecmon", "palmon", "betamon"],
+      "enemyTeamSize": { "min": 1, "max": 3 },
+      "bossId": null,
+      "unlockRequirementIds": ["req_file_forest"],
+      "victoryRewards": {
+        "bitsMin": 6,
+        "bitsMax": 14
+      }
+    },
+    "native_forest": {
+      "id": "native_forest",
+      "nameKey": "location.native_forest.name",
+      "descriptionKey": "location.native_forest.description",
+      "enemyPool": ["kunemon", "veemon", "wormmon"],
+      "enemyTeamSize": { "min": 2, "max": 3 },
+      "bossId": null,
+      "unlockRequirementIds": ["req_native_forest"],
+      "victoryRewards": {
+        "bitsMin": 10,
+        "bitsMax": 22
       }
     }
   }

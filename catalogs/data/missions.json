@@ -1,8 +1,50 @@
 {
   "meta": {
     "kind": "mission",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "mission_awakening": {
+      "id": "mission_awakening",
+      "nameKey": "mission.awakening.name",
+      "descriptionKey": "mission.awakening.description",
+      "objectives": [
+        { "type": "defeat_enemies", "targetId": "village_of_beginnings", "required": 5 }
+      ],
+      "rewards": [
+        { "type": "bits", "amount": 50 },
+        { "type": "trainer_xp", "amount": 40 }
+      ],
+      "prerequisiteMissionIds": []
+    },
+    "mission_file_forest": {
+      "id": "mission_file_forest",
+      "nameKey": "mission.file_forest.name",
+      "descriptionKey": "mission.file_forest.description",
+      "objectives": [
+        { "type": "reach_location", "targetId": "file_forest", "required": 1 },
+        { "type": "defeat_enemies", "targetId": "file_forest", "required": 5 }
+      ],
+      "rewards": [
+        { "type": "bits", "amount": 100 },
+        { "type": "trainer_xp", "amount": 60 }
+      ],
+      "prerequisiteMissionIds": ["mission_awakening"]
+    },
+    "mission_native_forest": {
+      "id": "mission_native_forest",
+      "nameKey": "mission.native_forest.name",
+      "descriptionKey": "mission.native_forest.description",
+      "objectives": [
+        { "type": "reach_location", "targetId": "native_forest", "required": 1 },
+        { "type": "defeat_enemies", "targetId": "native_forest", "required": 8 }
+      ],
+      "rewards": [
+        { "type": "bits", "amount": 200 },
+        { "type": "trainer_xp", "amount": 100 }
+      ],
+      "prerequisiteMissionIds": ["mission_file_forest"]
+    }
+  }
 }

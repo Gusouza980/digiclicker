@@ -1,5 +1,5 @@
-import { BattleScreen } from "@/components/battle/BattleScreen";
+import { MainScreen } from "@/components/screens/MainScreen";
 
 export default function HomePage() {
-  return <BattleScreen />;
+  return <MainScreen />;
 }
