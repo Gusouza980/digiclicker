@@ -8,6 +8,7 @@ import {
 } from "@/game/locations";
 import { claimMission, updateMissionProgressOnLocationChange } from "@/game/missions";
 import { moveDigimonToIsland, moveDigimonToTeam } from "@/game/collection";
+import { degenerateDigimon, evolveDigimon } from "@/game/evolution";
 import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
 import { normalizeSave } from "@/game/save/normalize";
 import { ensureStarterTeam } from "@/game/save/starter-team";
@@ -22,6 +23,7 @@ import { useBattleStore } from "@/stores/battle-store";
 import type {
   BattleSpeed,
   CollectionFeedback,
+  EvolutionFeedback,
   GlobalConfig,
   HatchDestination,
   HatchingFeedback,
@@ -50,6 +52,8 @@ type GameStore = {
   performHatchEgg: (eggInstanceId: string, destination: HatchDestination) => HatchingFeedback | null;
   moveToTeam: (islandDigimonId: string, swapWithTeamMemberId?: string) => CollectionFeedback | null;
   moveToIsland: (teamDigimonId: string) => CollectionFeedback | null;
+  performEvolve: (digimonInstanceId: string, transitionId: string) => EvolutionFeedback | null;
+  performDegenerate: (digimonInstanceId: string, transitionId: string) => EvolutionFeedback | null;
   t: (key: string, params?: Record<string, string>) => string;
 };
 
@@ -225,6 +229,38 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save || !config) return null;
 
     const result = moveDigimonToIsland(save, teamDigimonId, config);
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      const battle = useBattleStore.getState();
+      battle.reset();
+      battle.initBattle(persisted, config);
+    }
+    return result.feedback;
+  },
+
+  performEvolve: (digimonInstanceId, transitionId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = evolveDigimon(save, digimonInstanceId, transitionId);
+    if (result.ok) {
+      const persisted = persistSave(result.save);
+      set({ save: persisted });
+
+      const battle = useBattleStore.getState();
+      battle.reset();
+      battle.initBattle(persisted, config);
+    }
+    return result.feedback;
+  },
+
+  performDegenerate: (digimonInstanceId, transitionId) => {
+    const { save, config } = get();
+    if (!save || !config) return null;
+
+    const result = degenerateDigimon(save, digimonInstanceId, transitionId);
     if (result.ok) {
       const persisted = persistSave(result.save);
       set({ save: persisted });

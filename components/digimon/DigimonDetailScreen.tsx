@@ -1,12 +1,9 @@
 "use client";
 
 import { getCatalogEntry } from "@/catalogs/loader";
+import { EvolutionPanel } from "@/components/digimon/EvolutionPanel";
 import { FriendshipBar } from "@/components/digimon/FriendshipBar";
-import {
-  getDigimonLocation,
-  getEvolutionLine,
-  isDigimonOccupied,
-} from "@/game/collection";
+import { getDigimonLocation, isDigimonOccupied } from "@/game/collection";
 import { calculateStatBreakdown, calculateTotalStats } from "@/game/stats/calculator";
 import { useGameStore } from "@/stores/game-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -39,7 +36,6 @@ export function DigimonDetailScreen() {
     : null;
   const location = getDigimonLocation(save, digimon.instanceId);
   const occupied = isDigimonOccupied(save, digimon.instanceId);
-  const evolutionLine = getEvolutionLine(digimon.catalogId);
   const teamCount = save.team.activeDigimonIds.length;
 
   const handleMoveToTeam = () => {
@@ -180,34 +176,7 @@ export function DigimonDetailScreen() {
         )}
       </section>
 
-      {evolutionLine.length > 0 && (
-        <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4">
-          <h3 className="text-sm font-medium text-[var(--text-muted)]">
-            {t("digimon.detail.evolution_line")}
-          </h3>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {evolutionLine.map((form) => {
-              const isCurrent = form.id === digimon.catalogId;
-              const isKnown = save.knownForms.knownFormIds.includes(form.id) || isCurrent;
-
-              return (
-                <li
-                  key={form.id}
-                  className={`rounded-lg border px-3 py-1.5 text-xs ${
-                    isCurrent
-                      ? "border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]"
-                      : isKnown
-                        ? "border-[var(--border)] text-[var(--text-primary)]"
-                        : "border-dashed border-[var(--border)] text-[var(--text-muted)]"
-                  }`}
-                >
-                  {isKnown ? t(form.nameKey) : "?"}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
+      <EvolutionPanel digimon={digimon} />
 
       {(location === "team" || location === "island") && (
         <section className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4 space-y-3">

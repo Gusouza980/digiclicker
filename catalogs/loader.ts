@@ -1,5 +1,6 @@
 import configData from "./data/config.json";
 import digimonData from "./data/digimon.json";
+import evolutionData from "./data/evolutions.json";
 import eggData from "./data/eggs.json";
 import essenceData from "./data/essences.json";
 import itemData from "./data/items.json";
@@ -13,6 +14,7 @@ import type {
   CatalogKind,
   CatalogRegistry,
   DigimonCatalogEntry,
+  EvolutionCatalogEntry,
   EggCatalogEntry,
   EssenceCatalogEntry,
   GlobalConfig,
@@ -28,6 +30,7 @@ import type {
 const catalogRegistry: CatalogRegistry = {
   config: configData as VersionedCatalog<GlobalConfig>,
   digimon: digimonData as VersionedCatalog<DigimonCatalogEntry>,
+  evolution: evolutionData as VersionedCatalog<EvolutionCatalogEntry>,
   item: itemData as VersionedCatalog<ItemCatalogEntry>,
   essence: essenceData as VersionedCatalog<EssenceCatalogEntry>,
   egg: eggData as VersionedCatalog<EggCatalogEntry>,

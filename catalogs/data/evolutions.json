@@ -1,0 +1,1287 @@
+{
+  "meta": {
+    "kind": "evolution",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "evo_botamon_to_koromon": {
+      "id": "evo_botamon_to_koromon",
+      "fromId": "botamon",
+      "toId": "koromon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_koromon"
+      ]
+    },
+    "evo_koromon_to_agumon": {
+      "id": "evo_koromon_to_agumon",
+      "fromId": "koromon",
+      "toId": "agumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_agumon"
+      ]
+    },
+    "deg_koromon_to_botamon": {
+      "id": "deg_koromon_to_botamon",
+      "fromId": "koromon",
+      "toId": "botamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_botamon"
+      ]
+    },
+    "evo_agumon_to_greymon": {
+      "id": "evo_agumon_to_greymon",
+      "fromId": "agumon",
+      "toId": "greymon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_greymon"
+      ]
+    },
+    "deg_agumon_to_botamon": {
+      "id": "deg_agumon_to_botamon",
+      "fromId": "agumon",
+      "toId": "botamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_botamon"
+      ]
+    },
+    "deg_agumon_to_koromon": {
+      "id": "deg_agumon_to_koromon",
+      "fromId": "agumon",
+      "toId": "koromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_koromon"
+      ]
+    },
+    "evo_greymon_to_metalgreymon": {
+      "id": "evo_greymon_to_metalgreymon",
+      "fromId": "greymon",
+      "toId": "metalgreymon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_metalgreymon"
+      ]
+    },
+    "deg_greymon_to_botamon": {
+      "id": "deg_greymon_to_botamon",
+      "fromId": "greymon",
+      "toId": "botamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_botamon"
+      ]
+    },
+    "deg_greymon_to_koromon": {
+      "id": "deg_greymon_to_koromon",
+      "fromId": "greymon",
+      "toId": "koromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_koromon"
+      ]
+    },
+    "deg_greymon_to_agumon": {
+      "id": "deg_greymon_to_agumon",
+      "fromId": "greymon",
+      "toId": "agumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_agumon"
+      ]
+    },
+    "evo_metalgreymon_to_wargreymon": {
+      "id": "evo_metalgreymon_to_wargreymon",
+      "fromId": "metalgreymon",
+      "toId": "wargreymon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_wargreymon"
+      ]
+    },
+    "deg_metalgreymon_to_botamon": {
+      "id": "deg_metalgreymon_to_botamon",
+      "fromId": "metalgreymon",
+      "toId": "botamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_botamon"
+      ]
+    },
+    "deg_metalgreymon_to_koromon": {
+      "id": "deg_metalgreymon_to_koromon",
+      "fromId": "metalgreymon",
+      "toId": "koromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_koromon"
+      ]
+    },
+    "deg_metalgreymon_to_agumon": {
+      "id": "deg_metalgreymon_to_agumon",
+      "fromId": "metalgreymon",
+      "toId": "agumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_agumon"
+      ]
+    },
+    "deg_metalgreymon_to_greymon": {
+      "id": "deg_metalgreymon_to_greymon",
+      "fromId": "metalgreymon",
+      "toId": "greymon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_greymon"
+      ]
+    },
+    "deg_wargreymon_to_botamon": {
+      "id": "deg_wargreymon_to_botamon",
+      "fromId": "wargreymon",
+      "toId": "botamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_botamon"
+      ]
+    },
+    "deg_wargreymon_to_koromon": {
+      "id": "deg_wargreymon_to_koromon",
+      "fromId": "wargreymon",
+      "toId": "koromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_koromon"
+      ]
+    },
+    "deg_wargreymon_to_agumon": {
+      "id": "deg_wargreymon_to_agumon",
+      "fromId": "wargreymon",
+      "toId": "agumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_agumon"
+      ]
+    },
+    "deg_wargreymon_to_greymon": {
+      "id": "deg_wargreymon_to_greymon",
+      "fromId": "wargreymon",
+      "toId": "greymon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_greymon"
+      ]
+    },
+    "deg_wargreymon_to_metalgreymon": {
+      "id": "deg_wargreymon_to_metalgreymon",
+      "fromId": "wargreymon",
+      "toId": "metalgreymon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_metalgreymon"
+      ]
+    },
+    "evo_punimon_to_tsunomon": {
+      "id": "evo_punimon_to_tsunomon",
+      "fromId": "punimon",
+      "toId": "tsunomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_tsunomon"
+      ]
+    },
+    "evo_tsunomon_to_gabumon": {
+      "id": "evo_tsunomon_to_gabumon",
+      "fromId": "tsunomon",
+      "toId": "gabumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_gabumon"
+      ]
+    },
+    "deg_tsunomon_to_punimon": {
+      "id": "deg_tsunomon_to_punimon",
+      "fromId": "tsunomon",
+      "toId": "punimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_punimon"
+      ]
+    },
+    "evo_gabumon_to_garurumon": {
+      "id": "evo_gabumon_to_garurumon",
+      "fromId": "gabumon",
+      "toId": "garurumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_garurumon"
+      ]
+    },
+    "deg_gabumon_to_punimon": {
+      "id": "deg_gabumon_to_punimon",
+      "fromId": "gabumon",
+      "toId": "punimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_punimon"
+      ]
+    },
+    "deg_gabumon_to_tsunomon": {
+      "id": "deg_gabumon_to_tsunomon",
+      "fromId": "gabumon",
+      "toId": "tsunomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tsunomon"
+      ]
+    },
+    "evo_garurumon_to_weregarurumon": {
+      "id": "evo_garurumon_to_weregarurumon",
+      "fromId": "garurumon",
+      "toId": "weregarurumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_weregarurumon"
+      ]
+    },
+    "deg_garurumon_to_punimon": {
+      "id": "deg_garurumon_to_punimon",
+      "fromId": "garurumon",
+      "toId": "punimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_punimon"
+      ]
+    },
+    "deg_garurumon_to_tsunomon": {
+      "id": "deg_garurumon_to_tsunomon",
+      "fromId": "garurumon",
+      "toId": "tsunomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tsunomon"
+      ]
+    },
+    "deg_garurumon_to_gabumon": {
+      "id": "deg_garurumon_to_gabumon",
+      "fromId": "garurumon",
+      "toId": "gabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gabumon"
+      ]
+    },
+    "evo_weregarurumon_to_metalgarurumon": {
+      "id": "evo_weregarurumon_to_metalgarurumon",
+      "fromId": "weregarurumon",
+      "toId": "metalgarurumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_metalgarurumon"
+      ]
+    },
+    "deg_weregarurumon_to_punimon": {
+      "id": "deg_weregarurumon_to_punimon",
+      "fromId": "weregarurumon",
+      "toId": "punimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_punimon"
+      ]
+    },
+    "deg_weregarurumon_to_tsunomon": {
+      "id": "deg_weregarurumon_to_tsunomon",
+      "fromId": "weregarurumon",
+      "toId": "tsunomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tsunomon"
+      ]
+    },
+    "deg_weregarurumon_to_gabumon": {
+      "id": "deg_weregarurumon_to_gabumon",
+      "fromId": "weregarurumon",
+      "toId": "gabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gabumon"
+      ]
+    },
+    "deg_weregarurumon_to_garurumon": {
+      "id": "deg_weregarurumon_to_garurumon",
+      "fromId": "weregarurumon",
+      "toId": "garurumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_garurumon"
+      ]
+    },
+    "deg_metalgarurumon_to_punimon": {
+      "id": "deg_metalgarurumon_to_punimon",
+      "fromId": "metalgarurumon",
+      "toId": "punimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_punimon"
+      ]
+    },
+    "deg_metalgarurumon_to_tsunomon": {
+      "id": "deg_metalgarurumon_to_tsunomon",
+      "fromId": "metalgarurumon",
+      "toId": "tsunomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tsunomon"
+      ]
+    },
+    "deg_metalgarurumon_to_gabumon": {
+      "id": "deg_metalgarurumon_to_gabumon",
+      "fromId": "metalgarurumon",
+      "toId": "gabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gabumon"
+      ]
+    },
+    "deg_metalgarurumon_to_garurumon": {
+      "id": "deg_metalgarurumon_to_garurumon",
+      "fromId": "metalgarurumon",
+      "toId": "garurumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_garurumon"
+      ]
+    },
+    "deg_metalgarurumon_to_weregarurumon": {
+      "id": "deg_metalgarurumon_to_weregarurumon",
+      "fromId": "metalgarurumon",
+      "toId": "weregarurumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_weregarurumon"
+      ]
+    },
+    "evo_poyomon_to_tokomon": {
+      "id": "evo_poyomon_to_tokomon",
+      "fromId": "poyomon",
+      "toId": "tokomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_tokomon"
+      ]
+    },
+    "evo_tokomon_to_biyomon": {
+      "id": "evo_tokomon_to_biyomon",
+      "fromId": "tokomon",
+      "toId": "biyomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_biyomon"
+      ]
+    },
+    "deg_tokomon_to_poyomon": {
+      "id": "deg_tokomon_to_poyomon",
+      "fromId": "tokomon",
+      "toId": "poyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_poyomon"
+      ]
+    },
+    "evo_biyomon_to_birdramon": {
+      "id": "evo_biyomon_to_birdramon",
+      "fromId": "biyomon",
+      "toId": "birdramon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_birdramon"
+      ]
+    },
+    "deg_biyomon_to_poyomon": {
+      "id": "deg_biyomon_to_poyomon",
+      "fromId": "biyomon",
+      "toId": "poyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_poyomon"
+      ]
+    },
+    "deg_biyomon_to_tokomon": {
+      "id": "deg_biyomon_to_tokomon",
+      "fromId": "biyomon",
+      "toId": "tokomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tokomon"
+      ]
+    },
+    "evo_birdramon_to_garudamon": {
+      "id": "evo_birdramon_to_garudamon",
+      "fromId": "birdramon",
+      "toId": "garudamon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_garudamon"
+      ]
+    },
+    "deg_birdramon_to_poyomon": {
+      "id": "deg_birdramon_to_poyomon",
+      "fromId": "birdramon",
+      "toId": "poyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_poyomon"
+      ]
+    },
+    "deg_birdramon_to_tokomon": {
+      "id": "deg_birdramon_to_tokomon",
+      "fromId": "birdramon",
+      "toId": "tokomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tokomon"
+      ]
+    },
+    "deg_birdramon_to_biyomon": {
+      "id": "deg_birdramon_to_biyomon",
+      "fromId": "birdramon",
+      "toId": "biyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_biyomon"
+      ]
+    },
+    "evo_garudamon_to_phoenixmon": {
+      "id": "evo_garudamon_to_phoenixmon",
+      "fromId": "garudamon",
+      "toId": "phoenixmon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_phoenixmon"
+      ]
+    },
+    "deg_garudamon_to_poyomon": {
+      "id": "deg_garudamon_to_poyomon",
+      "fromId": "garudamon",
+      "toId": "poyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_poyomon"
+      ]
+    },
+    "deg_garudamon_to_tokomon": {
+      "id": "deg_garudamon_to_tokomon",
+      "fromId": "garudamon",
+      "toId": "tokomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tokomon"
+      ]
+    },
+    "deg_garudamon_to_biyomon": {
+      "id": "deg_garudamon_to_biyomon",
+      "fromId": "garudamon",
+      "toId": "biyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_biyomon"
+      ]
+    },
+    "deg_garudamon_to_birdramon": {
+      "id": "deg_garudamon_to_birdramon",
+      "fromId": "garudamon",
+      "toId": "birdramon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_birdramon"
+      ]
+    },
+    "deg_phoenixmon_to_poyomon": {
+      "id": "deg_phoenixmon_to_poyomon",
+      "fromId": "phoenixmon",
+      "toId": "poyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_poyomon"
+      ]
+    },
+    "deg_phoenixmon_to_tokomon": {
+      "id": "deg_phoenixmon_to_tokomon",
+      "fromId": "phoenixmon",
+      "toId": "tokomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tokomon"
+      ]
+    },
+    "deg_phoenixmon_to_biyomon": {
+      "id": "deg_phoenixmon_to_biyomon",
+      "fromId": "phoenixmon",
+      "toId": "biyomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_biyomon"
+      ]
+    },
+    "deg_phoenixmon_to_birdramon": {
+      "id": "deg_phoenixmon_to_birdramon",
+      "fromId": "phoenixmon",
+      "toId": "birdramon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_birdramon"
+      ]
+    },
+    "deg_phoenixmon_to_garudamon": {
+      "id": "deg_phoenixmon_to_garudamon",
+      "fromId": "phoenixmon",
+      "toId": "garudamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_garudamon"
+      ]
+    },
+    "evo_tanemon_to_palmon": {
+      "id": "evo_tanemon_to_palmon",
+      "fromId": "tanemon",
+      "toId": "palmon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_palmon"
+      ]
+    },
+    "evo_palmon_to_togemon": {
+      "id": "evo_palmon_to_togemon",
+      "fromId": "palmon",
+      "toId": "togemon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_togemon"
+      ]
+    },
+    "deg_palmon_to_tanemon": {
+      "id": "deg_palmon_to_tanemon",
+      "fromId": "palmon",
+      "toId": "tanemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tanemon"
+      ]
+    },
+    "evo_togemon_to_lilymon": {
+      "id": "evo_togemon_to_lilymon",
+      "fromId": "togemon",
+      "toId": "lilymon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_lilymon"
+      ]
+    },
+    "deg_togemon_to_tanemon": {
+      "id": "deg_togemon_to_tanemon",
+      "fromId": "togemon",
+      "toId": "tanemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tanemon"
+      ]
+    },
+    "deg_togemon_to_palmon": {
+      "id": "deg_togemon_to_palmon",
+      "fromId": "togemon",
+      "toId": "palmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_palmon"
+      ]
+    },
+    "evo_lilymon_to_rosemon": {
+      "id": "evo_lilymon_to_rosemon",
+      "fromId": "lilymon",
+      "toId": "rosemon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_rosemon"
+      ]
+    },
+    "deg_lilymon_to_tanemon": {
+      "id": "deg_lilymon_to_tanemon",
+      "fromId": "lilymon",
+      "toId": "tanemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tanemon"
+      ]
+    },
+    "deg_lilymon_to_palmon": {
+      "id": "deg_lilymon_to_palmon",
+      "fromId": "lilymon",
+      "toId": "palmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_palmon"
+      ]
+    },
+    "deg_lilymon_to_togemon": {
+      "id": "deg_lilymon_to_togemon",
+      "fromId": "lilymon",
+      "toId": "togemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_togemon"
+      ]
+    },
+    "deg_rosemon_to_tanemon": {
+      "id": "deg_rosemon_to_tanemon",
+      "fromId": "rosemon",
+      "toId": "tanemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tanemon"
+      ]
+    },
+    "deg_rosemon_to_palmon": {
+      "id": "deg_rosemon_to_palmon",
+      "fromId": "rosemon",
+      "toId": "palmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_palmon"
+      ]
+    },
+    "deg_rosemon_to_togemon": {
+      "id": "deg_rosemon_to_togemon",
+      "fromId": "rosemon",
+      "toId": "togemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_togemon"
+      ]
+    },
+    "deg_rosemon_to_lilymon": {
+      "id": "deg_rosemon_to_lilymon",
+      "fromId": "rosemon",
+      "toId": "lilymon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_lilymon"
+      ]
+    },
+    "evo_pabumon_to_motimon": {
+      "id": "evo_pabumon_to_motimon",
+      "fromId": "pabumon",
+      "toId": "motimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_motimon"
+      ]
+    },
+    "evo_motimon_to_tentomon": {
+      "id": "evo_motimon_to_tentomon",
+      "fromId": "motimon",
+      "toId": "tentomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_tentomon"
+      ]
+    },
+    "deg_motimon_to_pabumon": {
+      "id": "deg_motimon_to_pabumon",
+      "fromId": "motimon",
+      "toId": "pabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pabumon"
+      ]
+    },
+    "evo_tentomon_to_kabuterimon": {
+      "id": "evo_tentomon_to_kabuterimon",
+      "fromId": "tentomon",
+      "toId": "kabuterimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_kabuterimon"
+      ]
+    },
+    "deg_tentomon_to_pabumon": {
+      "id": "deg_tentomon_to_pabumon",
+      "fromId": "tentomon",
+      "toId": "pabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pabumon"
+      ]
+    },
+    "deg_tentomon_to_motimon": {
+      "id": "deg_tentomon_to_motimon",
+      "fromId": "tentomon",
+      "toId": "motimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_motimon"
+      ]
+    },
+    "evo_kabuterimon_to_atlurkabuterimon": {
+      "id": "evo_kabuterimon_to_atlurkabuterimon",
+      "fromId": "kabuterimon",
+      "toId": "atlurkabuterimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_atlurkabuterimon"
+      ]
+    },
+    "deg_kabuterimon_to_pabumon": {
+      "id": "deg_kabuterimon_to_pabumon",
+      "fromId": "kabuterimon",
+      "toId": "pabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pabumon"
+      ]
+    },
+    "deg_kabuterimon_to_motimon": {
+      "id": "deg_kabuterimon_to_motimon",
+      "fromId": "kabuterimon",
+      "toId": "motimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_motimon"
+      ]
+    },
+    "deg_kabuterimon_to_tentomon": {
+      "id": "deg_kabuterimon_to_tentomon",
+      "fromId": "kabuterimon",
+      "toId": "tentomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tentomon"
+      ]
+    },
+    "evo_atlurkabuterimon_to_herculeskabuterimon": {
+      "id": "evo_atlurkabuterimon_to_herculeskabuterimon",
+      "fromId": "atlurkabuterimon",
+      "toId": "herculeskabuterimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_herculeskabuterimon"
+      ]
+    },
+    "deg_atlurkabuterimon_to_pabumon": {
+      "id": "deg_atlurkabuterimon_to_pabumon",
+      "fromId": "atlurkabuterimon",
+      "toId": "pabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pabumon"
+      ]
+    },
+    "deg_atlurkabuterimon_to_motimon": {
+      "id": "deg_atlurkabuterimon_to_motimon",
+      "fromId": "atlurkabuterimon",
+      "toId": "motimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_motimon"
+      ]
+    },
+    "deg_atlurkabuterimon_to_tentomon": {
+      "id": "deg_atlurkabuterimon_to_tentomon",
+      "fromId": "atlurkabuterimon",
+      "toId": "tentomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tentomon"
+      ]
+    },
+    "deg_atlurkabuterimon_to_kabuterimon": {
+      "id": "deg_atlurkabuterimon_to_kabuterimon",
+      "fromId": "atlurkabuterimon",
+      "toId": "kabuterimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_kabuterimon"
+      ]
+    },
+    "deg_herculeskabuterimon_to_pabumon": {
+      "id": "deg_herculeskabuterimon_to_pabumon",
+      "fromId": "herculeskabuterimon",
+      "toId": "pabumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pabumon"
+      ]
+    },
+    "deg_herculeskabuterimon_to_motimon": {
+      "id": "deg_herculeskabuterimon_to_motimon",
+      "fromId": "herculeskabuterimon",
+      "toId": "motimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_motimon"
+      ]
+    },
+    "deg_herculeskabuterimon_to_tentomon": {
+      "id": "deg_herculeskabuterimon_to_tentomon",
+      "fromId": "herculeskabuterimon",
+      "toId": "tentomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_tentomon"
+      ]
+    },
+    "deg_herculeskabuterimon_to_kabuterimon": {
+      "id": "deg_herculeskabuterimon_to_kabuterimon",
+      "fromId": "herculeskabuterimon",
+      "toId": "kabuterimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_kabuterimon"
+      ]
+    },
+    "deg_herculeskabuterimon_to_atlurkabuterimon": {
+      "id": "deg_herculeskabuterimon_to_atlurkabuterimon",
+      "fromId": "herculeskabuterimon",
+      "toId": "atlurkabuterimon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_atlurkabuterimon"
+      ]
+    },
+    "evo_pupumon_to_patamon": {
+      "id": "evo_pupumon_to_patamon",
+      "fromId": "pupumon",
+      "toId": "patamon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_patamon"
+      ]
+    },
+    "evo_patamon_to_angemon": {
+      "id": "evo_patamon_to_angemon",
+      "fromId": "patamon",
+      "toId": "angemon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_angemon"
+      ]
+    },
+    "deg_patamon_to_pupumon": {
+      "id": "deg_patamon_to_pupumon",
+      "fromId": "patamon",
+      "toId": "pupumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pupumon"
+      ]
+    },
+    "evo_angemon_to_magnaangemon": {
+      "id": "evo_angemon_to_magnaangemon",
+      "fromId": "angemon",
+      "toId": "magnaangemon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_magnaangemon"
+      ]
+    },
+    "deg_angemon_to_pupumon": {
+      "id": "deg_angemon_to_pupumon",
+      "fromId": "angemon",
+      "toId": "pupumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pupumon"
+      ]
+    },
+    "deg_angemon_to_patamon": {
+      "id": "deg_angemon_to_patamon",
+      "fromId": "angemon",
+      "toId": "patamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_patamon"
+      ]
+    },
+    "evo_magnaangemon_to_seraphimon": {
+      "id": "evo_magnaangemon_to_seraphimon",
+      "fromId": "magnaangemon",
+      "toId": "seraphimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_seraphimon"
+      ]
+    },
+    "deg_magnaangemon_to_pupumon": {
+      "id": "deg_magnaangemon_to_pupumon",
+      "fromId": "magnaangemon",
+      "toId": "pupumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pupumon"
+      ]
+    },
+    "deg_magnaangemon_to_patamon": {
+      "id": "deg_magnaangemon_to_patamon",
+      "fromId": "magnaangemon",
+      "toId": "patamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_patamon"
+      ]
+    },
+    "deg_magnaangemon_to_angemon": {
+      "id": "deg_magnaangemon_to_angemon",
+      "fromId": "magnaangemon",
+      "toId": "angemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_angemon"
+      ]
+    },
+    "deg_seraphimon_to_pupumon": {
+      "id": "deg_seraphimon_to_pupumon",
+      "fromId": "seraphimon",
+      "toId": "pupumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pupumon"
+      ]
+    },
+    "deg_seraphimon_to_patamon": {
+      "id": "deg_seraphimon_to_patamon",
+      "fromId": "seraphimon",
+      "toId": "patamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_patamon"
+      ]
+    },
+    "deg_seraphimon_to_angemon": {
+      "id": "deg_seraphimon_to_angemon",
+      "fromId": "seraphimon",
+      "toId": "angemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_angemon"
+      ]
+    },
+    "deg_seraphimon_to_magnaangemon": {
+      "id": "deg_seraphimon_to_magnaangemon",
+      "fromId": "seraphimon",
+      "toId": "magnaangemon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_magnaangemon"
+      ]
+    },
+    "evo_pitchmon_to_bukamon": {
+      "id": "evo_pitchmon_to_bukamon",
+      "fromId": "pitchmon",
+      "toId": "bukamon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_bukamon"
+      ]
+    },
+    "evo_bukamon_to_gomamon": {
+      "id": "evo_bukamon_to_gomamon",
+      "fromId": "bukamon",
+      "toId": "gomamon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_gomamon"
+      ]
+    },
+    "deg_bukamon_to_pitchmon": {
+      "id": "deg_bukamon_to_pitchmon",
+      "fromId": "bukamon",
+      "toId": "pitchmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pitchmon"
+      ]
+    },
+    "evo_gomamon_to_ikkakumon": {
+      "id": "evo_gomamon_to_ikkakumon",
+      "fromId": "gomamon",
+      "toId": "ikkakumon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_ikkakumon"
+      ]
+    },
+    "deg_gomamon_to_pitchmon": {
+      "id": "deg_gomamon_to_pitchmon",
+      "fromId": "gomamon",
+      "toId": "pitchmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pitchmon"
+      ]
+    },
+    "deg_gomamon_to_bukamon": {
+      "id": "deg_gomamon_to_bukamon",
+      "fromId": "gomamon",
+      "toId": "bukamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_bukamon"
+      ]
+    },
+    "evo_ikkakumon_to_zudomon": {
+      "id": "evo_ikkakumon_to_zudomon",
+      "fromId": "ikkakumon",
+      "toId": "zudomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_zudomon"
+      ]
+    },
+    "deg_ikkakumon_to_pitchmon": {
+      "id": "deg_ikkakumon_to_pitchmon",
+      "fromId": "ikkakumon",
+      "toId": "pitchmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pitchmon"
+      ]
+    },
+    "deg_ikkakumon_to_bukamon": {
+      "id": "deg_ikkakumon_to_bukamon",
+      "fromId": "ikkakumon",
+      "toId": "bukamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_bukamon"
+      ]
+    },
+    "deg_ikkakumon_to_gomamon": {
+      "id": "deg_ikkakumon_to_gomamon",
+      "fromId": "ikkakumon",
+      "toId": "gomamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gomamon"
+      ]
+    },
+    "evo_zudomon_to_vikemon": {
+      "id": "evo_zudomon_to_vikemon",
+      "fromId": "zudomon",
+      "toId": "vikemon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_vikemon"
+      ]
+    },
+    "deg_zudomon_to_pitchmon": {
+      "id": "deg_zudomon_to_pitchmon",
+      "fromId": "zudomon",
+      "toId": "pitchmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pitchmon"
+      ]
+    },
+    "deg_zudomon_to_bukamon": {
+      "id": "deg_zudomon_to_bukamon",
+      "fromId": "zudomon",
+      "toId": "bukamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_bukamon"
+      ]
+    },
+    "deg_zudomon_to_gomamon": {
+      "id": "deg_zudomon_to_gomamon",
+      "fromId": "zudomon",
+      "toId": "gomamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gomamon"
+      ]
+    },
+    "deg_zudomon_to_ikkakumon": {
+      "id": "deg_zudomon_to_ikkakumon",
+      "fromId": "zudomon",
+      "toId": "ikkakumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_ikkakumon"
+      ]
+    },
+    "deg_vikemon_to_pitchmon": {
+      "id": "deg_vikemon_to_pitchmon",
+      "fromId": "vikemon",
+      "toId": "pitchmon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_pitchmon"
+      ]
+    },
+    "deg_vikemon_to_bukamon": {
+      "id": "deg_vikemon_to_bukamon",
+      "fromId": "vikemon",
+      "toId": "bukamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_bukamon"
+      ]
+    },
+    "deg_vikemon_to_gomamon": {
+      "id": "deg_vikemon_to_gomamon",
+      "fromId": "vikemon",
+      "toId": "gomamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gomamon"
+      ]
+    },
+    "deg_vikemon_to_ikkakumon": {
+      "id": "deg_vikemon_to_ikkakumon",
+      "fromId": "vikemon",
+      "toId": "ikkakumon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_ikkakumon"
+      ]
+    },
+    "deg_vikemon_to_zudomon": {
+      "id": "deg_vikemon_to_zudomon",
+      "fromId": "vikemon",
+      "toId": "zudomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_zudomon"
+      ]
+    },
+    "evo_nyaromon_to_salamon": {
+      "id": "evo_nyaromon_to_salamon",
+      "fromId": "nyaromon",
+      "toId": "salamon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_salamon"
+      ]
+    },
+    "evo_salamon_to_gatomon": {
+      "id": "evo_salamon_to_gatomon",
+      "fromId": "salamon",
+      "toId": "gatomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_gatomon"
+      ]
+    },
+    "deg_salamon_to_nyaromon": {
+      "id": "deg_salamon_to_nyaromon",
+      "fromId": "salamon",
+      "toId": "nyaromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_nyaromon"
+      ]
+    },
+    "evo_gatomon_to_angewomon": {
+      "id": "evo_gatomon_to_angewomon",
+      "fromId": "gatomon",
+      "toId": "angewomon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_angewomon"
+      ]
+    },
+    "deg_gatomon_to_nyaromon": {
+      "id": "deg_gatomon_to_nyaromon",
+      "fromId": "gatomon",
+      "toId": "nyaromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_nyaromon"
+      ]
+    },
+    "deg_gatomon_to_salamon": {
+      "id": "deg_gatomon_to_salamon",
+      "fromId": "gatomon",
+      "toId": "salamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_salamon"
+      ]
+    },
+    "evo_angewomon_to_ophanimon": {
+      "id": "evo_angewomon_to_ophanimon",
+      "fromId": "angewomon",
+      "toId": "ophanimon",
+      "direction": "evolve",
+      "requirementIds": [
+        "req_form_ophanimon"
+      ]
+    },
+    "deg_angewomon_to_nyaromon": {
+      "id": "deg_angewomon_to_nyaromon",
+      "fromId": "angewomon",
+      "toId": "nyaromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_nyaromon"
+      ]
+    },
+    "deg_angewomon_to_salamon": {
+      "id": "deg_angewomon_to_salamon",
+      "fromId": "angewomon",
+      "toId": "salamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_salamon"
+      ]
+    },
+    "deg_angewomon_to_gatomon": {
+      "id": "deg_angewomon_to_gatomon",
+      "fromId": "angewomon",
+      "toId": "gatomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gatomon"
+      ]
+    },
+    "deg_ophanimon_to_nyaromon": {
+      "id": "deg_ophanimon_to_nyaromon",
+      "fromId": "ophanimon",
+      "toId": "nyaromon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_nyaromon"
+      ]
+    },
+    "deg_ophanimon_to_salamon": {
+      "id": "deg_ophanimon_to_salamon",
+      "fromId": "ophanimon",
+      "toId": "salamon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_salamon"
+      ]
+    },
+    "deg_ophanimon_to_gatomon": {
+      "id": "deg_ophanimon_to_gatomon",
+      "fromId": "ophanimon",
+      "toId": "gatomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_gatomon"
+      ]
+    },
+    "deg_ophanimon_to_angewomon": {
+      "id": "deg_ophanimon_to_angewomon",
+      "fromId": "ophanimon",
+      "toId": "angewomon",
+      "direction": "degenerate",
+      "requirementIds": [
+        "req_form_angewomon"
+      ]
+    }
+  }
+}

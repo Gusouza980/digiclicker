@@ -1,4 +1,5 @@
 import type { PlayerDigimon, SaveData } from "@/types";
+import { createEmptyStatBlock } from "@/types/stats";
 
 import { createInstanceId } from "@/utils/id";
 
@@ -20,6 +21,7 @@ export function createStarterDigimon(
     hatchQuality: null,
     typeXp: {},
     source: "starter",
+    cumulativeStats: createEmptyStatBlock(),
   };
 }
 

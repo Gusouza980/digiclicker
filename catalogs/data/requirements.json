@@ -1,21 +1,713 @@
 {
   "meta": {
     "kind": "requirement",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "updatedAt": "2026-06-06"
   },
   "entries": {
     "req_file_forest": {
       "id": "req_file_forest",
       "rules": [
-        { "type": "mission_claimed", "targetId": "mission_awakening", "value": 1 }
+        {
+          "type": "mission_claimed",
+          "targetId": "mission_awakening",
+          "value": 1
+        }
       ]
     },
     "req_native_forest": {
       "id": "req_native_forest",
       "rules": [
-        { "type": "mission_claimed", "targetId": "mission_file_forest", "value": 1 },
-        { "type": "trainer_level_min", "value": 3 }
+        {
+          "type": "mission_claimed",
+          "targetId": "mission_file_forest",
+          "value": 1
+        },
+        {
+          "type": "trainer_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_koromon": {
+      "id": "req_form_koromon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_agumon": {
+      "id": "req_form_agumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_botamon": {
+      "id": "req_form_botamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_greymon": {
+      "id": "req_form_greymon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_metalgreymon": {
+      "id": "req_form_metalgreymon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_wargreymon": {
+      "id": "req_form_wargreymon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_tsunomon": {
+      "id": "req_form_tsunomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_gabumon": {
+      "id": "req_form_gabumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_punimon": {
+      "id": "req_form_punimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_garurumon": {
+      "id": "req_form_garurumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_weregarurumon": {
+      "id": "req_form_weregarurumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_metalgarurumon": {
+      "id": "req_form_metalgarurumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_tokomon": {
+      "id": "req_form_tokomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_biyomon": {
+      "id": "req_form_biyomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_poyomon": {
+      "id": "req_form_poyomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_birdramon": {
+      "id": "req_form_birdramon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_garudamon": {
+      "id": "req_form_garudamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_phoenixmon": {
+      "id": "req_form_phoenixmon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_palmon": {
+      "id": "req_form_palmon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_togemon": {
+      "id": "req_form_togemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_tanemon": {
+      "id": "req_form_tanemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_lilymon": {
+      "id": "req_form_lilymon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_rosemon": {
+      "id": "req_form_rosemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_motimon": {
+      "id": "req_form_motimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_tentomon": {
+      "id": "req_form_tentomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_pabumon": {
+      "id": "req_form_pabumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_kabuterimon": {
+      "id": "req_form_kabuterimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_atlurkabuterimon": {
+      "id": "req_form_atlurkabuterimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_herculeskabuterimon": {
+      "id": "req_form_herculeskabuterimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_patamon": {
+      "id": "req_form_patamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_angemon": {
+      "id": "req_form_angemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_pupumon": {
+      "id": "req_form_pupumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_magnaangemon": {
+      "id": "req_form_magnaangemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_seraphimon": {
+      "id": "req_form_seraphimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_bukamon": {
+      "id": "req_form_bukamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 3
+        }
+      ]
+    },
+    "req_form_gomamon": {
+      "id": "req_form_gomamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_pitchmon": {
+      "id": "req_form_pitchmon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_ikkakumon": {
+      "id": "req_form_ikkakumon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_zudomon": {
+      "id": "req_form_zudomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_vikemon": {
+      "id": "req_form_vikemon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
+      ]
+    },
+    "req_form_salamon": {
+      "id": "req_form_salamon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_gatomon": {
+      "id": "req_form_gatomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 15
+        },
+        {
+          "type": "friendship_min",
+          "value": 10
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 80
+        }
+      ]
+    },
+    "req_form_nyaromon": {
+      "id": "req_form_nyaromon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 5
+        },
+        {
+          "type": "friendship_min",
+          "value": 5
+        }
+      ]
+    },
+    "req_form_angewomon": {
+      "id": "req_form_angewomon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 30
+        },
+        {
+          "type": "friendship_min",
+          "value": 25
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 150
+        }
+      ]
+    },
+    "req_form_ophanimon": {
+      "id": "req_form_ophanimon",
+      "rules": [
+        {
+          "type": "digimon_level_min",
+          "value": 45
+        },
+        {
+          "type": "friendship_min",
+          "value": 50
+        },
+        {
+          "type": "digimon_stat_min",
+          "targetId": "atk",
+          "value": 220
+        }
       ]
     }
   }

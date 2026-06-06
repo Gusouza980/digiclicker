@@ -1,5 +1,6 @@
 import { clampBattleSpeed } from "@/game/battle/speed";
 import { ensureStarterMission } from "@/game/missions";
+import { normalizeSave } from "@/game/save/normalize";
 import type { BattleSpeed, SaveData } from "@/types";
 
 import { CURRENT_SAVE_VERSION } from "./constants";
@@ -44,6 +45,7 @@ const migrations: Record<number, Migration> = {
       saveVersion: 5,
     };
   },
+  6: (save) => normalizeSave({ ...save, saveVersion: 6 }),
 };
 
 export function migrateSave(save: SaveData): SaveData {

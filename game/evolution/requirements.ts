@@ -1,7 +1,20 @@
 import { getCatalogEntry } from "@/catalogs/loader";
-import type { RequirementCheckResult, RequirementRule, SaveData } from "@/types";
+import type {
+  PlayerDigimon,
+  RequirementCheckResult,
+  RequirementRule,
+  SaveData,
+  StatBlock,
+  StatKey,
+} from "@/types";
 
-function evaluateRule(save: SaveData, rule: RequirementRule): boolean {
+export type DigimonRequirementContext = {
+  save: SaveData;
+  digimon: PlayerDigimon;
+  totalStats: StatBlock;
+};
+
+function evaluateWorldRule(save: SaveData, rule: RequirementRule): boolean {
   switch (rule.type) {
     case "trainer_level_min":
       return save.player.trainerLevel >= rule.value;
@@ -27,8 +40,31 @@ function evaluateRule(save: SaveData, rule: RequirementRule): boolean {
   }
 }
 
-export function checkRequirementSet(
-  save: SaveData,
+function evaluateDigimonRule(
+  context: DigimonRequirementContext,
+  rule: RequirementRule,
+): boolean {
+  switch (rule.type) {
+    case "digimon_level_min":
+      return context.digimon.level >= rule.value;
+    case "digimon_stat_min": {
+      if (!rule.targetId) return false;
+      const stat = rule.targetId as StatKey;
+      return (context.totalStats[stat] ?? 0) >= rule.value;
+    }
+    case "friendship_min":
+      return context.digimon.friendship >= rule.value;
+    case "type_xp_min":
+      return rule.targetId
+        ? (context.digimon.typeXp[rule.targetId] ?? 0) >= rule.value
+        : false;
+    default:
+      return evaluateWorldRule(context.save, rule);
+  }
+}
+
+export function checkDigimonRequirementSet(
+  context: DigimonRequirementContext,
   requirementId: string,
 ): RequirementCheckResult {
   const entry = getCatalogEntry("requirement", requirementId);
@@ -36,37 +72,24 @@ export function checkRequirementSet(
     return { met: false, failedRules: [] };
   }
 
-  const failedRules = entry.rules.filter((rule) => !evaluateRule(save, rule));
+  const failedRules = entry.rules.filter(
+    (rule) => !evaluateDigimonRule(context, rule),
+  );
   return { met: failedRules.length === 0, failedRules };
 }
 
-export function checkAllRequirementSets(
-  save: SaveData,
+export function checkDigimonRequirementSets(
+  context: DigimonRequirementContext,
   requirementIds: string[],
 ): RequirementCheckResult {
   const failedRules: RequirementRule[] = [];
 
   for (const requirementId of requirementIds) {
-    const result = checkRequirementSet(save, requirementId);
+    const result = checkDigimonRequirementSet(context, requirementId);
     if (!result.met) {
       failedRules.push(...result.failedRules);
     }
   }
 
   return { met: failedRules.length === 0, failedRules };
-}
-
-export function getRequirementDescriptionKey(rule: RequirementRule): string {
-  return `requirement.${rule.type}`;
-}
-
-export function formatRequirementParams(
-  rule: RequirementRule,
-): Record<string, string> {
-  return {
-    value: String(rule.value),
-    target: rule.targetId ?? "",
-    stat: rule.targetId ?? "",
-    type: rule.targetId ?? "",
-  };
 }

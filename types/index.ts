@@ -2,6 +2,7 @@ export * from "./battle";
 export * from "./catalog";
 export * from "./collection";
 export * from "./digimon";
+export * from "./evolution";
 export * from "./friendship";
 export * from "./hatching";
 export * from "./inventory";

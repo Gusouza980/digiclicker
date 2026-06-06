@@ -11,12 +11,6 @@ import {
 
 const GROWTH_RATE = 0.1;
 
-const FRIENDSHIP_CUMULATIVE_THRESHOLDS = [
-  { min: 68, percent: 0.1 },
-  { min: 34, percent: 0.08 },
-  { min: 1, percent: 0.05 },
-] as const;
-
 function getPersonalityModifiers(
   personalityId: string | null,
 ): PersonalityGrowthModifiers {
@@ -43,26 +37,6 @@ function getGrowthByLevel(
   return growth;
 }
 
-function getCumulativePercent(friendship: number): number {
-  for (const threshold of FRIENDSHIP_CUMULATIVE_THRESHOLDS) {
-    if (friendship >= threshold.min) {
-      return threshold.percent;
-    }
-  }
-  return 0;
-}
-
-function getCumulativeByFriendship(base: StatBlock, friendship: number): StatBlock {
-  const cumulative = createEmptyStatBlock();
-  const percent = getCumulativePercent(friendship);
-
-  for (const key of Object.keys(cumulative) as StatKey[]) {
-    cumulative[key] = Math.floor(base[key] * percent);
-  }
-
-  return cumulative;
-}
-
 function applyHatchQualityBonus(
   base: StatBlock,
   hatchQuality: PlayerDigimon["hatchQuality"],
@@ -87,7 +61,7 @@ export function calculateStatBreakdown(digimon: PlayerDigimon): StatBreakdown | 
 
   const base = applyHatchQualityBonus(catalog.baseStats, digimon.hatchQuality);
   const byLevel = getGrowthByLevel(base, digimon.level, digimon.personalityId);
-  const cumulative = getCumulativeByFriendship(base, digimon.friendship);
+  const cumulative = digimon.cumulativeStats ?? createEmptyStatBlock();
 
   return { base, byLevel, cumulative };
 }

@@ -1,4 +1,5 @@
 import type { DigimonCatalogEntry } from "./digimon";
+import type { EvolutionCatalogEntry } from "./evolution";
 import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./item";
 import type { LocationCatalogEntry } from "./location";
 import type { MissionCatalogEntry } from "./mission";
@@ -18,6 +19,7 @@ export type CatalogKind =
   | "mission"
   | "personality"
   | "requirement"
+  | "evolution"
   | "trait"
   | "i18n";
 
@@ -62,6 +64,9 @@ export type GlobalConfig = {
   };
   hatching: HatchingConfig;
   friendship: FriendshipConfig;
+  evolution: {
+    cumulativeMaxPerStat: number;
+  };
 };
 
 export type CatalogRegistry = {
@@ -74,5 +79,6 @@ export type CatalogRegistry = {
   mission: VersionedCatalog<MissionCatalogEntry>;
   personality: VersionedCatalog<PersonalityCatalogEntry>;
   requirement: VersionedCatalog<RequirementCatalogEntry>;
+  evolution: VersionedCatalog<EvolutionCatalogEntry>;
   trait: VersionedCatalog<TraitCatalogEntry>;
 };

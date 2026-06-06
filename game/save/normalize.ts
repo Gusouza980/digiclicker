@@ -1,4 +1,6 @@
+import { registerKnownForms } from "@/game/evolution/known-forms";
 import type { PlayerDigimon, SaveData } from "@/types";
+import { createEmptyStatBlock } from "@/types/stats";
 
 function inferDigimonSource(
   digimon: PlayerDigimon & { source?: PlayerDigimon["source"] },
@@ -24,9 +26,15 @@ export function normalizeSave(save: SaveData): SaveData {
     next.friendshipDaily = { dateKey: getTodayKey(), clickGainUsed: 0 };
   }
 
+  const starterFormIds: string[] = [];
+
   for (const digimon of Object.values(next.digimons)) {
     digimon.source = inferDigimonSource(digimon);
+    if (!digimon.cumulativeStats) {
+      digimon.cumulativeStats = createEmptyStatBlock();
+    }
+    starterFormIds.push(digimon.catalogId);
   }
 
-  return next;
+  return registerKnownForms(next, starterFormIds);
 }

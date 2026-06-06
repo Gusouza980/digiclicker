@@ -1,4 +1,5 @@
 import { ensureStarterMission } from "@/game/missions";
+import { normalizeSave } from "@/game/save/normalize";
 import { DEFAULT_LOCALE, type SaveData } from "@/types";
 
 import { CURRENT_SAVE_VERSION } from "./constants";
@@ -53,5 +54,5 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
     },
   };
 
-  return ensureStarterMission(baseSave);
+  return normalizeSave(ensureStarterMission(baseSave));
 }

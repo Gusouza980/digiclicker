@@ -9,7 +9,10 @@ import {
   validateEggContents,
 } from "@/game/inventory/operations";
 import { getEssenceIdForType } from "@/game/inventory";
+import { createEmptyStatBlock } from "@/types/stats";
 import { createInstanceId } from "@/utils/id";
+
+import { registerKnownForm } from "@/game/evolution/known-forms";
 import type {
   GlobalConfig,
   HatchDestination,
@@ -252,7 +255,7 @@ export function hatchEgg(
   destination: HatchDestination,
 ): HatchingActionResult {
   const config = getGlobalConfig();
-  const next = structuredClone(save);
+  let next = structuredClone(save);
   const egg = findEgg(next, eggInstanceId);
 
   if (!egg) {
@@ -299,9 +302,11 @@ export function hatchEgg(
     hatchQuality: quality,
     typeXp: {},
     source: "hatch",
+    cumulativeStats: createEmptyStatBlock(),
   };
 
   next.digimons[digimon.instanceId] = digimon;
+  next = registerKnownForm(next, digimon.catalogId);
 
   if (destination === "team") {
     next.team.activeDigimonIds.push(digimon.instanceId);

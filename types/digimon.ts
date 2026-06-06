@@ -64,4 +64,5 @@ export type PlayerDigimon = {
   hatchQuality: 3 | 4 | 5 | null;
   typeXp: Record<string, number>;
   source: DigimonSource;
+  cumulativeStats: StatBlock;
 };

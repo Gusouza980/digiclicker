@@ -71,6 +71,9 @@
         "gainFromClickAssist": 0.02,
         "dailyClickSoftCap": 5,
         "globalMultiplier": 1
+      },
+      "evolution": {
+        "cumulativeMaxPerStat": 9999
       }
     }
   }
