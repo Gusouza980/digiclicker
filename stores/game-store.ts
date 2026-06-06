@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 import { getCatalogEntry, getGlobalConfig, loadCatalogRegistry } from "@/catalogs/loader";
 import { createSave, loadSave, persistSave, resetSave } from "@/game/save";
+import { ensureStarterTeam } from "@/game/save/starter-team";
 import { translate } from "@/i18n";
 import type { GlobalConfig, SaveData, SupportedLocale } from "@/types";
 import { DEFAULT_LOCALE } from "@/types/locale";
@@ -16,7 +17,7 @@ type GameStore = {
   createNewSave: () => void;
   resetCurrentSave: () => void;
   touchSave: () => void;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, string>) => string;
 };
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -29,7 +30,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
     loadCatalogRegistry();
     const config = getGlobalConfig();
     const existing = loadSave();
-    const save = existing ?? createSave(DEFAULT_LOCALE);
+    const rawSave = existing ?? createSave(DEFAULT_LOCALE);
+    const save = ensureStarterTeam(rawSave);
     persistSave(save);
 
     set({
@@ -71,9 +73,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({ save: updated, statusMessage: "save.persisted" });
   },
 
-  t: (key) => {
+  t: (key, params) => {
     const locale = get().save?.settings.locale ?? DEFAULT_LOCALE;
-    return translate(key, locale);
+    return translate(key, locale, undefined, params);
   },
 }));
 

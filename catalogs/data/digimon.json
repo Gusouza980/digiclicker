@@ -1,8 +1,128 @@
 {
   "meta": {
     "kind": "digimon",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "agumon": {
+      "id": "agumon",
+      "nameKey": "digimon.agumon.name",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "reptile",
+      "baseStats": {
+        "hp": 120,
+        "mp": 20,
+        "atk": 28,
+        "def": 18,
+        "int": 12,
+        "spi": 14,
+        "spd": 24
+      }
+    },
+    "gabumon": {
+      "id": "gabumon",
+      "nameKey": "digimon.gabumon.name",
+      "stage": "rookie",
+      "attribute": "data",
+      "element": "fire",
+      "primaryType": "reptile",
+      "baseStats": {
+        "hp": 115,
+        "mp": 18,
+        "atk": 26,
+        "def": 20,
+        "int": 10,
+        "spi": 12,
+        "spd": 22
+      }
+    },
+    "biyomon": {
+      "id": "biyomon",
+      "nameKey": "digimon.biyomon.name",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "bird",
+      "baseStats": {
+        "hp": 100,
+        "mp": 22,
+        "atk": 22,
+        "def": 14,
+        "int": 16,
+        "spi": 18,
+        "spd": 30
+      }
+    },
+    "koromon": {
+      "id": "koromon",
+      "nameKey": "digimon.koromon.name",
+      "stage": "in_training",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "lesser",
+      "baseStats": {
+        "hp": 45,
+        "mp": 0,
+        "atk": 10,
+        "def": 8,
+        "int": 6,
+        "spi": 6,
+        "spd": 14
+      }
+    },
+    "tsunomon": {
+      "id": "tsunomon",
+      "nameKey": "digimon.tsunomon.name",
+      "stage": "in_training",
+      "attribute": "data",
+      "element": "ice",
+      "primaryType": "lesser",
+      "baseStats": {
+        "hp": 50,
+        "mp": 0,
+        "atk": 11,
+        "def": 10,
+        "int": 6,
+        "spi": 6,
+        "spd": 12
+      }
+    },
+    "tokomon": {
+      "id": "tokomon",
+      "nameKey": "digimon.tokomon.name",
+      "stage": "in_training",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "lesser",
+      "baseStats": {
+        "hp": 42,
+        "mp": 0,
+        "atk": 9,
+        "def": 7,
+        "int": 8,
+        "spi": 8,
+        "spd": 16
+      }
+    },
+    "tanemon": {
+      "id": "tanemon",
+      "nameKey": "digimon.tanemon.name",
+      "stage": "rookie",
+      "attribute": "data",
+      "element": "plant",
+      "primaryType": "larva",
+      "baseStats": {
+        "hp": 55,
+        "mp": 10,
+        "atk": 12,
+        "def": 12,
+        "int": 10,
+        "spi": 10,
+        "spd": 15
+      }
+    }
+  }
 }

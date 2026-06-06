@@ -1,9 +1,11 @@
 import { DEFAULT_LOCALE, type SaveData } from "@/types";
 
 import { CURRENT_SAVE_VERSION } from "./constants";
+import { buildStarterTeam } from "./starter-team";
 
 export function createSave(locale = DEFAULT_LOCALE): SaveData {
   const now = new Date().toISOString();
+  const starter = buildStarterTeam();
 
   return {
     saveVersion: CURRENT_SAVE_VERSION,
@@ -16,13 +18,11 @@ export function createSave(locale = DEFAULT_LOCALE): SaveData {
       traitPoints: 0,
       bits: 0,
     },
-    team: {
-      activeDigimonIds: [],
-    },
+    team: starter.team,
     island: {
       storedDigimonIds: [],
     },
-    digimons: {},
+    digimons: starter.digimons,
     inventory: {
       items: [],
       essences: [],

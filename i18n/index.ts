@@ -24,9 +24,18 @@ export function translate(
   key: string,
   locale: SupportedLocale = DEFAULT_LOCALE,
   fallback?: string,
+  params?: Record<string, string>,
 ): string {
   const dictionary = getDictionary(locale);
-  return dictionary[key] ?? fallback ?? key;
+  let text = dictionary[key] ?? fallback ?? key;
+
+  if (params) {
+    for (const [paramKey, value] of Object.entries(params)) {
+      text = text.replaceAll(`{${paramKey}}`, value);
+    }
+  }
+
+  return text;
 }
 
 export function resolveLocale(value: string | null | undefined): SupportedLocale {
