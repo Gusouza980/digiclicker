@@ -1,0 +1,94 @@
+---
+description: Fluxo de execução de sprints do Digiclicker — tasks, checkboxes e EXECUCAO.md
+alwaysApply: true
+---
+
+# Workflow de Sprints — Digiclicker
+
+O desenvolvimento segue o planejamento em `digiclicker_sprint_planning.md` e a estrutura em `sprints/`.
+
+## Estrutura
+
+```
+sprints/
+  sprint-00-fundacao-tecnica/
+    TASKS.md      ← checklist de tasks (fonte de verdade do progresso)
+    EXECUCAO.md   ← gerado ao final da sprint
+  sprint-01-loop-batalha-minimo/
+    ...
+```
+
+## Regras obrigatórias
+
+### 1. Ordem das sprints
+
+- Executar sprints **em ordem numérica** (0 → 19), salvo pedido explícito do usuário.
+- Não iniciar sprint N+1 se a sprint N ainda tiver tasks críticas pendentes.
+- Sprints 14+ (pós-MVP) só após MVP local divertido e Online Alpha estável.
+
+### 2. Antes de iniciar uma sprint
+
+1. Abrir `sprints/<pasta-da-sprint>/TASKS.md`.
+2. Ler objetivo, user stories e critérios de saída.
+3. Validar Definition of Ready (planning §21): catálogos, save, i18n e dependências da sprint anterior.
+
+### 3. Durante a execução
+
+- Implementar tasks na ordem técnica do planning (§19): tipos → catálogos → save → motor → UI → sistemas.
+- **Ao concluir cada task**, marcar `[x]` em **dois lugares** do `TASKS.md`:
+  - Coluna Status da tabela
+  - Item correspondente em "Checklist de tasks"
+- Priorizar: motor de batalha, save local, catálogos, stats, recompensas (planning §25).
+- Pergunta guia: *o jogo está ficando mais divertido e mais claro?*
+
+### 4. Ao finalizar a sprint
+
+Gerar `sprints/<pasta-da-sprint>/EXECUCAO.md` com:
+
+```markdown
+# Execução — Sprint N — [Título]
+
+**Data de conclusão:** YYYY-MM-DD
+**Status:** Concluída | Parcial
+
+## Resumo
+[2-4 frases do que foi entregue]
+
+## Tasks concluídas
+- [x] DG-S0N-001 — descrição breve + arquivos principais alterados
+- ...
+
+## Tasks não concluídas (se houver)
+- [ ] DG-S0N-00X — motivo e plano
+
+## Arquivos criados/alterados
+- `caminho/arquivo` — propósito
+
+## Decisões técnicas
+- [decisões relevantes tomadas na sprint]
+
+## Critérios de saída — validação
+- [x] ou [ ] cada critério do TASKS.md, com nota breve
+
+## Playtest / QA
+- O que foi testado manualmente e resultado
+
+## Próximos passos
+- Dependências ou riscos para a sprint seguinte
+```
+
+### 5. Definition of Done (planning §22)
+
+Só considerar sprint concluída quando:
+
+- Tasks P0/P1 implementadas ou conscientemente adiadas (documentar em EXECUCAO.md).
+- Fluxo jogável no jogo real; save persiste corretamente.
+- UI com feedback claro; sem texto hardcoded novo.
+- Parâmetros em catálogo/config, não espalhados no código.
+- Pelo menos um playtest manual documentado em EXECUCAO.md.
+
+### 6. Referências
+
+- Planejamento completo: `digiclicker_sprint_planning.md`
+- Índice de sprints: `sprints/README.md`
+- IDs de tasks: `DG-S[NN]-[NNN]`
