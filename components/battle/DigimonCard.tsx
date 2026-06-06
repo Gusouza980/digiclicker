@@ -2,6 +2,7 @@
 
 import { useBattleStore } from "@/stores/battle-store";
 import { useGameStore } from "@/stores/game-store";
+import { useUiStore } from "@/stores/ui-store";
 import type { BattleAllyState } from "@/game/battle";
 
 const STAGE_COLORS: Record<string, string> = {
@@ -19,6 +20,7 @@ export function DigimonCard({ ally }: DigimonCardProps) {
   const t = useGameStore((state) => state.t);
   const useSpecial = useBattleStore((state) => state.useSpecial);
   const phase = useBattleStore((state) => state.snapshot?.phase);
+  const setSelectedDigimonId = useUiStore((state) => state.setSelectedDigimonId);
   const hpPercent = ally.maxHp > 0 ? (ally.currentHp / ally.maxHp) * 100 : 0;
   const mpPercent = Math.round(ally.mp * 100);
   const color = STAGE_COLORS.rookie;
@@ -43,9 +45,13 @@ export function DigimonCard({ ally }: DigimonCardProps) {
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="truncate font-medium text-[var(--text-primary)]">
+            <button
+              type="button"
+              onClick={() => setSelectedDigimonId(ally.instanceId)}
+              className="truncate text-left font-medium text-[var(--text-primary)] hover:text-[var(--accent)]"
+            >
               {t(ally.nameKey)}
-            </h3>
+            </button>
             <span className="text-xs text-[var(--text-muted)]">
               {t("battle.level")} {ally.level}
             </span>

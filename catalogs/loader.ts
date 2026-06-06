@@ -5,6 +5,7 @@ import essenceData from "./data/essences.json";
 import itemData from "./data/items.json";
 import locationData from "./data/locations.json";
 import missionData from "./data/missions.json";
+import personalityData from "./data/personalities.json";
 import requirementData from "./data/requirements.json";
 import traitData from "./data/traits.json";
 
@@ -18,6 +19,7 @@ import type {
   ItemCatalogEntry,
   LocationCatalogEntry,
   MissionCatalogEntry,
+  PersonalityCatalogEntry,
   RequirementCatalogEntry,
   TraitCatalogEntry,
   VersionedCatalog,
@@ -31,6 +33,7 @@ const catalogRegistry: CatalogRegistry = {
   egg: eggData as VersionedCatalog<EggCatalogEntry>,
   location: locationData as VersionedCatalog<LocationCatalogEntry>,
   mission: missionData as VersionedCatalog<MissionCatalogEntry>,
+  personality: personalityData as VersionedCatalog<PersonalityCatalogEntry>,
   requirement: requirementData as VersionedCatalog<RequirementCatalogEntry>,
   trait: traitData as VersionedCatalog<TraitCatalogEntry>,
 };

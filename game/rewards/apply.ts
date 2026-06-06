@@ -1,4 +1,5 @@
 import { getCatalogEntry } from "@/catalogs/loader";
+import { addEgg, addEssence } from "@/game/inventory";
 import { calculateLevelFromXp } from "@/game/progression/xp";
 import type { GlobalConfig, SaveData } from "@/types";
 
@@ -79,6 +80,38 @@ export function applyRewards(
         });
       }
 
+      continue;
+    }
+
+    if (grant.type === "essence") {
+      addEssence(nextSave.inventory, grant.essenceId, grant.amount);
+      const essence = getCatalogEntry("essence", grant.essenceId);
+      applied.push({ type: "essence", amount: grant.amount, itemId: grant.essenceId });
+      display.push({
+        id: nextDisplayId(),
+        messageKey: "battle.reward.essence",
+        amount: grant.amount,
+        actorNameKey: essence?.nameKey,
+      });
+      continue;
+    }
+
+    if (grant.type === "egg") {
+      const egg = addEgg(
+        nextSave.inventory,
+        grant.eggCatalogId,
+        grant.containedDigimonId,
+      );
+      if (!egg) continue;
+
+      const eggCatalog = getCatalogEntry("egg", grant.eggCatalogId);
+      applied.push({ type: "egg", amount: 1, itemId: grant.eggCatalogId });
+      display.push({
+        id: nextDisplayId(),
+        messageKey: "battle.reward.egg",
+        amount: 1,
+        actorNameKey: eggCatalog?.nameKey,
+      });
       continue;
     }
 

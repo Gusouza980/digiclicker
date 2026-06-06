@@ -19,7 +19,15 @@
         "xpToNextGrowth": 20
       },
       "drops": {
-        "baseChance": 0.15
+        "essenceChance": 0.28,
+        "eggChance": 0.05,
+        "eggRarityWeights": {
+          "common": 70,
+          "rare": 20,
+          "reinforced": 8,
+          "special": 2,
+          "event": 0
+        }
       },
       "island": {
         "maxStorage": 50,

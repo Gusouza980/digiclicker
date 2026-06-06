@@ -1,4 +1,5 @@
 import { getCatalogEntry, getGlobalConfig } from "@/catalogs/loader";
+import { resolveBattleDrops } from "@/game/drops/resolve";
 import type { SaveData } from "@/types";
 
 import type { RewardGrant } from "./types";
@@ -55,6 +56,8 @@ export function resolveVictoryRewards(
       });
     }
   }
+
+  grants.push(...resolveBattleDrops(defeatedEnemyIds));
 
   return grants;
 }

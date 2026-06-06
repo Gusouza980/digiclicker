@@ -4,5 +4,46 @@
     "version": "1.0.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "potion_small": {
+      "id": "potion_small",
+      "nameKey": "item.potion_small.name",
+      "descriptionKey": "item.potion_small.description",
+      "category": "consumable",
+      "stackable": true,
+      "maxStack": 99,
+      "sellPrice": 10,
+      "buyPrice": 25
+    },
+    "meat": {
+      "id": "meat",
+      "nameKey": "item.meat.name",
+      "descriptionKey": "item.meat.description",
+      "category": "consumable",
+      "stackable": true,
+      "maxStack": 99,
+      "sellPrice": 5,
+      "buyPrice": 12
+    },
+    "scan_disc": {
+      "id": "scan_disc",
+      "nameKey": "item.scan_disc.name",
+      "descriptionKey": "item.scan_disc.description",
+      "category": "material",
+      "stackable": true,
+      "maxStack": 50,
+      "sellPrice": 20,
+      "buyPrice": 50
+    },
+    "revival_patch": {
+      "id": "revival_patch",
+      "nameKey": "item.revival_patch.name",
+      "descriptionKey": "item.revival_patch.description",
+      "category": "consumable",
+      "stackable": true,
+      "maxStack": 30,
+      "sellPrice": 30,
+      "buyPrice": 80
+    }
+  }
 }

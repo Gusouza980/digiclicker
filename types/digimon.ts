@@ -34,6 +34,11 @@ export type DigimonBattleRewards = {
   digimonXp: number;
 };
 
+export type DigimonDropTable = {
+  essenceChance?: number;
+  eggChance?: number;
+};
+
 export type DigimonCatalogEntry = {
   id: string;
   nameKey: string;
@@ -41,8 +46,10 @@ export type DigimonCatalogEntry = {
   attribute: DigimonAttribute;
   element: DigimonElement;
   primaryType: string;
+  lineId?: string;
   baseStats: StatBlock;
   battleRewards?: DigimonBattleRewards;
+  dropTable?: DigimonDropTable;
 };
 
 export type PlayerDigimon = {

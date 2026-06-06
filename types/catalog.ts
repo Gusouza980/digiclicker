@@ -2,6 +2,7 @@ import type { DigimonCatalogEntry } from "./digimon";
 import type { EggCatalogEntry, EssenceCatalogEntry, ItemCatalogEntry } from "./item";
 import type { LocationCatalogEntry } from "./location";
 import type { MissionCatalogEntry } from "./mission";
+import type { PersonalityCatalogEntry } from "./personality";
 import type { RequirementCatalogEntry } from "./requirement";
 import type { TraitCatalogEntry } from "./trait";
 
@@ -13,6 +14,7 @@ export type CatalogKind =
   | "egg"
   | "location"
   | "mission"
+  | "personality"
   | "requirement"
   | "trait"
   | "i18n";
@@ -42,7 +44,12 @@ export type GlobalConfig = {
     xpToNextGrowth: number;
   };
   drops: {
-    baseChance: number;
+    essenceChance: number;
+    eggChance: number;
+    eggRarityWeights: Record<
+      "common" | "rare" | "reinforced" | "special" | "event",
+      number
+    >;
   };
   island: {
     maxStorage: number;
@@ -61,6 +68,7 @@ export type CatalogRegistry = {
   egg: VersionedCatalog<EggCatalogEntry>;
   location: VersionedCatalog<LocationCatalogEntry>;
   mission: VersionedCatalog<MissionCatalogEntry>;
+  personality: VersionedCatalog<PersonalityCatalogEntry>;
   requirement: VersionedCatalog<RequirementCatalogEntry>;
   trait: VersionedCatalog<TraitCatalogEntry>;
 };

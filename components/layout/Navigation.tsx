@@ -6,7 +6,7 @@ import { useUiStore, type AppScreen } from "@/stores/ui-store";
 const NAV_ITEMS: { key: string; screen: AppScreen | null }[] = [
   { key: "nav.battle", screen: "battle" },
   { key: "nav.map", screen: "map" },
-  { key: "nav.inventory", screen: null },
+  { key: "nav.inventory", screen: "inventory" },
   { key: "nav.traits", screen: "traits" },
   { key: "nav.island", screen: null },
 ];

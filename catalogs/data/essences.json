@@ -4,5 +4,17 @@
     "version": "1.0.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "essence_reptile": { "id": "essence_reptile", "nameKey": "essence.reptile.name", "digimonType": "reptile" },
+    "essence_bird": { "id": "essence_bird", "nameKey": "essence.bird.name", "digimonType": "bird" },
+    "essence_insect": { "id": "essence_insect", "nameKey": "essence.insect.name", "digimonType": "insect" },
+    "essence_vegetation": { "id": "essence_vegetation", "nameKey": "essence.vegetation.name", "digimonType": "vegetation" },
+    "essence_aquatic": { "id": "essence_aquatic", "nameKey": "essence.aquatic.name", "digimonType": "aquatic" },
+    "essence_holy_beast": { "id": "essence_holy_beast", "nameKey": "essence.holy_beast.name", "digimonType": "holy_beast" },
+    "essence_mammal": { "id": "essence_mammal", "nameKey": "essence.mammal.name", "digimonType": "mammal" },
+    "essence_lesser": { "id": "essence_lesser", "nameKey": "essence.lesser.name", "digimonType": "lesser" },
+    "essence_larva": { "id": "essence_larva", "nameKey": "essence.larva.name", "digimonType": "larva" },
+    "essence_amphibian": { "id": "essence_amphibian", "nameKey": "essence.amphibian.name", "digimonType": "amphibian" },
+    "essence_mini_dragon": { "id": "essence_mini_dragon", "nameKey": "essence.mini_dragon.name", "digimonType": "mini_dragon" }
+  }
 }

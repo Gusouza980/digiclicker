@@ -1,7 +1,7 @@
 {
   "meta": {
     "kind": "digimon",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "updatedAt": "2026-06-06"
   },
   "entries": {
@@ -12,6 +12,7 @@
       "attribute": "vaccine",
       "element": "fire",
       "primaryType": "reptile",
+      "lineId": "agumon",
       "baseStats": {
         "hp": 120,
         "mp": 20,
@@ -29,6 +30,7 @@
       "attribute": "data",
       "element": "fire",
       "primaryType": "reptile",
+      "lineId": "gabumon",
       "baseStats": {
         "hp": 115,
         "mp": 18,
@@ -46,6 +48,7 @@
       "attribute": "vaccine",
       "element": "fire",
       "primaryType": "bird",
+      "lineId": "biyomon",
       "baseStats": {
         "hp": 100,
         "mp": 22,
@@ -60,22 +63,27 @@
       "id": "koromon",
       "nameKey": "digimon.koromon.name",
       "stage": "in_training",
-      "attribute": "data",
+      "attribute": "vaccine",
       "element": "neutral",
-      "primaryType": "lesser",
+      "primaryType": "reptile",
+      "lineId": "agumon",
       "baseStats": {
-        "hp": 45,
-        "mp": 0,
-        "atk": 10,
-        "def": 8,
+        "hp": 66,
+        "mp": 11,
+        "atk": 15,
+        "def": 9,
         "int": 6,
-        "spi": 6,
-        "spd": 14
+        "spi": 7,
+        "spd": 13
       },
       "battleRewards": {
         "bitsMin": 1,
         "bitsMax": 3,
         "digimonXp": 4
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "tsunomon": {
@@ -84,13 +92,14 @@
       "stage": "in_training",
       "attribute": "data",
       "element": "ice",
-      "primaryType": "lesser",
+      "primaryType": "reptile",
+      "lineId": "gabumon",
       "baseStats": {
-        "hp": 50,
-        "mp": 0,
-        "atk": 11,
-        "def": 10,
-        "int": 6,
+        "hp": 63,
+        "mp": 9,
+        "atk": 14,
+        "def": 11,
+        "int": 5,
         "spi": 6,
         "spd": 12
       },
@@ -98,6 +107,10 @@
         "bitsMin": 1,
         "bitsMax": 4,
         "digimonXp": 5
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "tokomon": {
@@ -106,42 +119,52 @@
       "stage": "in_training",
       "attribute": "vaccine",
       "element": "light",
-      "primaryType": "lesser",
+      "primaryType": "bird",
+      "lineId": "biyomon",
       "baseStats": {
-        "hp": 42,
-        "mp": 0,
-        "atk": 9,
+        "hp": 55,
+        "mp": 12,
+        "atk": 12,
         "def": 7,
         "int": 8,
-        "spi": 8,
+        "spi": 9,
         "spd": 16
       },
       "battleRewards": {
         "bitsMin": 2,
         "bitsMax": 4,
         "digimonXp": 6
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "tanemon": {
       "id": "tanemon",
       "nameKey": "digimon.tanemon.name",
-      "stage": "rookie",
+      "stage": "in_training",
       "attribute": "data",
       "element": "plant",
-      "primaryType": "larva",
+      "primaryType": "vegetation",
+      "lineId": "palmon",
       "baseStats": {
-        "hp": 55,
-        "mp": 10,
-        "atk": 12,
-        "def": 12,
-        "int": 10,
-        "spi": 10,
-        "spd": 15
+        "hp": 60,
+        "mp": 9,
+        "atk": 9,
+        "def": 8,
+        "int": 7,
+        "spi": 7,
+        "spd": 11
       },
       "battleRewards": {
         "bitsMin": 2,
         "bitsMax": 5,
         "digimonXp": 7
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "elecmon": {
@@ -164,6 +187,10 @@
         "bitsMin": 4,
         "bitsMax": 8,
         "digimonXp": 10
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "palmon": {
@@ -173,19 +200,24 @@
       "attribute": "data",
       "element": "plant",
       "primaryType": "vegetation",
+      "lineId": "palmon",
       "baseStats": {
-        "hp": 75,
-        "mp": 14,
-        "atk": 16,
+        "hp": 110,
+        "mp": 18,
+        "atk": 18,
         "def": 16,
         "int": 14,
-        "spi": 12,
-        "spd": 18
+        "spi": 14,
+        "spd": 20
       },
       "battleRewards": {
         "bitsMin": 4,
         "bitsMax": 9,
         "digimonXp": 11
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "betamon": {
@@ -208,6 +240,10 @@
         "bitsMin": 5,
         "bitsMax": 10,
         "digimonXp": 12
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "kunemon": {
@@ -230,6 +266,10 @@
         "bitsMin": 6,
         "bitsMax": 12,
         "digimonXp": 14
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "veemon": {
@@ -252,6 +292,10 @@
         "bitsMin": 7,
         "bitsMax": 14,
         "digimonXp": 15
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
       }
     },
     "wormmon": {
@@ -274,6 +318,676 @@
         "bitsMin": 7,
         "bitsMax": 15,
         "digimonXp": 16
+      },
+      "dropTable": {
+        "essenceChance": 0.3,
+        "eggChance": 0.06
+      }
+    },
+    "botamon": {
+      "id": "botamon",
+      "nameKey": "digimon.botamon.name",
+      "stage": "baby",
+      "attribute": "vaccine",
+      "element": "neutral",
+      "primaryType": "reptile",
+      "lineId": "agumon",
+      "baseStats": {
+        "hp": 42,
+        "mp": 7,
+        "atk": 9,
+        "def": 6,
+        "int": 4,
+        "spi": 4,
+        "spd": 8
+      }
+    },
+    "greymon": {
+      "id": "greymon",
+      "nameKey": "digimon.greymon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "reptile",
+      "lineId": "agumon",
+      "baseStats": {
+        "hp": 198,
+        "mp": 33,
+        "atk": 46,
+        "def": 29,
+        "int": 19,
+        "spi": 23,
+        "spd": 39
+      }
+    },
+    "metalgreymon": {
+      "id": "metalgreymon",
+      "nameKey": "digimon.metalgreymon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "reptile",
+      "lineId": "agumon",
+      "baseStats": {
+        "hp": 276,
+        "mp": 46,
+        "atk": 64,
+        "def": 41,
+        "int": 27,
+        "spi": 32,
+        "spd": 55
+      }
+    },
+    "wargreymon": {
+      "id": "wargreymon",
+      "nameKey": "digimon.wargreymon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "reptile",
+      "lineId": "agumon",
+      "baseStats": {
+        "hp": 360,
+        "mp": 60,
+        "atk": 84,
+        "def": 54,
+        "int": 36,
+        "spi": 42,
+        "spd": 72
+      }
+    },
+    "punimon": {
+      "id": "punimon",
+      "nameKey": "digimon.punimon.name",
+      "stage": "baby",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "reptile",
+      "lineId": "gabumon",
+      "baseStats": {
+        "hp": 40,
+        "mp": 6,
+        "atk": 9,
+        "def": 7,
+        "int": 3,
+        "spi": 4,
+        "spd": 7
+      }
+    },
+    "garurumon": {
+      "id": "garurumon",
+      "nameKey": "digimon.garurumon.name",
+      "stage": "champion",
+      "attribute": "data",
+      "element": "fire",
+      "primaryType": "reptile",
+      "lineId": "gabumon",
+      "baseStats": {
+        "hp": 189,
+        "mp": 29,
+        "atk": 42,
+        "def": 33,
+        "int": 16,
+        "spi": 19,
+        "spd": 36
+      }
+    },
+    "weregarurumon": {
+      "id": "weregarurumon",
+      "nameKey": "digimon.weregarurumon.name",
+      "stage": "ultimate",
+      "attribute": "data",
+      "element": "fire",
+      "primaryType": "reptile",
+      "lineId": "gabumon",
+      "baseStats": {
+        "hp": 264,
+        "mp": 41,
+        "atk": 59,
+        "def": 46,
+        "int": 23,
+        "spi": 27,
+        "spd": 50
+      }
+    },
+    "metalgarurumon": {
+      "id": "metalgarurumon",
+      "nameKey": "digimon.metalgarurumon.name",
+      "stage": "mega",
+      "attribute": "data",
+      "element": "ice",
+      "primaryType": "reptile",
+      "lineId": "gabumon",
+      "baseStats": {
+        "hp": 345,
+        "mp": 54,
+        "atk": 78,
+        "def": 60,
+        "int": 30,
+        "spi": 36,
+        "spd": 66
+      }
+    },
+    "poyomon": {
+      "id": "poyomon",
+      "nameKey": "digimon.poyomon.name",
+      "stage": "baby",
+      "attribute": "vaccine",
+      "element": "neutral",
+      "primaryType": "bird",
+      "lineId": "biyomon",
+      "baseStats": {
+        "hp": 35,
+        "mp": 7,
+        "atk": 7,
+        "def": 4,
+        "int": 5,
+        "spi": 6,
+        "spd": 10
+      }
+    },
+    "birdramon": {
+      "id": "birdramon",
+      "nameKey": "digimon.birdramon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "bird",
+      "lineId": "biyomon",
+      "baseStats": {
+        "hp": 165,
+        "mp": 36,
+        "atk": 36,
+        "def": 23,
+        "int": 26,
+        "spi": 29,
+        "spd": 49
+      }
+    },
+    "garudamon": {
+      "id": "garudamon",
+      "nameKey": "digimon.garudamon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "bird",
+      "lineId": "biyomon",
+      "baseStats": {
+        "hp": 229,
+        "mp": 50,
+        "atk": 50,
+        "def": 32,
+        "int": 36,
+        "spi": 41,
+        "spd": 69
+      }
+    },
+    "phoenixmon": {
+      "id": "phoenixmon",
+      "nameKey": "digimon.phoenixmon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "fire",
+      "primaryType": "bird",
+      "lineId": "biyomon",
+      "baseStats": {
+        "hp": 300,
+        "mp": 66,
+        "atk": 66,
+        "def": 42,
+        "int": 48,
+        "spi": 54,
+        "spd": 90
+      }
+    },
+    "pabumon": {
+      "id": "pabumon",
+      "nameKey": "digimon.pabumon.name",
+      "stage": "baby",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 36,
+        "mp": 7,
+        "atk": 7,
+        "def": 6,
+        "int": 6,
+        "spi": 5,
+        "spd": 7
+      }
+    },
+    "motimon": {
+      "id": "motimon",
+      "nameKey": "digimon.motimon.name",
+      "stage": "in_training",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 57,
+        "mp": 11,
+        "atk": 11,
+        "def": 9,
+        "int": 9,
+        "spi": 8,
+        "spd": 12
+      }
+    },
+    "tentomon": {
+      "id": "tentomon",
+      "nameKey": "digimon.tentomon.name",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "element": "electric",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 105,
+        "mp": 20,
+        "atk": 20,
+        "def": 18,
+        "int": 18,
+        "spi": 16,
+        "spd": 22
+      }
+    },
+    "kabuterimon": {
+      "id": "kabuterimon",
+      "nameKey": "digimon.kabuterimon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "electric",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 173,
+        "mp": 33,
+        "atk": 33,
+        "def": 29,
+        "int": 29,
+        "spi": 26,
+        "spd": 36
+      }
+    },
+    "atlurkabuterimon": {
+      "id": "atlurkabuterimon",
+      "nameKey": "digimon.atlurkabuterimon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "electric",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 241,
+        "mp": 46,
+        "atk": 46,
+        "def": 41,
+        "int": 41,
+        "spi": 36,
+        "spd": 50
+      }
+    },
+    "herculeskabuterimon": {
+      "id": "herculeskabuterimon",
+      "nameKey": "digimon.herculeskabuterimon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "electric",
+      "primaryType": "insect",
+      "lineId": "tentomon",
+      "baseStats": {
+        "hp": 315,
+        "mp": 60,
+        "atk": 60,
+        "def": 54,
+        "int": 54,
+        "spi": 48,
+        "spd": 66
+      }
+    },
+    "pupumon": {
+      "id": "pupumon",
+      "nameKey": "digimon.pupumon.name",
+      "stage": "baby",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "holy_beast",
+      "lineId": "patamon",
+      "baseStats": {
+        "hp": 33,
+        "mp": 8,
+        "atk": 6,
+        "def": 4,
+        "int": 7,
+        "spi": 7,
+        "spd": 9
+      }
+    },
+    "togemon": {
+      "id": "togemon",
+      "nameKey": "digimon.togemon.name",
+      "stage": "champion",
+      "attribute": "data",
+      "element": "plant",
+      "primaryType": "vegetation",
+      "lineId": "palmon",
+      "baseStats": {
+        "hp": 181,
+        "mp": 29,
+        "atk": 29,
+        "def": 26,
+        "int": 23,
+        "spi": 23,
+        "spd": 33
+      }
+    },
+    "lilymon": {
+      "id": "lilymon",
+      "nameKey": "digimon.lilymon.name",
+      "stage": "ultimate",
+      "attribute": "data",
+      "element": "plant",
+      "primaryType": "vegetation",
+      "lineId": "palmon",
+      "baseStats": {
+        "hp": 252,
+        "mp": 41,
+        "atk": 41,
+        "def": 36,
+        "int": 32,
+        "spi": 32,
+        "spd": 46
+      }
+    },
+    "rosemon": {
+      "id": "rosemon",
+      "nameKey": "digimon.rosemon.name",
+      "stage": "mega",
+      "attribute": "data",
+      "element": "plant",
+      "primaryType": "vegetation",
+      "lineId": "palmon",
+      "baseStats": {
+        "hp": 330,
+        "mp": 54,
+        "atk": 54,
+        "def": 48,
+        "int": 42,
+        "spi": 42,
+        "spd": 60
+      }
+    },
+    "pitchmon": {
+      "id": "pitchmon",
+      "nameKey": "digimon.pitchmon.name",
+      "stage": "baby",
+      "attribute": "vaccine",
+      "element": "neutral",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 41,
+        "mp": 5,
+        "atk": 8,
+        "def": 7,
+        "int": 3,
+        "spi": 4,
+        "spd": 6
+      }
+    },
+    "bukamon": {
+      "id": "bukamon",
+      "nameKey": "digimon.bukamon.name",
+      "stage": "in_training",
+      "attribute": "vaccine",
+      "element": "water",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 64,
+        "mp": 8,
+        "atk": 13,
+        "def": 11,
+        "int": 5,
+        "spi": 6,
+        "spd": 9
+      }
+    },
+    "gomamon": {
+      "id": "gomamon",
+      "nameKey": "digimon.gomamon.name",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "element": "water",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 118,
+        "mp": 16,
+        "atk": 24,
+        "def": 20,
+        "int": 10,
+        "spi": 12,
+        "spd": 18
+      }
+    },
+    "ikkakumon": {
+      "id": "ikkakumon",
+      "nameKey": "digimon.ikkakumon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "water",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 194,
+        "mp": 26,
+        "atk": 39,
+        "def": 33,
+        "int": 16,
+        "spi": 19,
+        "spd": 29
+      }
+    },
+    "zudomon": {
+      "id": "zudomon",
+      "nameKey": "digimon.zudomon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "water",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 271,
+        "mp": 36,
+        "atk": 55,
+        "def": 46,
+        "int": 23,
+        "spi": 27,
+        "spd": 41
+      }
+    },
+    "vikemon": {
+      "id": "vikemon",
+      "nameKey": "digimon.vikemon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "water",
+      "primaryType": "aquatic",
+      "lineId": "gomamon",
+      "baseStats": {
+        "hp": 354,
+        "mp": 48,
+        "atk": 72,
+        "def": 60,
+        "int": 30,
+        "spi": 36,
+        "spd": 54
+      }
+    },
+    "patamon": {
+      "id": "patamon",
+      "nameKey": "digimon.patamon.name",
+      "stage": "rookie",
+      "attribute": "data",
+      "element": "wind",
+      "primaryType": "holy_beast",
+      "lineId": "patamon",
+      "baseStats": {
+        "hp": 95,
+        "mp": 24,
+        "atk": 18,
+        "def": 14,
+        "int": 20,
+        "spi": 22,
+        "spd": 26
+      }
+    },
+    "angemon": {
+      "id": "angemon",
+      "nameKey": "digimon.angemon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "patamon",
+      "baseStats": {
+        "hp": 156,
+        "mp": 39,
+        "atk": 29,
+        "def": 23,
+        "int": 33,
+        "spi": 36,
+        "spd": 42
+      }
+    },
+    "magnaangemon": {
+      "id": "magnaangemon",
+      "nameKey": "digimon.magnaangemon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "patamon",
+      "baseStats": {
+        "hp": 218,
+        "mp": 55,
+        "atk": 41,
+        "def": 32,
+        "int": 46,
+        "spi": 50,
+        "spd": 59
+      }
+    },
+    "seraphimon": {
+      "id": "seraphimon",
+      "nameKey": "digimon.seraphimon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "patamon",
+      "baseStats": {
+        "hp": 285,
+        "mp": 72,
+        "atk": 54,
+        "def": 42,
+        "int": 60,
+        "spi": 66,
+        "spd": 78
+      }
+    },
+    "nyaromon": {
+      "id": "nyaromon",
+      "nameKey": "digimon.nyaromon.name",
+      "stage": "baby",
+      "attribute": "data",
+      "element": "neutral",
+      "primaryType": "holy_beast",
+      "lineId": "gatomon",
+      "baseStats": {
+        "hp": 31,
+        "mp": 7,
+        "atk": 7,
+        "def": 4,
+        "int": 6,
+        "spi": 7,
+        "spd": 9
+      }
+    },
+    "salamon": {
+      "id": "salamon",
+      "nameKey": "digimon.salamon.name",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "gatomon",
+      "baseStats": {
+        "hp": 90,
+        "mp": 22,
+        "atk": 20,
+        "def": 12,
+        "int": 18,
+        "spi": 20,
+        "spd": 28
+      }
+    },
+    "gatomon": {
+      "id": "gatomon",
+      "nameKey": "digimon.gatomon.name",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "gatomon",
+      "baseStats": {
+        "hp": 148,
+        "mp": 36,
+        "atk": 33,
+        "def": 19,
+        "int": 29,
+        "spi": 33,
+        "spd": 46
+      }
+    },
+    "angewomon": {
+      "id": "angewomon",
+      "nameKey": "digimon.angewomon.name",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "gatomon",
+      "baseStats": {
+        "hp": 206,
+        "mp": 50,
+        "atk": 46,
+        "def": 27,
+        "int": 41,
+        "spi": 46,
+        "spd": 64
+      }
+    },
+    "ophanimon": {
+      "id": "ophanimon",
+      "nameKey": "digimon.ophanimon.name",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "element": "light",
+      "primaryType": "holy_beast",
+      "lineId": "gatomon",
+      "baseStats": {
+        "hp": 270,
+        "mp": 66,
+        "atk": 60,
+        "def": 36,
+        "int": 54,
+        "spi": 60,
+        "spd": 84
       }
     }
   }

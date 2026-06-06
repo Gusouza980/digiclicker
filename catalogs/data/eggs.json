@@ -4,5 +4,336 @@
     "version": "1.0.0",
     "updatedAt": "2026-06-06"
   },
-  "entries": {}
+  "entries": {
+    "egg_reptile_common": {
+      "id": "egg_reptile_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "reptile",
+      "rarity": "common"
+    },
+    "egg_reptile_rare": {
+      "id": "egg_reptile_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "reptile",
+      "rarity": "rare"
+    },
+    "egg_reptile_reinforced": {
+      "id": "egg_reptile_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "reptile",
+      "rarity": "reinforced"
+    },
+    "egg_reptile_special": {
+      "id": "egg_reptile_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "reptile",
+      "rarity": "special"
+    },
+    "egg_reptile_event": {
+      "id": "egg_reptile_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "reptile",
+      "rarity": "event"
+    },
+    "egg_bird_common": {
+      "id": "egg_bird_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "bird",
+      "rarity": "common"
+    },
+    "egg_bird_rare": {
+      "id": "egg_bird_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "bird",
+      "rarity": "rare"
+    },
+    "egg_bird_reinforced": {
+      "id": "egg_bird_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "bird",
+      "rarity": "reinforced"
+    },
+    "egg_bird_special": {
+      "id": "egg_bird_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "bird",
+      "rarity": "special"
+    },
+    "egg_bird_event": {
+      "id": "egg_bird_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "bird",
+      "rarity": "event"
+    },
+    "egg_insect_common": {
+      "id": "egg_insect_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "insect",
+      "rarity": "common"
+    },
+    "egg_insect_rare": {
+      "id": "egg_insect_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "insect",
+      "rarity": "rare"
+    },
+    "egg_insect_reinforced": {
+      "id": "egg_insect_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "insect",
+      "rarity": "reinforced"
+    },
+    "egg_insect_special": {
+      "id": "egg_insect_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "insect",
+      "rarity": "special"
+    },
+    "egg_insect_event": {
+      "id": "egg_insect_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "insect",
+      "rarity": "event"
+    },
+    "egg_vegetation_common": {
+      "id": "egg_vegetation_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "vegetation",
+      "rarity": "common"
+    },
+    "egg_vegetation_rare": {
+      "id": "egg_vegetation_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "vegetation",
+      "rarity": "rare"
+    },
+    "egg_vegetation_reinforced": {
+      "id": "egg_vegetation_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "vegetation",
+      "rarity": "reinforced"
+    },
+    "egg_vegetation_special": {
+      "id": "egg_vegetation_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "vegetation",
+      "rarity": "special"
+    },
+    "egg_vegetation_event": {
+      "id": "egg_vegetation_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "vegetation",
+      "rarity": "event"
+    },
+    "egg_aquatic_common": {
+      "id": "egg_aquatic_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "aquatic",
+      "rarity": "common"
+    },
+    "egg_aquatic_rare": {
+      "id": "egg_aquatic_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "aquatic",
+      "rarity": "rare"
+    },
+    "egg_aquatic_reinforced": {
+      "id": "egg_aquatic_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "aquatic",
+      "rarity": "reinforced"
+    },
+    "egg_aquatic_special": {
+      "id": "egg_aquatic_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "aquatic",
+      "rarity": "special"
+    },
+    "egg_aquatic_event": {
+      "id": "egg_aquatic_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "aquatic",
+      "rarity": "event"
+    },
+    "egg_holy_beast_common": {
+      "id": "egg_holy_beast_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "holy_beast",
+      "rarity": "common"
+    },
+    "egg_holy_beast_rare": {
+      "id": "egg_holy_beast_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "holy_beast",
+      "rarity": "rare"
+    },
+    "egg_holy_beast_reinforced": {
+      "id": "egg_holy_beast_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "holy_beast",
+      "rarity": "reinforced"
+    },
+    "egg_holy_beast_special": {
+      "id": "egg_holy_beast_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "holy_beast",
+      "rarity": "special"
+    },
+    "egg_holy_beast_event": {
+      "id": "egg_holy_beast_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "holy_beast",
+      "rarity": "event"
+    },
+    "egg_mammal_common": {
+      "id": "egg_mammal_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "mammal",
+      "rarity": "common"
+    },
+    "egg_mammal_rare": {
+      "id": "egg_mammal_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "mammal",
+      "rarity": "rare"
+    },
+    "egg_mammal_reinforced": {
+      "id": "egg_mammal_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "mammal",
+      "rarity": "reinforced"
+    },
+    "egg_mammal_special": {
+      "id": "egg_mammal_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "mammal",
+      "rarity": "special"
+    },
+    "egg_mammal_event": {
+      "id": "egg_mammal_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "mammal",
+      "rarity": "event"
+    },
+    "egg_lesser_common": {
+      "id": "egg_lesser_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "lesser",
+      "rarity": "common"
+    },
+    "egg_lesser_rare": {
+      "id": "egg_lesser_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "lesser",
+      "rarity": "rare"
+    },
+    "egg_lesser_reinforced": {
+      "id": "egg_lesser_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "lesser",
+      "rarity": "reinforced"
+    },
+    "egg_lesser_special": {
+      "id": "egg_lesser_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "lesser",
+      "rarity": "special"
+    },
+    "egg_lesser_event": {
+      "id": "egg_lesser_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "lesser",
+      "rarity": "event"
+    },
+    "egg_larva_common": {
+      "id": "egg_larva_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "larva",
+      "rarity": "common"
+    },
+    "egg_larva_rare": {
+      "id": "egg_larva_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "larva",
+      "rarity": "rare"
+    },
+    "egg_larva_reinforced": {
+      "id": "egg_larva_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "larva",
+      "rarity": "reinforced"
+    },
+    "egg_larva_special": {
+      "id": "egg_larva_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "larva",
+      "rarity": "special"
+    },
+    "egg_larva_event": {
+      "id": "egg_larva_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "larva",
+      "rarity": "event"
+    },
+    "egg_amphibian_common": {
+      "id": "egg_amphibian_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "amphibian",
+      "rarity": "common"
+    },
+    "egg_amphibian_rare": {
+      "id": "egg_amphibian_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "amphibian",
+      "rarity": "rare"
+    },
+    "egg_amphibian_reinforced": {
+      "id": "egg_amphibian_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "amphibian",
+      "rarity": "reinforced"
+    },
+    "egg_amphibian_special": {
+      "id": "egg_amphibian_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "amphibian",
+      "rarity": "special"
+    },
+    "egg_amphibian_event": {
+      "id": "egg_amphibian_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "amphibian",
+      "rarity": "event"
+    },
+    "egg_mini_dragon_common": {
+      "id": "egg_mini_dragon_common",
+      "nameKey": "egg.common.name",
+      "digimonType": "mini_dragon",
+      "rarity": "common"
+    },
+    "egg_mini_dragon_rare": {
+      "id": "egg_mini_dragon_rare",
+      "nameKey": "egg.rare.name",
+      "digimonType": "mini_dragon",
+      "rarity": "rare"
+    },
+    "egg_mini_dragon_reinforced": {
+      "id": "egg_mini_dragon_reinforced",
+      "nameKey": "egg.reinforced.name",
+      "digimonType": "mini_dragon",
+      "rarity": "reinforced"
+    },
+    "egg_mini_dragon_special": {
+      "id": "egg_mini_dragon_special",
+      "nameKey": "egg.special.name",
+      "digimonType": "mini_dragon",
+      "rarity": "special"
+    },
+    "egg_mini_dragon_event": {
+      "id": "egg_mini_dragon_event",
+      "nameKey": "egg.event.name",
+      "digimonType": "mini_dragon",
+      "rarity": "event"
+    }
+  }
 }

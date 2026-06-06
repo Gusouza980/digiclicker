@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "kind": "personality",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "fighter": {
+      "id": "fighter",
+      "nameKey": "personality.fighter.name",
+      "descriptionKey": "personality.fighter.description",
+      "growthModifiers": { "atk": 1.15, "int": 0.9 }
+    },
+    "defender": {
+      "id": "defender",
+      "nameKey": "personality.defender.name",
+      "descriptionKey": "personality.defender.description",
+      "growthModifiers": { "def": 1.15, "spd": 0.9 }
+    },
+    "spiritual": {
+      "id": "spiritual",
+      "nameKey": "personality.spiritual.name",
+      "descriptionKey": "personality.spiritual.description",
+      "growthModifiers": { "spi": 1.15, "atk": 0.9 }
+    },
+    "nimble": {
+      "id": "nimble",
+      "nameKey": "personality.nimble.name",
+      "descriptionKey": "personality.nimble.description",
+      "growthModifiers": { "spd": 1.15, "def": 0.9 }
+    },
+    "brainy": {
+      "id": "brainy",
+      "nameKey": "personality.brainy.name",
+      "descriptionKey": "personality.brainy.description",
+      "growthModifiers": { "int": 1.15, "hp": 0.9 }
+    },
+    "durable": {
+      "id": "durable",
+      "nameKey": "personality.durable.name",
+      "descriptionKey": "personality.durable.description",
+      "growthModifiers": { "hp": 1.15, "spd": 0.9 }
+    },
+    "charming": {
+      "id": "charming",
+      "nameKey": "personality.charming.name",
+      "descriptionKey": "personality.charming.description",
+      "growthModifiers": { "spi": 1.08, "int": 1.05 }
+    },
+    "zealous": {
+      "id": "zealous",
+      "nameKey": "personality.zealous.name",
+      "descriptionKey": "personality.zealous.description",
+      "growthModifiers": { "atk": 1.1, "def": 1.05 }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { getCatalogEntry } from "@/catalogs/loader";
 import type { PlayerDigimon } from "@/types/digimon";
+import type { PersonalityGrowthModifiers } from "@/types/personality";
 import {
   createEmptyStatBlock,
   sumStatBlocks,
@@ -16,12 +17,27 @@ const FRIENDSHIP_CUMULATIVE_THRESHOLDS = [
   { min: 25, percent: 0.05 },
 ] as const;
 
-function getGrowthByLevel(base: StatBlock, level: number): StatBlock {
+function getPersonalityModifiers(
+  personalityId: string | null,
+): PersonalityGrowthModifiers {
+  if (!personalityId) return {};
+
+  const personality = getCatalogEntry("personality", personalityId);
+  return personality?.growthModifiers ?? {};
+}
+
+function getGrowthByLevel(
+  base: StatBlock,
+  level: number,
+  personalityId: string | null,
+): StatBlock {
   const growth = createEmptyStatBlock();
   const levelsAboveOne = Math.max(0, level - 1);
+  const personalityMods = getPersonalityModifiers(personalityId);
 
   for (const key of Object.keys(growth) as StatKey[]) {
-    growth[key] = Math.floor(base[key] * GROWTH_RATE * levelsAboveOne);
+    const modifier = personalityMods[key] ?? 1;
+    growth[key] = Math.floor(base[key] * GROWTH_RATE * levelsAboveOne * modifier);
   }
 
   return growth;
@@ -52,7 +68,7 @@ export function calculateStatBreakdown(digimon: PlayerDigimon): StatBreakdown | 
   if (!catalog) return null;
 
   const base = { ...catalog.baseStats };
-  const byLevel = getGrowthByLevel(base, digimon.level);
+  const byLevel = getGrowthByLevel(base, digimon.level, digimon.personalityId);
   const cumulative = getCumulativeByFriendship(base, digimon.friendship);
 
   return { base, byLevel, cumulative };

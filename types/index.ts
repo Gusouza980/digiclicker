@@ -6,6 +6,7 @@ export * from "./item";
 export * from "./locale";
 export * from "./location";
 export * from "./mission";
+export * from "./personality";
 export * from "./requirement";
 export * from "./save";
 export * from "./stats";

@@ -3,7 +3,9 @@ import type { SaveData } from "@/types";
 export type RewardGrant =
   | { type: "bits"; amount: number }
   | { type: "digimon_xp"; digimonInstanceId: string; amount: number }
-  | { type: "item"; itemId: string; quantity: number };
+  | { type: "item"; itemId: string; quantity: number }
+  | { type: "essence"; essenceId: string; amount: number }
+  | { type: "egg"; eggCatalogId: string; containedDigimonId: string };
 
 export type AppliedReward = {
   type: RewardGrant["type"];

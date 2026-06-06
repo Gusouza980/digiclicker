@@ -4,14 +4,19 @@ import { createInstanceId } from "@/utils/id";
 
 const STARTER_CATALOG_IDS = ["agumon", "gabumon", "biyomon"] as const;
 
-export function createStarterDigimon(catalogId: string): PlayerDigimon {
+const STARTER_PERSONALITIES = ["fighter", "defender", "nimble"] as const;
+
+export function createStarterDigimon(
+  catalogId: string,
+  personalityId: string | null = null,
+): PlayerDigimon {
   return {
     instanceId: createInstanceId(catalogId),
     catalogId,
     level: 5,
     xp: 0,
     friendship: 0,
-    personalityId: null,
+    personalityId,
     hatchQuality: null,
     typeXp: {},
   };
@@ -21,8 +26,11 @@ export function buildStarterTeam(): Pick<SaveData, "digimons" | "team"> {
   const digimons: Record<string, PlayerDigimon> = {};
   const activeDigimonIds: string[] = [];
 
-  for (const catalogId of STARTER_CATALOG_IDS) {
-    const digimon = createStarterDigimon(catalogId);
+  for (const [index, catalogId] of STARTER_CATALOG_IDS.entries()) {
+    const digimon = createStarterDigimon(
+      catalogId,
+      STARTER_PERSONALITIES[index] ?? null,
+    );
     digimons[digimon.instanceId] = digimon;
     activeDigimonIds.push(digimon.instanceId);
   }

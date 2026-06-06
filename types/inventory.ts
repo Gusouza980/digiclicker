@@ -16,6 +16,7 @@ export type EggInstance = {
   digimonType: string;
   rarity: EggRarity;
   scanned: boolean;
+  containedDigimonId: string;
   revealedDigimonId: string | null;
   insertions: number;
   maxInsertions: number;
