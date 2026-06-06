@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "kind": "location",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "village_of_beginnings": {
+      "id": "village_of_beginnings",
+      "nameKey": "location.village_of_beginnings.name",
+      "descriptionKey": "location.village_of_beginnings.description",
+      "enemyPool": [],
+      "bossId": null,
+      "unlockRequirementIds": []
+    }
+  }
+}

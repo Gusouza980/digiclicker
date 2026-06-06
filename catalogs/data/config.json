@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "kind": "config",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-06"
+  },
+  "entries": {
+    "global": {
+      "battle": {
+        "tickMs": 100,
+        "clickDamageMultiplier": 0.1,
+        "mpGainPerAutoAttack": 0.05,
+        "specialDamageMultiplier": 2
+      },
+      "xp": {
+        "digimonPerVictory": 10,
+        "trainerPerVictory": 5
+      },
+      "drops": {
+        "baseChance": 0.15
+      },
+      "island": {
+        "maxStorage": 50,
+        "slotsPerAction": 3
+      },
+      "team": {
+        "maxActive": 3
+      }
+    }
+  }
+}
